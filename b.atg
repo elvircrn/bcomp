@@ -74,7 +74,7 @@ Ident <Name name>
   Initializator                  (. Name name;  .)
     =
     (ConstVal
-    |Ident<name>                (. ParseList.append(L"(SAMEAS "); .)
+    |Ident<name>                (. if (!IsDeclaredGlobal(name)) UndecErr(name); ParseList.append(L"(SAMEAS "); .)
                                 (. ParseList.append(name);ParseList.append(L")") ;.)
     ).                            
 
@@ -116,7 +116,7 @@ Initializator                    (. ParseList.insert(position,L"(INIT " ); Parse
 
   FormalParameter                (. Name name;  .)
     =
-  Ident<name>                   (. if (IsDeclaredGlobal(name)) AlreadyErr(name); .)
+  Ident<name>                   (. if (IsDeclaredLocal(name)) AlreadyErr(name); .)
                                 (. ParseList.append(L"(FPARAM "); .)
                                 (. ParseList.append(name);ParseList.append(L" ");;ParseList.append(L")") ;.)
 
