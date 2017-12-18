@@ -116,7 +116,7 @@ Initializator                    (. ParseList.insert(position,L"(INIT " ); Parse
 
   FormalParameter                (. Name name;  .)
     =
-  Ident<name>                   (.  .)
+  Ident<name>                   (. if (IsDeclaredGlobal(name)) AlreadyErr(name); .)
                                 (. ParseList.append(L"(FPARAM "); .)
                                 (. ParseList.append(name);ParseList.append(L" ");;ParseList.append(L")") ;.)
 
