@@ -260,7 +260,7 @@ Ident <name>
 
   .
 
-  AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+  AssignExpr  (. if (!Assignable(position)) { SemErr(L"Not assignable"); }.)
                       (. int position; .)
   =                                (. position=ParseList.length(); .)
 CondExpr      
