@@ -37,7 +37,7 @@ PRODUCTIONS
 
   B =                            (.  ParseList=L"(B ";scopepos=0;.)
     { Definition }                              
-EOF                              (. ParseList+=L")";std::wcout << ParseList; .)
+EOF                              (. ParseList+=L")";Compile(0); std::wcout << ParseList; .)
                                                 
 .
 Ident <Name name>
@@ -264,7 +264,7 @@ Ident <name>
 CondExpr      
     [(
     "="                      
-    AssignExpr
+    AssignExpr                    (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                                   (. ParseList.insert(position,L"(MOV " ); .)
                                   (. ParseList.append(L") " );.)
   | "=*"                      

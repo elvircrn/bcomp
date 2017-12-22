@@ -36,7 +36,7 @@ bool IsDeclaredGlobal(Name name1)
     return false;
 }
 
-void UndecErr  (Name name)
+void UndecErr(Name name)
 {
     Name msg;
     wcscpy(msg,L"Undeclared ");
@@ -44,7 +44,7 @@ void UndecErr  (Name name)
     SemErr (msg);
 }
 
-void AlreadyErr  (Name name)
+void AlreadyErr(Name name)
 {
     Name msg;
     wcscpy(msg,L"Already declared ");
@@ -52,7 +52,7 @@ void AlreadyErr  (Name name)
     SemErr (msg);
 }
 
-std::wstring GetNodeName (int position)
+std::wstring GetNodeName(int position)
 {
     wstring NodeName;
     NodeName=L"";
@@ -135,4 +135,12 @@ int ElemPos(int position, int elemnum)
     }
     
 }
+
+
+// TODO: L"VAR", L"INDEX" ili L"PTR"
+bool Assignable(int position)
+{
+    return true;
+}
+
 
