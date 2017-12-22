@@ -256,79 +256,96 @@ Ident <name>
 
 } ';'  .
   Expression 
-  = AssignExpr
+  = AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
   .
 
-  AssignExpr                      (. int position; .)
+  AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+                      (. int position; .)
   =                                (. position=ParseList.length(); .)
 CondExpr      
     [(
     "="                      
-    AssignExpr                    (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                                   (. ParseList.insert(position,L"(MOV " ); .)
                                   (. ParseList.append(L") " );.)
   | "=*"                      
-AssignExpr
+AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                                   (. ParseList.insert(position,L"(MULTMOV " ); .)
                                   (. ParseList.append(L") " );.)
   | "=/"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(DIVMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=%"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(MODMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=+"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ADDMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=-"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(SUBMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=&"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ANDMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=^"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(XORMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=|"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ORMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=<<"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(LSHIFTMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=>>"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(RSHIFTMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=<"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ISLESSMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=<="                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ISLESSEQUMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=>"                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ISGREATERMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=>="                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ISGREATEREQUMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "==="                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ISEQUMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=!="                                      
-    AssignExpr
+    AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+
                 (. ParseList.insert(position,L"(ISNEQUMOV " ); .)
                 (. ParseList.append(L") " );.)
     )].
@@ -514,11 +531,13 @@ UnaryExpr      (. int position; .)
 
   ArgExprList  (. int position; .)
   =            (. position=ParseList.length(); .)
-  AssignExpr    (. ParseList.insert(position,L"(ARG " ); .)
+  AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+    (. ParseList.insert(position,L"(ARG " ); .)
                 (. ParseList.append(L") " );.)
 
   {','          (. position=ParseList.length(); .)
-  AssignExpr    (. ParseList.insert(position,L"(ARG " ); .)
+  AssignExpr  (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+    (. ParseList.insert(position,L"(ARG " ); .)
                 (. ParseList.append(L") " );.)
 
   }.
