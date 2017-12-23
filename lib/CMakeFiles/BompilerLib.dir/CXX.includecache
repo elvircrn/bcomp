@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Bompiler.cpp
+Bompiler.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Bompiler.h
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.h
+Parser.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.h
+
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.cpp
 wchar.h
 -

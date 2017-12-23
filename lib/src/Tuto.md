@@ -42,6 +42,10 @@ CondExpr
                                 (. ParseList.append(L") " );.)
   | "=*"                      
 ```
+Datu liniju za provjeru dodajte iza svih AssignExpr sluèajeva. Dodajte je i u UnaryExpr i PostfixExpr za operatore inkrementiranja i dekrementiranja.
+
+Napišite funkciju koja provjerava da li je goto labela veæ definisana i promijenite pravilo Label da to testira.
+
 Dobijeno apstraktno stablo sintakse sa semantièkim provjerama, se može dalje iskoristiti za generisanje asemblerskog koda
 Po uzoru na ADD, lako realizujte generisanje asemblerskog koda za AND, OR, XOR i MUL. Probajte i SUB (pazite na nekomutativnost)
 

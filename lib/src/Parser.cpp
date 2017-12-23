@@ -486,6 +486,7 @@ void Parser::AssignExpr() {
 			case 31 /* "=%" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MODMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -493,6 +494,7 @@ void Parser::AssignExpr() {
 			case 32 /* "=+" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ADDMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -500,6 +502,7 @@ void Parser::AssignExpr() {
 			case 33 /* "=-" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(SUBMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -507,6 +510,7 @@ void Parser::AssignExpr() {
 			case 34 /* "=&" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ANDMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -514,6 +518,7 @@ void Parser::AssignExpr() {
 			case 35 /* "=^" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(XORMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -521,6 +526,7 @@ void Parser::AssignExpr() {
 			case 36 /* "=|" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ORMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -528,6 +534,7 @@ void Parser::AssignExpr() {
 			case 37 /* "=<<" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(LSHIFTMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -535,6 +542,7 @@ void Parser::AssignExpr() {
 			case 38 /* "=>>" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(RSHIFTMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -542,6 +550,7 @@ void Parser::AssignExpr() {
 			case 39 /* "=<" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISLESSMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -549,6 +558,7 @@ void Parser::AssignExpr() {
 			case 40 /* "=<=" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISLESSEQUMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -556,6 +566,7 @@ void Parser::AssignExpr() {
 			case 41 /* "=>" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISGREATERMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -563,6 +574,7 @@ void Parser::AssignExpr() {
 			case 42 /* "=>=" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISGREATEREQUMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -570,6 +582,7 @@ void Parser::AssignExpr() {
 			case 43 /* "===" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISEQUMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -577,6 +590,7 @@ void Parser::AssignExpr() {
 			case 44 /* "=!=" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISNEQUMOV " ); 
 				ParseList.append(L") " );
 				break;
