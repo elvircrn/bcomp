@@ -24,25 +24,13 @@ matrix:
       addons: &clang38
         apt:
           sources: ['llvm-toolchain-precise-3.8', 'ubuntu-toolchain-r-test']
-          packages: ['clang-3.8', 'libc++']
+          packages: ['clang-3.8', 'libc++-dev', 'libc++1']
       env: COMPILER='clang++-3.8' BUILD_TYPE='Release' FLAGS='-stdlib=libc++'
 
     - os: linux
       compiler: clang
       addons: *clang38
       env: COMPILER='clang++-3.8' BUILD_TYPE='Debug'
-
-    # OSX C++14 Clang Builds
-
-    - os: osx
-      osx_image: xcode8.3
-      compiler: clang
-      env: COMPILER='clang++' BUILD_TYPE='Debug'
-
-    - os: osx
-      osx_image: xcode8.3
-      compiler: clang
-      env: COMPILER='clang++' BUILD_TYPE='Release'
 
 
 install:
