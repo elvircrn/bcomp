@@ -268,7 +268,7 @@ CondExpr
                                   (. ParseList.insert(position,L"(MOV " ); .)
                                   (. ParseList.append(L") " );.)
   | "=*"                      
-AssignExpr
+AssignExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                                   (. ParseList.insert(position,L"(MULTMOV " ); .)
                                   (. ParseList.append(L") " );.)
   | "=/"                                      
@@ -316,19 +316,19 @@ AssignExpr
                 (. ParseList.insert(position,L"(ISLESSEQUMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=>"                                      
-    AssignExpr
+    AssignExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(ISGREATERMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=>="                                      
-    AssignExpr
+    AssignExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(ISGREATEREQUMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "==="                                      
-    AssignExpr
+    AssignExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(ISEQUMOV " ); .)
                 (. ParseList.append(L") " );.)
   | "=!="                                      
-    AssignExpr
+    AssignExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(ISNEQUMOV " ); .)
                 (. ParseList.append(L") " );.)
     )].
