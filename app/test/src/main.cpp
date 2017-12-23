@@ -1,7 +1,9 @@
+#define CATCH_CONFIG_RUNNER
 #include <iostream>
+#include <catch.hpp>
 #include <wchar.h>
-#include "Parser.h"
-#include "Scanner.h"
+#include "../../../app/src/Parser.h"
+#include "../../../app/src/Scanner.h"
 
 void compile(const char *file) {
     wchar_t *fileName = coco_string_create(file);
