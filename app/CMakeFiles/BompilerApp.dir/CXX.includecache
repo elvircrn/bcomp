@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/main.cpp
+iostream
+-
+wchar.h
+-
+Parser.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.h
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h
+

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Bompiler"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\third_party\;CMake Files\third_party\Catch\;CMake Files\third_party\Catch\contrib\;CMake Files\lib\;CMake Files\lib\test\;CMake Files\app\;CMake Files\app\test\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BompilerLib">
+				<Option output="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/libBompilerLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 BompilerLib"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BompilerLib/fast">
+				<Option output="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/libBompilerLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 BompilerLib/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BompilerLibTest">
+				<Option output="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/BompilerLibTest.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/Catch/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 BompilerLibTest"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BompilerLibTest/fast">
+				<Option output="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/BompilerLibTest.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/Catch/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 BompilerLibTest/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BompilerApp">
+				<Option output="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/BompilerApp.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 BompilerApp"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BompilerApp/fast">
+				<Option output="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/BompilerApp.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
+					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 BompilerApp/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/main.cpp">
+			<Option target="BompilerApp"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.cpp">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.h">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.cpp">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.h">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/main.cpp">
+			<Option target="BompilerLibTest"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\third_party\"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/Catch/contrib/ParseAndAddCatchTests.cmake">
+			<Option virtualFolder="CMake Files\third_party\Catch\contrib\"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\test\"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\app\"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\app\test\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
