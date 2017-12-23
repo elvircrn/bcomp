@@ -30,7 +30,7 @@ matrix:
     - os: linux
       compiler: clang
       addons: *clang38
-      env: COMPILER='clang++-3.8' BUILD_TYPE='Debug'
+      env: COMPILER='clang++-3.8' BUILD_TYPE='Debug' FLAGS='-stdlib=libc++'
 
 
 install:
