@@ -11,7 +11,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "lib/include"
-  "third_party/spdlog/include"
   "third_party/Catch/include"
   )
 

@@ -12,6 +12,8 @@ catch.hpp
 logger.h
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/logger.h
 
+lib/include/logger.h
+
 third_party/Catch/include/catch.hpp
 internal/catch_suppress_warnings.h
 third_party/Catch/include/internal/catch_suppress_warnings.h

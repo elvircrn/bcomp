@@ -6,13 +6,59 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/main.cpp
-iostream
--
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.cpp
 wchar.h
 -
 Parser.h
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.h
 Scanner.h
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.h
+wchar.h
+-
+string
+-
+iostream
+-
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h
+methods.inc
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/methods.inc
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.cpp
+memory.h
+-
+string.h
+-
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+wchar.h
+-
+io.h
+-
+fcntl.h
+-
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/main.cpp
+iostream
+-
+wchar.h
+-
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h
+Parser.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.h
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/methods.inc
 

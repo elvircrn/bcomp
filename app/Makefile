@@ -135,6 +135,60 @@ BompilerApp/fast:
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/build
 .PHONY : BompilerApp/fast
 
+src/Parser.obj: src/Parser.cpp.obj
+
+.PHONY : src/Parser.obj
+
+# target to build an object file
+src/Parser.cpp.obj:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/src/Parser.cpp.obj
+.PHONY : src/Parser.cpp.obj
+
+src/Parser.i: src/Parser.cpp.i
+
+.PHONY : src/Parser.i
+
+# target to preprocess a source file
+src/Parser.cpp.i:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/src/Parser.cpp.i
+.PHONY : src/Parser.cpp.i
+
+src/Parser.s: src/Parser.cpp.s
+
+.PHONY : src/Parser.s
+
+# target to generate assembly for a file
+src/Parser.cpp.s:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/src/Parser.cpp.s
+.PHONY : src/Parser.cpp.s
+
+src/Scanner.obj: src/Scanner.cpp.obj
+
+.PHONY : src/Scanner.obj
+
+# target to build an object file
+src/Scanner.cpp.obj:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/src/Scanner.cpp.obj
+.PHONY : src/Scanner.cpp.obj
+
+src/Scanner.i: src/Scanner.cpp.i
+
+.PHONY : src/Scanner.i
+
+# target to preprocess a source file
+src/Scanner.cpp.i:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/src/Scanner.cpp.i
+.PHONY : src/Scanner.cpp.i
+
+src/Scanner.s: src/Scanner.cpp.s
+
+.PHONY : src/Scanner.s
+
+# target to generate assembly for a file
+src/Scanner.cpp.s:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/src/Scanner.cpp.s
+.PHONY : src/Scanner.cpp.s
+
 src/main.obj: src/main.cpp.obj
 
 .PHONY : src/main.obj
@@ -172,6 +226,12 @@ help:
 	@echo ... BompilerApp
 	@echo ... rebuild_cache
 	@echo ... test
+	@echo ... src/Parser.obj
+	@echo ... src/Parser.i
+	@echo ... src/Parser.s
+	@echo ... src/Scanner.obj
+	@echo ... src/Scanner.i
+	@echo ... src/Scanner.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

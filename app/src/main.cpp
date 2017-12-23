@@ -1,7 +1,7 @@
 #include <iostream>
 #include <wchar.h>
-#include "Parser.h"
 #include "Scanner.h"
+#include "Parser.h"
 
 int main(int argc, char *argv[]) {
     if (argc == 2) {

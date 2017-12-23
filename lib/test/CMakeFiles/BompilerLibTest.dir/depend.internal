@@ -3,6 +3,7 @@
 
 lib/test/CMakeFiles/BompilerLibTest.dir/src/main.cpp.obj
  C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/main.cpp
+ lib/include/logger.h
  third_party/Catch/include/catch.hpp
  third_party/Catch/include/internal/catch_capture.hpp
  third_party/Catch/include/internal/catch_common.h

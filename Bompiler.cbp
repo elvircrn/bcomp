@@ -55,7 +55,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
-					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
@@ -78,7 +77,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
-					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
@@ -101,7 +99,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
-					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/Catch/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
@@ -125,7 +122,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
-					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/Catch/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
@@ -149,7 +145,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
-					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
@@ -172,7 +167,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include"/>
-					<Add directory="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/third_party/spdlog/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
@@ -188,19 +182,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.cpp">
+			<Option target="BompilerApp"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Parser.h">
+			<Option target="BompilerApp"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.cpp">
+			<Option target="BompilerApp"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/Scanner.h">
+			<Option target="BompilerApp"/>
+		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/src/main.cpp">
 			<Option target="BompilerApp"/>
 		</Unit>
-		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.cpp">
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/logger.h">
 			<Option target="BompilerLib"/>
 		</Unit>
-		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.h">
-			<Option target="BompilerLib"/>
-		</Unit>
-		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.cpp">
-			<Option target="BompilerLib"/>
-		</Unit>
-		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.h">
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/logger.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/main.cpp">
