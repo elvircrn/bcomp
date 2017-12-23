@@ -131,7 +131,10 @@ int ElemPos(int position, int elemnum) {
 }
 
 // TODO: L"VAR", L"INDEX" ili L"PTR"
-bool Assignable(int position) { return true; }
+bool Assignable(int position) {
+  wstring nodename = GetNodeName(position);
+  return (nodename == L"VAR" || nodename == L"INDEX" || nodename == L"PTR");
+}
 
 void Compile(int position) {
   wstring nodename, elemname;
