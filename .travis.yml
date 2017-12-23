@@ -54,3 +54,7 @@ before_script:
 script:
   - make -j 2
   - ctest -V -j 2
+
+notifications:
+  email: false
+

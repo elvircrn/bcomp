@@ -94,7 +94,7 @@ std::wstringstream _ast;
 
 
 
-	explicit Parser(Scanner *scanner);
+	Parser(Scanner *scanner);
 	~Parser();
 	void SemErr(const wchar_t* msg);
 
