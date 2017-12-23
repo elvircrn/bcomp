@@ -1,3 +1,6 @@
+build/
+*.*old
+
 # Swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
@@ -29,6 +32,7 @@ tags
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
+.idea/*c:w
 
 # Gradle:
 .idea/**/gradle.xml
