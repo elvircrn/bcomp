@@ -5,7 +5,7 @@
 
 int compile(const std::wstring &);
 
-TEST_CASE("Compiler") {
+TEST_CASE("Basic compile tests") {
   bompiler::Bompiler bompiler{};
   REQUIRE(bompiler.compile(L"data/test1.b"));
   REQUIRE(bompiler.compile(L"data/test2.b"));

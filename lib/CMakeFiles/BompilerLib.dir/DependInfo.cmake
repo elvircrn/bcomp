@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.cpp" "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj"
   "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.cpp" "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj"
   "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/logger.cpp" "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj"
-  "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/main.cpp" "C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

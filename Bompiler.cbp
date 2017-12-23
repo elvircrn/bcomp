@@ -162,9 +162,6 @@
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/logger.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
-		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/main.cpp">
-			<Option target="BompilerLib"/>
-		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/main.cpp">
 			<Option target="BompilerLibTest"/>
 		</Unit>

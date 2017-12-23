@@ -243,33 +243,6 @@ src/logger.cpp.s:
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.s
 .PHONY : src/logger.cpp.s
 
-src/main.obj: src/main.cpp.obj
-
-.PHONY : src/main.obj
-
-# target to build an object file
-src/main.cpp.obj:
-	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj
-.PHONY : src/main.cpp.obj
-
-src/main.i: src/main.cpp.i
-
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -292,9 +265,6 @@ help:
 	@echo ... src/logger.obj
 	@echo ... src/logger.i
 	@echo ... src/logger.s
-	@echo ... src/main.obj
-	@echo ... src/main.i
-	@echo ... src/main.s
 .PHONY : help
 
 
