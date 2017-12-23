@@ -41,8 +41,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.9.4/CMakeRCCompiler.cmake"
   "CMakeFiles/3.9.4/CMakeSystem.cmake"
   "CMakeLists.txt"
-  "app/CMakeLists.txt"
-  "app/test/CMakeLists.txt"
   "lib/CMakeLists.txt"
   "lib/test/CMakeLists.txt"
   "third_party/CMakeLists.txt"
@@ -61,13 +59,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "third_party/CMakeFiles/CMakeDirectoryInformation.cmake"
   "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
   "lib/test/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "app/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "app/test/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "lib/CMakeFiles/BompilerLib.dir/DependInfo.cmake"
   "lib/test/CMakeFiles/BompilerLibTest.dir/DependInfo.cmake"
-  "app/CMakeFiles/BompilerApp.dir/DependInfo.cmake"
   )

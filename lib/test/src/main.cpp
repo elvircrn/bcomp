@@ -1,16 +1,16 @@
-/*
- *  Distributed under the MIT License (See accompanying file /LICENSE )
- */
+#include <iostream>
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
+#include "Bompiler.h"
 
-unsigned int Factorial( unsigned int number ) {
-    return number <= 1 ? number : Factorial(number-1)*number;
+int compile(const std::wstring &);
+
+TEST_CASE("Compiler") {
+  bompiler::Bompiler bompiler{};
+  REQUIRE(bompiler.compile(L"data/test1.b") == 0);
+  REQUIRE(bompiler.compile(L"data/test2.b") == 0);
+  REQUIRE(bompiler.compile(L"data/test3.b") == 0);
+  REQUIRE(bompiler.compile(L"data/test4.b") == 0);
 }
 
-TEST_CASE( "Factorials are computed", "[factorial]" ) {
-    REQUIRE( Factorial(1) == 1 );
-    REQUIRE( Factorial(2) == 2 );
-    REQUIRE( Factorial(3) == 6 );
-    REQUIRE( Factorial(10) == 36280 );
-}
+

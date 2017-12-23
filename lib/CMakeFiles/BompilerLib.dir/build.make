@@ -56,10 +56,85 @@ include lib/CMakeFiles/BompilerLib.dir/progress.make
 # Include the compile flags for this target's objects.
 include lib/CMakeFiles/BompilerLib.dir/flags.make
 
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj: lib/CMakeFiles/BompilerLib.dir/flags.make
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj: lib/CMakeFiles/BompilerLib.dir/includes_CXX.rsp
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj: lib/src/Bompiler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BompilerLib.dir\src\Bompiler.cpp.obj -c "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Bompiler.cpp"
+
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.i"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Bompiler.cpp" > CMakeFiles\BompilerLib.dir\src\Bompiler.cpp.i
+
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.s"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Bompiler.cpp" -o CMakeFiles\BompilerLib.dir\src\Bompiler.cpp.s
+
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.requires:
+
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.requires
+
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.provides: lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.requires
+	$(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.provides.build
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.provides
+
+lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.provides.build: lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj
+
+
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj: lib/CMakeFiles/BompilerLib.dir/flags.make
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj: lib/CMakeFiles/BompilerLib.dir/includes_CXX.rsp
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj: lib/src/Parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BompilerLib.dir\src\Parser.cpp.obj -c "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Parser.cpp"
+
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BompilerLib.dir/src/Parser.cpp.i"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Parser.cpp" > CMakeFiles\BompilerLib.dir\src\Parser.cpp.i
+
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BompilerLib.dir/src/Parser.cpp.s"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Parser.cpp" -o CMakeFiles\BompilerLib.dir\src\Parser.cpp.s
+
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.requires:
+
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.requires
+
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.provides: lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.requires
+	$(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.provides.build
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.provides
+
+lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.provides.build: lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj
+
+
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj: lib/CMakeFiles/BompilerLib.dir/flags.make
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj: lib/CMakeFiles/BompilerLib.dir/includes_CXX.rsp
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj: lib/src/Scanner.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BompilerLib.dir\src\Scanner.cpp.obj -c "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Scanner.cpp"
+
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BompilerLib.dir/src/Scanner.cpp.i"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Scanner.cpp" > CMakeFiles\BompilerLib.dir\src\Scanner.cpp.i
+
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BompilerLib.dir/src/Scanner.cpp.s"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\Scanner.cpp" -o CMakeFiles\BompilerLib.dir\src\Scanner.cpp.s
+
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.requires:
+
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.requires
+
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.provides: lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.requires
+	$(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.provides.build
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.provides
+
+lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.provides.build: lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj
+
+
 lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj: lib/CMakeFiles/BompilerLib.dir/flags.make
 lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj: lib/CMakeFiles/BompilerLib.dir/includes_CXX.rsp
 lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj: lib/src/logger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj"
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BompilerLib.dir\src\logger.cpp.obj -c "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\logger.cpp"
 
 lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.i: cmake_force
@@ -81,17 +156,50 @@ lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj.provides: lib/CMakeFiles/Bompi
 lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj.provides.build: lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj
 
 
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj: lib/CMakeFiles/BompilerLib.dir/flags.make
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj: lib/CMakeFiles/BompilerLib.dir/includes_CXX.rsp
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj: lib/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BompilerLib.dir\src\main.cpp.obj -c "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\main.cpp"
+
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BompilerLib.dir/src/main.cpp.i"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\main.cpp" > CMakeFiles\BompilerLib.dir\src\main.cpp.i
+
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BompilerLib.dir/src/main.cpp.s"
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\lib\src\main.cpp" -o CMakeFiles\BompilerLib.dir\src\main.cpp.s
+
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.requires:
+
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.requires
+
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.provides: lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.requires
+	$(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.provides.build
+.PHONY : lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.provides
+
+lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.provides.build: lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj
+
+
 # Object files for target BompilerLib
 BompilerLib_OBJECTS = \
-"CMakeFiles/BompilerLib.dir/src/logger.cpp.obj"
+"CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj" \
+"CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj" \
+"CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj" \
+"CMakeFiles/BompilerLib.dir/src/logger.cpp.obj" \
+"CMakeFiles/BompilerLib.dir/src/main.cpp.obj"
 
 # External object files for target BompilerLib
 BompilerLib_EXTERNAL_OBJECTS =
 
+lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj
+lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj
+lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj
 lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj
+lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj
 lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/build.make
 lib/libBompilerLib.a: lib/CMakeFiles/BompilerLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libBompilerLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\elvircrn\Documents\5. Semestar\PJP\Compiler\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libBompilerLib.a"
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && $(CMAKE_COMMAND) -P CMakeFiles\BompilerLib.dir\cmake_clean_target.cmake
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler\lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\BompilerLib.dir\link.txt --verbose=$(VERBOSE)
 
@@ -100,7 +208,11 @@ lib/CMakeFiles/BompilerLib.dir/build: lib/libBompilerLib.a
 
 .PHONY : lib/CMakeFiles/BompilerLib.dir/build
 
+lib/CMakeFiles/BompilerLib.dir/requires: lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj.requires
+lib/CMakeFiles/BompilerLib.dir/requires: lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj.requires
+lib/CMakeFiles/BompilerLib.dir/requires: lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj.requires
 lib/CMakeFiles/BompilerLib.dir/requires: lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.obj.requires
+lib/CMakeFiles/BompilerLib.dir/requires: lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj.requires
 
 .PHONY : lib/CMakeFiles/BompilerLib.dir/requires
 

@@ -5,8 +5,8 @@
     <sourceRoots>
       <file path="$PROJECT_DIR$" />
     </sourceRoots>
-    <libraryRoots>
+    <excludeRoots>
       <file path="$PROJECT_DIR$/third_party" />
-    </libraryRoots>
+    </excludeRoots>
   </component>
 </project>

@@ -3,60 +3,27 @@
 
 lib/test/CMakeFiles/BompilerLibTest.dir/src/main.cpp.obj
  C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/main.cpp
- lib/include/logger.h
+ lib/include/Bompiler.h
  third_party/Catch/include/catch.hpp
- third_party/Catch/include/catch_session.hpp
- third_party/Catch/include/external/clara.h
- third_party/Catch/include/external/tbc_text_format.h
- third_party/Catch/include/internal/catch_assertionresult.h
  third_party/Catch/include/internal/catch_capture.hpp
- third_party/Catch/include/internal/catch_clara.h
- third_party/Catch/include/internal/catch_commandline.hpp
  third_party/Catch/include/internal/catch_common.h
  third_party/Catch/include/internal/catch_compiler_capabilities.h
- third_party/Catch/include/internal/catch_config.hpp
- third_party/Catch/include/internal/catch_console_colour.hpp
- third_party/Catch/include/internal/catch_context.h
  third_party/Catch/include/internal/catch_default_main.hpp
- third_party/Catch/include/internal/catch_evaluate.hpp
- third_party/Catch/include/internal/catch_expression_lhs.hpp
- third_party/Catch/include/internal/catch_fatal_condition.hpp
  third_party/Catch/include/internal/catch_impl.hpp
  third_party/Catch/include/internal/catch_interfaces_capture.h
- third_party/Catch/include/internal/catch_interfaces_config.h
  third_party/Catch/include/internal/catch_interfaces_exception.h
- third_party/Catch/include/internal/catch_interfaces_generators.h
  third_party/Catch/include/internal/catch_interfaces_registry_hub.h
- third_party/Catch/include/internal/catch_interfaces_reporter.h
  third_party/Catch/include/internal/catch_interfaces_runner.h
- third_party/Catch/include/internal/catch_interfaces_tag_alias_registry.h
- third_party/Catch/include/internal/catch_interfaces_testcase.h
- third_party/Catch/include/internal/catch_list.hpp
- third_party/Catch/include/internal/catch_matchers.hpp
  third_party/Catch/include/internal/catch_message.h
  third_party/Catch/include/internal/catch_objc.hpp
  third_party/Catch/include/internal/catch_objc_arc.hpp
- third_party/Catch/include/internal/catch_option.hpp
  third_party/Catch/include/internal/catch_platform.h
- third_party/Catch/include/internal/catch_ptr.hpp
  third_party/Catch/include/internal/catch_reenable_warnings.h
- third_party/Catch/include/internal/catch_result_builder.h
  third_party/Catch/include/internal/catch_result_type.h
- third_party/Catch/include/internal/catch_run_context.hpp
  third_party/Catch/include/internal/catch_section.h
  third_party/Catch/include/internal/catch_section_info.h
  third_party/Catch/include/internal/catch_stream.h
  third_party/Catch/include/internal/catch_suppress_warnings.h
- third_party/Catch/include/internal/catch_tag_alias.h
  third_party/Catch/include/internal/catch_test_case_info.h
- third_party/Catch/include/internal/catch_test_case_tracker.hpp
- third_party/Catch/include/internal/catch_test_registry.hpp
- third_party/Catch/include/internal/catch_test_spec.hpp
- third_party/Catch/include/internal/catch_test_spec_parser.hpp
- third_party/Catch/include/internal/catch_text.h
  third_party/Catch/include/internal/catch_timer.h
  third_party/Catch/include/internal/catch_tostring.h
- third_party/Catch/include/internal/catch_totals.hpp
- third_party/Catch/include/internal/catch_version.h
- third_party/Catch/include/internal/catch_wildcard_pattern.hpp
- third_party/Catch/include/internal/catch_windows_h_proxy.h

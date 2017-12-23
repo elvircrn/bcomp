@@ -6,9 +6,67 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.cpp
+wchar.h
+-
+Parser.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.h
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.h
+
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.cpp
+memory.h
+-
+string.h
+-
+Scanner.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.h
+
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/logger.cpp
 logger.h
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/logger.h
 
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/main.cpp
+iostream
+-
+wchar.h
+-
+Bompiler.h
+C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Bompiler.h
+
+lib/include/Bompiler.h
+string
+-
+
+lib/include/Parser.h
+wchar.h
+-
+string
+-
+iostream
+-
+Scanner.h
+lib/include/Scanner.h
+methods.inc
+lib/include/methods.inc
+
+lib/include/Scanner.h
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+wchar.h
+-
+io.h
+-
+fcntl.h
+-
+
 lib/include/logger.h
+
+lib/include/methods.inc
 

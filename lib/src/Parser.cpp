@@ -478,6 +478,7 @@ void Parser::AssignExpr() {
 			case 30 /* "=/" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(DIVMOV " ); 
 				ParseList.append(L") " );
 				break;

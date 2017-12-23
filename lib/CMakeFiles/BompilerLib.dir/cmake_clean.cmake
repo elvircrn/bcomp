@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj"
+  "CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj"
+  "CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj"
   "CMakeFiles/BompilerLib.dir/src/logger.cpp.obj"
+  "CMakeFiles/BompilerLib.dir/src/main.cpp.obj"
   "libBompilerLib.pdb"
   "libBompilerLib.a"
 )

@@ -146,19 +146,6 @@ BompilerLibTest/fast:
 	$(MAKE) -f lib\test\CMakeFiles\BompilerLibTest.dir\build.make lib/test/CMakeFiles/BompilerLibTest.dir/build
 .PHONY : BompilerLibTest/fast
 
-#=============================================================================
-# Target rules for targets named BompilerApp
-
-# Build rule for target.
-BompilerApp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 BompilerApp
-.PHONY : BompilerApp
-
-# fast build rule for target.
-BompilerApp/fast:
-	$(MAKE) -f app\CMakeFiles\BompilerApp.dir\build.make app/CMakeFiles/BompilerApp.dir/build
-.PHONY : BompilerApp/fast
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -170,7 +157,6 @@ help:
 	@echo ... edit_cache
 	@echo ... BompilerLib
 	@echo ... BompilerLibTest
-	@echo ... BompilerApp
 .PHONY : help
 
 

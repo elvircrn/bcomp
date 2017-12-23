@@ -12,10 +12,3 @@ C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/CMakeFiles/Bompile
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/CMakeFiles/rebuild_cache.dir
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/CMakeFiles/test.dir
 C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/CMakeFiles/edit_cache.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/CMakeFiles/edit_cache.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/CMakeFiles/BompilerApp.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/CMakeFiles/rebuild_cache.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/CMakeFiles/test.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/test/CMakeFiles/rebuild_cache.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/test/CMakeFiles/test.dir
-C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/app/test/CMakeFiles/edit_cache.dir

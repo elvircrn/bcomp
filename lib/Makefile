@@ -135,6 +135,87 @@ BompilerLib/fast:
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/build
 .PHONY : BompilerLib/fast
 
+src/Bompiler.obj: src/Bompiler.cpp.obj
+
+.PHONY : src/Bompiler.obj
+
+# target to build an object file
+src/Bompiler.cpp.obj:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj
+.PHONY : src/Bompiler.cpp.obj
+
+src/Bompiler.i: src/Bompiler.cpp.i
+
+.PHONY : src/Bompiler.i
+
+# target to preprocess a source file
+src/Bompiler.cpp.i:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.i
+.PHONY : src/Bompiler.cpp.i
+
+src/Bompiler.s: src/Bompiler.cpp.s
+
+.PHONY : src/Bompiler.s
+
+# target to generate assembly for a file
+src/Bompiler.cpp.s:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.s
+.PHONY : src/Bompiler.cpp.s
+
+src/Parser.obj: src/Parser.cpp.obj
+
+.PHONY : src/Parser.obj
+
+# target to build an object file
+src/Parser.cpp.obj:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj
+.PHONY : src/Parser.cpp.obj
+
+src/Parser.i: src/Parser.cpp.i
+
+.PHONY : src/Parser.i
+
+# target to preprocess a source file
+src/Parser.cpp.i:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.i
+.PHONY : src/Parser.cpp.i
+
+src/Parser.s: src/Parser.cpp.s
+
+.PHONY : src/Parser.s
+
+# target to generate assembly for a file
+src/Parser.cpp.s:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Parser.cpp.s
+.PHONY : src/Parser.cpp.s
+
+src/Scanner.obj: src/Scanner.cpp.obj
+
+.PHONY : src/Scanner.obj
+
+# target to build an object file
+src/Scanner.cpp.obj:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj
+.PHONY : src/Scanner.cpp.obj
+
+src/Scanner.i: src/Scanner.cpp.i
+
+.PHONY : src/Scanner.i
+
+# target to preprocess a source file
+src/Scanner.cpp.i:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.i
+.PHONY : src/Scanner.cpp.i
+
+src/Scanner.s: src/Scanner.cpp.s
+
+.PHONY : src/Scanner.s
+
+# target to generate assembly for a file
+src/Scanner.cpp.s:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/Scanner.cpp.s
+.PHONY : src/Scanner.cpp.s
+
 src/logger.obj: src/logger.cpp.obj
 
 .PHONY : src/logger.obj
@@ -162,6 +243,33 @@ src/logger.cpp.s:
 	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/logger.cpp.s
 .PHONY : src/logger.cpp.s
 
+src/main.obj: src/main.cpp.obj
+
+.PHONY : src/main.obj
+
+# target to build an object file
+src/main.cpp.obj:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	cd /d C:\Users\elvircrn\DOCUME~1\5444A~1.SEM\PJP\Compiler && $(MAKE) -f lib\CMakeFiles\BompilerLib.dir\build.make lib/CMakeFiles/BompilerLib.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -172,9 +280,21 @@ help:
 	@echo ... BompilerLib
 	@echo ... rebuild_cache
 	@echo ... test
+	@echo ... src/Bompiler.obj
+	@echo ... src/Bompiler.i
+	@echo ... src/Bompiler.s
+	@echo ... src/Parser.obj
+	@echo ... src/Parser.i
+	@echo ... src/Parser.s
+	@echo ... src/Scanner.obj
+	@echo ... src/Scanner.i
+	@echo ... src/Scanner.s
 	@echo ... src/logger.obj
 	@echo ... src/logger.i
 	@echo ... src/logger.s
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
 .PHONY : help
 
 

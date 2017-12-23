@@ -16,7 +16,6 @@ find_package (Threads REQUIRED)
 
 add_subdirectory (third_party EXCLUDE_FROM_ALL)
 add_subdirectory (lib)
-add_subdirectory (app)
 
 enable_testing ()
 

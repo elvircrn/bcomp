@@ -1,2 +1,2 @@
-C:\MinGW\bin\ar.exe qc libBompilerLib.a  CMakeFiles/BompilerLib.dir/src/logger.cpp.obj
+C:\MinGW\bin\ar.exe qc libBompilerLib.a  CMakeFiles/BompilerLib.dir/src/Bompiler.cpp.obj CMakeFiles/BompilerLib.dir/src/Parser.cpp.obj CMakeFiles/BompilerLib.dir/src/Scanner.cpp.obj CMakeFiles/BompilerLib.dir/src/logger.cpp.obj CMakeFiles/BompilerLib.dir/src/main.cpp.obj
 C:\MinGW\bin\ranlib.exe libBompilerLib.a
