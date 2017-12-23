@@ -446,15 +446,15 @@ MultExpr
 UnaryExpr                
     {
 ( '*'                                        
-    UnaryExpr
+    UnaryExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(MUL " ); .)
                 (. ParseList.append(L") " );.)
 | '/'                                        
-  UnaryExpr
+  UnaryExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(DIV " ); .)
                 (. ParseList.append(L") " );.)
 | '%'                                        
-    UnaryExpr
+    UnaryExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(MOD " ); .)
                 (. ParseList.append(L") " );.)
   )
