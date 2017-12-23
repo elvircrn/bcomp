@@ -463,7 +463,6 @@ void Parser::AssignExpr() {
 			case 28 /* "=" */: {
 				Get();
 				AssignExpr();
-				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MOV " ); 
 				ParseList.append(L") " );
 				break;
