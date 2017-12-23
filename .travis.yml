@@ -25,12 +25,12 @@ matrix:
         apt:
           sources: ['llvm-toolchain-precise-3.8', 'ubuntu-toolchain-r-test']
           packages: ['clang-3.8', 'libc++-dev', 'libc++1']
-      env: COMPILER='clang++-3.8' BUILD_TYPE='Release' FLAGS='-stdlib=libc++'
+      env: COMPILER='clang++-3.8' BUILD_TYPE='Release' FLAGS='stdlib=libc++'
 
     - os: linux
       compiler: clang
       addons: *clang38
-      env: COMPILER='clang++-3.8' BUILD_TYPE='Debug' FLAGS='-stdlib=libc++'
+      env: COMPILER='clang++-3.8' BUILD_TYPE='Debug' FLAGS='stdlib=libc++'
 
 
 install:
