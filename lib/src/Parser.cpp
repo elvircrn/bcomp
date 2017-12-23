@@ -94,7 +94,7 @@ void Parser::B() {
 			Definition();
 		}
 		Expect(_EOF);
-		ParseList+=L")";std::wcout << ParseList; 
+		ParseList+=L")";Compile(0); _ast << ParseList; 
 }
 
 void Parser::Definition() {
@@ -471,6 +471,7 @@ void Parser::AssignExpr() {
 			case 29 /* "=*" */: {
 				Get();
 				AssignExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MULTMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -558,7 +559,6 @@ void Parser::AssignExpr() {
 			case 40 /* "=<=" */: {
 				Get();
 				AssignExpr();
-				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(ISLESSEQUMOV " ); 
 				ParseList.append(L") " );
 				break;
@@ -743,16 +743,19 @@ void Parser::MultExpr() {
 			if (la->kind == 59 /* "*" */) {
 				Get();
 				UnaryExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MUL " ); 
 				ParseList.append(L") " );
 			} else if (la->kind == 60 /* "/" */) {
 				Get();
 				UnaryExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(DIV " ); 
 				ParseList.append(L") " );
 			} else {
 				Get();
 				UnaryExpr();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MOD " ); 
 				ParseList.append(L") " );
 			}
@@ -765,6 +768,7 @@ void Parser::UnaryExpr() {
 		switch (la->kind) {
 		case _identifier: case _number: case _onumber: case _string: case _char: case 12 /* "(" */: {
 			PostfixExpr();
+			if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 			break;
 		}
 		case 48 /* "&" */: {
@@ -848,10 +852,12 @@ void Parser::PostfixExpr() {
 				ParseList.append(L") " );
 			} else if (la->kind == 64 /* "++" */) {
 				Get();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(POSTINC " ); 
 				ParseList.append(L") " );
 			} else {
 				Get();
+				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(POSTDEC " ); 
 				ParseList.append(L") " );
 			}

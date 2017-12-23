@@ -31,6 +31,7 @@ Coco/R itself) does not fall under the GNU General Public License.
 #define COCO_PARSER_H__
 
 using namespace std;
+#include <sstream>
 #include <wchar.h>
 typedef  wchar_t Name[500];
 #include <string>
@@ -88,10 +89,12 @@ public:
 #include "methods.inc"
 std::wstring ParseList;
 int scopepos;
+std::wstringstream _asmOutput;
+std::wstringstream _ast;
 
 
 
-	Parser(Scanner *scanner);
+	explicit Parser(Scanner *scanner);
 	~Parser();
 	void SemErr(const wchar_t* msg);
 

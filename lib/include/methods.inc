@@ -1,3 +1,11 @@
+std::wstring AST() {
+  return _ast.str();
+}
+
+std::wstring AsmOutput() {
+  return _asmOutput.str();
+}
+
 bool IsDeclaredLocal(Name name1) {
   std::wstring name = std::wstring(name1);
   std::string::size_type found;
@@ -146,14 +154,14 @@ void Compile(int position) {
     q = ElemPos(position, 2);
     Compile(z);
     if (GetNodeName(q) == L"INT") {
-      wcout << L" ADD EAX," << GetElemName(q, 1) << endl;
+      _asmOutput << L" ADD EAX," << GetElemName(q, 1) << endl;
     } else if (GetNodeName(q) == L"VAR") {
-      wcout << L" ADD EAX,[" << GetElemName(q, 1) << "]" << endl;
+      _asmOutput << L" ADD EAX,[" << GetElemName(q, 1) << "]" << endl;
     } else {
-      wcout << L" PUSH EAX";
+      _asmOutput << L" PUSH EAX";
       Compile(q);
-      wcout << L" POP EBX";
-      wcout << L" ADD EAX,EBX" << endl;
+      _asmOutput << L" POP EBX";
+      _asmOutput << L" ADD EAX,EBX" << endl;
     }
   } else if (nodename == L"ADDMOV") {
   } else if (nodename == L"ADDROF") {
@@ -187,17 +195,17 @@ void Compile(int position) {
   } else if (nodename == L"EXTRN") {
   } else if (nodename == L"FHEADER") {
   } else if (nodename == L"FPARAM") {
-  } else if (nodename == L"FUNCCALL") {
+  } else if (nodename == L"FUNCCALL") { 
   } else if (nodename == L"FUNCDEF") {
     elemname = GetElemName(position, 1);
-    wcout << L" PUBLIC " << elemname << endl;
-    wcout << elemname << ":" << endl;
-    wcout << L" PUSH EBP" << endl
+    _asmOutput << L" PUBLIC " << elemname << endl;
+    _asmOutput << elemname << ":" << endl;
+    _asmOutput << L" PUSH EBP" << endl
           << L" MOV EBP,ESP" << endl
           << L" SUB ESP," << elemname << L"_len" << endl;
     Compile(ElemPos(position, 2));
     Compile(ElemPos(position, 3));
-    wcout << L" MOV ESP,EBP" << endl << L" RET " << endl;
+    _asmOutput << L" MOV ESP,EBP" << endl << L" RET " << endl;
   } else if (nodename == L"GARRDEF") {
   } else if (nodename == L"GOTO") {
   } else if (nodename == L"GREATEREQUTHAN") {
@@ -208,7 +216,7 @@ void Compile(int position) {
   } else if (nodename == L"INDEX") {
   } else if (nodename == L"INIT") {
   } else if (nodename == L"INT") {
-    wcout << L" MOV EAX," << GetElemName(position, 1) << endl;
+    _asmOutput << L" MOV EAX," << GetElemName(position, 1) << endl;
   } else if (nodename == L"ISEQUMOV") {
   } else if (nodename == L"ISGREATEREQUMOV") {
   } else if (nodename == L"ISGREATERMOV") {
@@ -229,29 +237,29 @@ void Compile(int position) {
     q = ElemPos(position, 2);
     if (GetNodeName(z) == L"VAR") {
       if (GetNodeName(q) == L"INT") {
-        wcout << L" MOV DWORD [" << GetElemName(z, 1) << "],"
+        _asmOutput << L" MOV DWORD [" << GetElemName(z, 1) << "],"
               << GetElemName(q, 1) << endl;
       } else if (GetNodeName(q) == L"VAR") {
-        wcout << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
-        wcout << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
+        _asmOutput << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
+        _asmOutput << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
       } else {
         Compile(q);
-        wcout << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
+        _asmOutput << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
       }
     } else {
       if (GetNodeName(q) == L"INT") {
         Compile(z);
-        wcout << L" MOV DWORD [EBX]," << GetElemName(q, 1) << endl;
+        _asmOutput << L" MOV DWORD [EBX]," << GetElemName(q, 1) << endl;
       } else if (GetNodeName(q) == L"VAR") {
         Compile(z);
-        wcout << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
-        wcout << L" MOV [EBX],EAX" << endl;
+        _asmOutput << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
+        _asmOutput << L" MOV [EBX],EAX" << endl;
       } else {
         Compile(q);
-        wcout << L" PUSH EAX" << endl;
+        _asmOutput << L" PUSH EAX" << endl;
         Compile(z);
-        wcout << L" POP EAX" << endl;
-        wcout << L" MOV [EBX],EAX" << endl;
+        _asmOutput << L" POP EAX" << endl;
+        _asmOutput << L" MOV [EBX],EAX" << endl;
       }
     }
   } else if (nodename == L"MUL") {
@@ -279,7 +287,7 @@ void Compile(int position) {
   } else if (nodename == L"UNOT") {
   } else if (nodename == L"UPLUS") {
   } else if (nodename == L"VAR") {
-    wcout << L" MOV EAX, [" << GetElemName(position, 1) << "]" << endl;
+    _asmOutput << L" MOV EAX, [" << GetElemName(position, 1) << "]" << endl;
   } else if (nodename == L"WHILE") {
   } else if (nodename == L"XOR") {
   } else if (nodename == L"XORMOV ") {
