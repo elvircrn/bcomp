@@ -6,5 +6,5 @@ mv lib/src/Parser.h lib/include/
 mv lib/src/Scanner.h lib/include/
 echo "Building compiler"
 cd app
-make
+cmake
 
