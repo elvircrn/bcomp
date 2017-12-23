@@ -495,10 +495,10 @@ UnaryExpr      (. int position; .)
         ')'
                 (. ParseList.insert(position,L"(FUNCCALL " ); .)
                 (. ParseList.append(L") " );.)
-    | "++"
+    | "++"      (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(POSTINC " ); .)
                 (. ParseList.append(L") " );.)
-    | "--"
+    | "--"      (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
                 (. ParseList.insert(position,L"(POSTDEC " ); .)
                 (. ParseList.append(L") " );.)
     }.
