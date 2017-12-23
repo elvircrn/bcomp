@@ -226,6 +226,18 @@ CMAKE_STRIP:FILEPATH=C:/MinGW/bin/strip.exe
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Add fixture class name to the test name
+PARSE_CATCH_TESTS_ADD_FIXTURE_IN_TEST_NAME:BOOL=ON
+
+//Add target name to the test name
+PARSE_CATCH_TESTS_ADD_TARGET_IN_TEST_NAME:BOOL=ON
+
+//Add test file to CMAKE_CONFIGURE_DEPENDS property
+PARSE_CATCH_TESTS_ADD_TO_CONFIGURE_DEPENDS:BOOL=OFF
+
+//Exclude tests with [!hide], [.] or [.foo] tags
+PARSE_CATCH_TESTS_NO_HIDDEN_TESTS:BOOL=OFF
+
 //Print Catch to CTest parser debug messages
 PARSE_CATCH_TESTS_VERBOSE:BOOL=OFF
 
