@@ -196,6 +196,8 @@ void Compile(int position) {
   } else if (nodename == L"FHEADER") {
   } else if (nodename == L"FPARAM") {
   } else if (nodename == L"FUNCCALL") { 
+    std::wstring funcName = GetElemName(ElemPos(position, 1), 1);
+    std::wcout << "FUNC_NAME: " << funcName << '\n';
   } else if (nodename == L"FUNCDEF") {
     elemname = GetElemName(position, 1);
     _asmOutput << L" PUBLIC " << elemname << endl;
