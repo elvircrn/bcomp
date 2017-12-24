@@ -16,13 +16,15 @@ std::wstring bompiler::Bompiler::asmStr() {
   return parser.AsmOutput();
 }
 
-bompiler::Bompiler::Bompiler(const std::wstring &filePath) : scanner(filePath.c_str()), parser(&scanner) {
+bompiler::Bompiler::Bompiler(const std::wstring &filePath) : scanner(filePath.c_str()),
+                                                             parser(&scanner) {
+  parser.Parse();
   if (parser.errors->count == 0)
     state = State::SUCCESS;
   else
     state = State::FAIL;
-
 }
+
 bompiler::Bompiler::State bompiler::Bompiler::getState() {
   return State::SUCCESS;
 }

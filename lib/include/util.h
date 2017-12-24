@@ -8,6 +8,7 @@
 namespace util {
 std::wstring s2ws(const std::string &str);
 std::string ws2s(const std::wstring& wstr);
+std::string ws2s(std::wstring const& wstr);
 }
 
 #endif //BOMPILER_COREUTIL_H

@@ -5,7 +5,7 @@
 #include <codecvt>
 #include <locale>
 
-#include "coreutil.h"
+#include "util.h"
 
 std::wstring util::s2ws(const std::string &str) {
   using convert_typeX = std::codecvt_utf8<wchar_t>;
