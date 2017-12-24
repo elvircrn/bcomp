@@ -25,6 +25,15 @@ bompiler::Bompiler::Bompiler(const std::wstring &filePath) : scanner(filePath.c_
     state = State::FAIL;
 }
 
+bompiler::Bompiler::Bompiler(const unsigned char* buf, int len) : scanner(buf, len),
+                                                             parser(&scanner) {
+  parser.Parse();
+  if (parser.errors->count == 0)
+    state = State::SUCCESS;
+  else
+    state = State::FAIL;
+}
+
 bompiler::Bompiler::State bompiler::Bompiler::getState() {
   return State::SUCCESS;
 }
