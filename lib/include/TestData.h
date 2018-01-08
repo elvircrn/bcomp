@@ -78,11 +78,10 @@ main() {
 )";
 
 const std::string &functionDef = R"(
-fun3(x, y, z) {
-}
-
 main() {
 }
+fun3(x, y, z) {
+} 
 )";
 
 const std::string &printfTestCode = R"(
@@ -110,6 +109,7 @@ std::tuple<const unsigned char *, int> funcDefParams =
     std::make_tuple<const unsigned char *, int>((const unsigned char *) (functionDef.c_str()),
                                                 (int) strlen(functionDef.c_str()));
 
+#define PACK_PARAM(param) std::make_tuple<const unsigned char *, int>((const unsigned char *) ((param).c_str()),(int) strlen((param).c_str()))
 #define UNPACK_CONSTRUCTOR(param) std::get<0>((param)), std::get<1>((param))
 }
 

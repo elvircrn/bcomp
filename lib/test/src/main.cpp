@@ -55,8 +55,16 @@ main:
 }
 
 void funcDef() {
-  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(testdata::funcDefParams));
-  std::wcout << program.asmStr() << '\n';
+  const std::string &functionDef = R"(
+main() {
+}
+fun3(x, y, z) {
+  auto a = 2;
+}
+)";
+  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(functionDef)));
+  std::wcout << program.asmStr() << "\n\n"
+             << program.astStr() << '\n';
 }
 
 int main() {
