@@ -232,6 +232,8 @@ void Compile(int position) {
   } else if (nodename == L"LSHIFT") {
   } else if (nodename == L"LSHIFTMOV") {
   } else if (nodename == L"LVARDEF") {
+    std::wstring varName = GetElemName(position, 1);
+    std::wcout << L"varName: " << varName << '\n';
   } else if (nodename == L"MOD") {
   } else if (nodename == L"MODMOV") {
   } else if (nodename == L"MOV") {

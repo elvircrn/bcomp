@@ -57,14 +57,23 @@ main:
 void funcDef() {
   const std::string &functionDef = R"(
 main() {
+  auto a = 2, b = 3;
+  auto c = a + b;
+  fun3(a, b, c);
 }
 fun3(x, y, z) {
-  auto a = 2;
+  auto a = 2, b = 3;
+  auto c = a + b;
 }
 )";
   bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(functionDef)));
   std::wcout << program.asmStr() << "\n\n"
              << program.astStr() << '\n';
+  if (program.getState() == bompiler::Bompiler::State::SUCCESS) {
+    std::wcout << L"Success\n";
+  } else {
+    std::wcout << L"Fail\n";
+  }
 }
 
 int main() {

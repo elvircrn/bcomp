@@ -1,3 +1,4 @@
+# TODO
 * Implementirati printf
 
 * Datu liniju za provjeru dodajte iza svih UnaryExpr i PostfixExpr za operatore inkrementiranja i dekrementiranja.
@@ -10,4 +11,5 @@
 * Po uzoru na ADD, lako realizujte generisanje asemblerskog koda za AND, OR, XOR i MUL. Probajte i SUB (pazite na nekomutativnost).
 
 
-
+# Known bugs
+If main isn't the first declared function, the rest of the code doesn't get parsed

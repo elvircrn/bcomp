@@ -13,6 +13,10 @@ The stack frame generally includes the following components:
 
 ## Caller Rules
 
+After the subroutine returns (immediately following the call instruction), the caller can expect to find the return value of the subroutine in the register EAX. To restore the machine state, the caller should:
+* Remove the parameters from stack. This restores the stack to its state before the call was performed.
+* Restore the contents of caller-saved registers (EAX, ECX, EDX) by popping them off of the stack. The caller can assume that no other registers were modified by the subroutine.
+
 ```
 push (ebx)    /* Push last parameter first */
 push $216      /* Push the second parameter */
@@ -23,10 +27,7 @@ call myFunc    /* Call the function (assume C naming) */
 add $12, esp
 ```
 
-After the subroutine returns (immediately following the call instruction), the caller can expect to find the return value of the subroutine in the register EAX. To restore the machine state, the caller should:
-* Remove the parameters from stack. This restores the stack to its state before the call was performed.
-* Restore the contents of caller-saved registers (EAX, ECX, EDX) by popping them off of the stack. The caller can assume that no other registers were modified by the subroutine.
-
+Note that after the call returns, the caller cleans up the stack using the add instruction. We have 12 bytes (3 parameters * 4 bytes each) on the stack, and the stack grows down. Thus, to get rid of the parameters, we can simply add 12 to the stack pointer.
 
 ## Callee Rules
 Standard function entry sequence for many compilers
