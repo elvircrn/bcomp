@@ -1,4 +1,4 @@
-#define ENABLE_TESTS
+// #define ENABLE_TESTS
 
 
 #include <iostream>
@@ -19,7 +19,8 @@ using bompiler::Bompiler;
 using namespace util;
 
 #ifndef ENABLE_TESTS
-int main() {
+
+void printfHeaderTest() {
   bompiler::Bompiler compiler(L"data/test1.b");
   std::wcout << compiler.astStr() << '\n';
 
@@ -48,22 +49,35 @@ main:
          mov eax, 0
          ret
   )";
-  
+
   // std::wcout << printfHeader + compiler.asmStr() << '\n';
   std::wcout << compiler.asmStr() << '\n';
+}
+
+void funcDef() {
+  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(testdata::funcDefParams));
+  std::wcout << program.asmStr() << '\n';
+}
+
+int main() {
+  funcDef();
   return 0;
 }
 #else
 TEST_CASE("Basic compile tests") {
-  REQUIRE(Bompiler(std::get<0>(test1Params), std::get<1>(test1Params)).getState() == Bompiler::State::SUCCESS);
-  REQUIRE(Bompiler(std::get<0>(test2Params), std::get<1>(test2Params)).getState() == Bompiler::State::SUCCESS);
-  REQUIRE(Bompiler(std::get<0>(test3Params), std::get<1>(test3Params)).getState() == Bompiler::State::SUCCESS);
-  REQUIRE(Bompiler(std::get<0>(test4Params), std::get<1>(test4Params)).getState() == Bompiler::State::SUCCESS);
+  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::test1Params)).getState() == Bompiler::State::SUCCESS);
+  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::test2Params)).getState() == Bompiler::State::SUCCESS);
+  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::test3Params)).getState() == Bompiler::State::SUCCESS);
+  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::test4Params)).getState() == Bompiler::State::SUCCESS);
 }
 
 
 TEST_CASE("printf test") {
-  REQUIRE(Bompiler(std::get<0>(printfTestParams), std::get<1>(printfTestParams)).getState() == Bompiler::State::SUCCESS);
+  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::printfTestParams)).getState() == Bompiler::State::SUCCESS);
+}
+
+TEST_CASE("function definition") {
+  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::funcDefParams)).getState() == Bompiler::State::SUCCESS);
 }
 
 #endif

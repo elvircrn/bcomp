@@ -14,6 +14,7 @@ CTestTestfile.cmake
 # Bompiler
 build/
 *.*old
+*.exe
 
 # Swap
 [._]*.s[a-v][a-z]

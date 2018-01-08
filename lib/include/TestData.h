@@ -7,8 +7,11 @@
 
 #include <string>
 #include <tuple>
+#include <cstring>
 
-const std::string test1Code = R"(
+namespace testdata {
+
+const std::string &test1Code = R"(
 /* First things first... */
 
 main() {
@@ -16,8 +19,7 @@ main() {
 }
 )";
 
-
-const std::string test2Code = R"(
+const std::string &test2Code = R"(
 
 eql(a, b) a == b;
 neq(a, b) a != b;
@@ -40,7 +42,6 @@ main() {
 }
 
 )";
-
 
 const std::string &test3Code = R"(
 
@@ -66,7 +67,6 @@ main() {
 
 )";
 
-
 const std::string &test4Code = R"(
 
 main() {
@@ -77,18 +77,40 @@ main() {
 
 )";
 
+const std::string &functionDef = R"(
+fun3(x, y, z) {
+}
+
+main() {
+}
+)";
+
 const std::string &printfTestCode = R"(
 main() {
 	printf("Hello world!*n");
 }
 )";
 
+std::tuple<const unsigned char *, int> test1Params =
+    std::make_tuple<const unsigned char *, int>((const unsigned char *) (test1Code.c_str()),
+                                                (int) strlen(test1Code.c_str()));
+std::tuple<const unsigned char *, int> test2Params =
+    std::make_tuple<const unsigned char *, int>((const unsigned char *) (test2Code.c_str()),
+                                                (int) strlen(test2Code.c_str()));
+std::tuple<const unsigned char *, int> test3Params =
+    std::make_tuple<const unsigned char *, int>((const unsigned char *) (test3Code.c_str()),
+                                                (int) strlen(test3Code.c_str()));
+std::tuple<const unsigned char *, int> test4Params =
+    std::make_tuple<const unsigned char *, int>((const unsigned char *) (test4Code.c_str()),
+                                                (int) strlen(test4Code.c_str()));
+std::tuple<const unsigned char *, int> printfTestParams =
+    std::make_tuple<const unsigned char *, int>((const unsigned char *) (printfTestCode.c_str()),
+                                                (int) strlen(printfTestCode.c_str()));
+std::tuple<const unsigned char *, int> funcDefParams =
+    std::make_tuple<const unsigned char *, int>((const unsigned char *) (functionDef.c_str()),
+                                                (int) strlen(functionDef.c_str()));
 
-std::tuple<const unsigned char*, int> test1Params = std::make_tuple<const unsigned char*, int>((const unsigned char*)(test1Code.c_str()), (int)strlen(test1Code.c_str()));
-std::tuple<const unsigned char*, int> test2Params = std::make_tuple<const unsigned char*, int>((const unsigned char*)(test2Code.c_str()), (int)strlen(test2Code.c_str()));
-std::tuple<const unsigned char*, int> test3Params = std::make_tuple<const unsigned char*, int>((const unsigned char*)(test3Code.c_str()), (int)strlen(test3Code.c_str()));
-std::tuple<const unsigned char*, int> test4Params = std::make_tuple<const unsigned char*, int>((const unsigned char*)(test4Code.c_str()), (int)strlen(test4Code.c_str()));
-std::tuple<const unsigned char*, int> printfTestParams = std::make_tuple<const unsigned char*, int>((const unsigned char*)(printfTestCode.c_str()), (int)strlen(printfTestCode.c_str()));
-
+#define UNPACK_CONSTRUCTOR(param) std::get<0>((param)), std::get<1>((param))
+}
 
 #endif //BOMPILER_TEST_DATA_H

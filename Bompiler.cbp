@@ -147,7 +147,16 @@
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/Scanner.h">
 			<Option target="BompilerLib"/>
 		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/TestData.h">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/asm_head.h">
+			<Option target="BompilerLib"/>
+		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/logger.h">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/util.h">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Bompiler.cpp">
@@ -160,6 +169,9 @@
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/logger.cpp">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/util.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/test/src/main.cpp">

@@ -1,7 +1,9 @@
+* Implementirati printf
+
 * Datu liniju za provjeru dodajte iza svih UnaryExpr i PostfixExpr za operatore inkrementiranja i dekrementiranja.
 
 * Implementirati IsAssignable
-  * Provjeri da li je trenutni node VAR, INDEX ili PTR
+  * Provjeri da li 
 
 * Napisite funkciju koja provjerava da li je goto labela vec definisana i promijenite pravilo Label da to testira.
 
