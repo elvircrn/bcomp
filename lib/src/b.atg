@@ -5,7 +5,7 @@ typedef  wchar_t Name[500];
 #include <string>
 #include <iostream>
 COMPILER B
-#include "methods.inc"
+#include "methods.h"
 std::wstring ParseList;
 int scopepos;
 std::wstringstream _asmOutput;

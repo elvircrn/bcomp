@@ -1,3 +1,8 @@
+#include <string>
+#include <cstring>
+
+#include "Parser.h"
+
 std::wstring AST() {
   return _ast.str();
 }
