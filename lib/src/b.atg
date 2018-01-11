@@ -466,7 +466,7 @@ UnaryExpr
 
 UnaryExpr      (. int position; .)        
     =          (. position=ParseList.length(); .)
-    ( PostfixExpr         (. if (!(Assignable(position))) { SemErr(L"Not assignable"); }.)
+    ( PostfixExpr
     | '&'      (. ParseList.insert(position,L"(ADDROF "); .)
       UnaryExpr (. ParseList.append(L")"); .)
     | '*'      (. ParseList.insert(position,L"(PTR "); .)
