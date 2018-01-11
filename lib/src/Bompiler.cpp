@@ -4,7 +4,8 @@
 
 #include <iostream>
 
-bool bompiler::Bompiler::compile(const std::wstring &filePath) const {
+// TODO: Hopelessly in need of refactoring
+bool bompiler::Bompiler::compile(const std::wstring &filePath) {
 
 }
 
@@ -35,5 +36,5 @@ bompiler::Bompiler::Bompiler(const unsigned char* buf, int len) : scanner(buf, l
 }
 
 bompiler::Bompiler::State bompiler::Bompiler::getState() {
-  return State::SUCCESS;
+  return state;
 }

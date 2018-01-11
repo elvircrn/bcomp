@@ -18,12 +18,10 @@ namespace bompiler {
 class Node {
   string name;
   vector<unique_ptr<Node>> children;
-
-  Node() { }
 };
 
-class AST {
-  explicit AST(const std::string &expr);
+class ParseTree {
+  explicit ParseTree(const std::string &expr);
 
   friend class Node;
 };

@@ -1,5 +1,5 @@
 # TODO
-* Implement functions
+* Count parser tree children
 
 * Implement printf
 
@@ -12,9 +12,8 @@
 
 * Po uzoru na ADD, lako realizujte generisanje asemblerskog koda za AND, OR, XOR i MUL. Probajte i SUB (pazite na nekomutativnost).
 
-* Make parser stop using standard output
-
-* Implement AST as an actual datastructure
-
+* Nice to have 
+  * Implement ParseTree as an actual datastructure
+  * Make parser stop using standard output 
 
 # Known bugs

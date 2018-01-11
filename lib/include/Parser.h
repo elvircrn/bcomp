@@ -91,6 +91,7 @@ int scopepos;
 std::wstringstream _asmOutput;
 std::wstringstream _ast;
 
+  int childrenCount(int position);
 
   std::wstring AST() {
 	  return _ast.str();
@@ -233,10 +234,7 @@ std::wstringstream _ast;
   }
 
 // TODO: L"VAR", L"INDEX" ili L"PTR"
-  bool Assignable(int position) {
-	  wstring nodename = GetNodeName(position);
-	  return (nodename == L"VAR" || nodename == L"INDEX" || nodename == L"PTR");
-  }
+  bool Assignable(int position);
 
   void Compile(int position) {
 	  wstring nodename, elemname;
@@ -291,6 +289,13 @@ std::wstringstream _ast;
 	  } else if (nodename == L"FPARAM") {
 	  } else if (nodename == L"FUNCCALL") {
 		  std::wstring funcName = GetElemName(ElemPos(position, 1), 1);
+
+      std::wcout << L"Args: \n"; 
+      for (size_t i = 0; i < 10; i++) {
+        std::wcout << L"Node after " << i << L" : " << GetNodeName(ElemPos(position, i)) << '\n';
+        std::wcout << L"Elem after " << i << L" : " << GetElemName(ElemPos(position, i), 1) << '\n';
+      }
+      // size_t argCount = 
 		  std::wcout << "FUNC_NAME: " << funcName << '\n';
 	  } else if (nodename == L"FUNCDEF") {
 		  elemname = GetElemName(position, 1);
@@ -391,6 +396,8 @@ std::wstringstream _ast;
 	  } else if (nodename == L"XORMOV ") {
 	  }
   }
+
+
 
 
 	Parser(Scanner *scanner);

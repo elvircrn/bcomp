@@ -141,6 +141,9 @@
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/Bompiler.h">
 			<Option target="BompilerLib"/>
 		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/ParseTree.h">
+			<Option target="BompilerLib"/>
+		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/Parser.h">
 			<Option target="BompilerLib"/>
 		</Unit>
@@ -156,10 +159,16 @@
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/logger.h">
 			<Option target="BompilerLib"/>
 		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/methods.h">
+			<Option target="BompilerLib"/>
+		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/util.h">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Bompiler.cpp">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/ParseTree.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Parser.cpp">

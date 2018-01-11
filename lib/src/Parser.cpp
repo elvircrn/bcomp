@@ -454,6 +454,13 @@ void Parser::Expression() {
 		AssignExpr();
 }
 
+
+bool Parser::Assignable(int position) {
+	wstring nodename = GetNodeName(position);
+	return (nodename == L"VAR" || nodename == L"INDEX" || nodename == L"PTR");
+}
+
+
 void Parser::AssignExpr() {
 		int position; 
 		position=ParseList.length(); 
@@ -743,19 +750,16 @@ void Parser::MultExpr() {
 			if (la->kind == 59 /* "*" */) {
 				Get();
 				UnaryExpr();
-				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MUL " ); 
 				ParseList.append(L") " );
 			} else if (la->kind == 60 /* "/" */) {
 				Get();
 				UnaryExpr();
-				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(DIV " ); 
 				ParseList.append(L") " );
 			} else {
 				Get();
 				UnaryExpr();
-				if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 				ParseList.insert(position,L"(MOD " ); 
 				ParseList.append(L") " );
 			}
@@ -768,7 +772,6 @@ void Parser::UnaryExpr() {
 		switch (la->kind) {
 		case _identifier: case _number: case _onumber: case _string: case _char: case 12 /* "(" */: {
 			PostfixExpr();
-			if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 			break;
 		}
 		case 48 /* "&" */: {
@@ -817,6 +820,7 @@ void Parser::UnaryExpr() {
 			Get();
 			ParseList.insert(position,L"(PREINC "); 
 			UnaryExpr();
+			if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 			ParseList.append(L")"); 
 			break;
 		}
@@ -824,6 +828,7 @@ void Parser::UnaryExpr() {
 			Get();
 			ParseList.insert(position,L"(PREDEC "); 
 			UnaryExpr();
+			if (!(Assignable(position))) { SemErr(L"Not assignable"); }
 			ParseList.append(L")"); 
 			break;
 		}
@@ -1033,6 +1038,9 @@ Parser::~Parser() {
 	ParserDestroyCaller<Parser>::CallDestroy(this);
 	delete errors;
 	delete dummyToken;
+}
+int Parser::childrenCount(int position) {
+  return 0;
 }
 
 Errors::Errors() {

@@ -24,7 +24,7 @@ private:
 public:
   explicit Bompiler(const std::wstring &filePath);
   Bompiler(const unsigned char* buf, int len);
-  bool compile(const std::wstring &filePath) const;
+  bool compile(const std::wstring &filePath);
   std::wstring asmStr();
   std::wstring astStr();
 
