@@ -1,3 +1,4 @@
+// METHODS BEGIN
 using namespace std;
 #include <sstream>
 #include <wchar.h>
@@ -531,3 +532,4 @@ UnaryExpr      (. int position; .)
 
 END B.
 
+// METHODS END
