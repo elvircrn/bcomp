@@ -1,3 +1,6 @@
+# Ignore scanner and parser backups
+backup/
+
 # Make
 CMakeFiles/
 .idea/
