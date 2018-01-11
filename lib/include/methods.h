@@ -1,7 +1,7 @@
 #include <string>
 #include <cstring>
 
-#include "Parser.h"
+#include "Parser.h" 
 
 std::wstring AST() {
   return _ast.str();
@@ -105,7 +105,7 @@ int ElemPos(int position, int elemnum) {
       position++;
       while (brlevel != 0) {
         while (ParseList[position] != '(' && ParseList[position] != '`' &&
-               ParseList[position] != ')')
+            ParseList[position] != ')')
           position++;
         switch (ParseList[position]) {
         case '(':
@@ -137,17 +137,14 @@ int ElemPos(int position, int elemnum) {
       break;
     default:
       while (ParseList[position] != '(' && ParseList[position] != ' ' &&
-             ParseList[position] != ')')
+          ParseList[position] != ')')
         position++;
     }
   }
 }
 
 // TODO: L"VAR", L"INDEX" ili L"PTR"
-bool Assignable(int position) {
-  wstring nodename = GetNodeName(position);
-  return (nodename == L"VAR" || nodename == L"INDEX" || nodename == L"PTR");
-}
+bool Assignable(int position);
 
 void Compile(int position) {
   wstring nodename, elemname;
@@ -200,7 +197,7 @@ void Compile(int position) {
   } else if (nodename == L"EXTRN") {
   } else if (nodename == L"FHEADER") {
   } else if (nodename == L"FPARAM") {
-  } else if (nodename == L"FUNCCALL") { 
+  } else if (nodename == L"FUNCCALL") {
     std::wstring funcName = GetElemName(ElemPos(position, 1), 1);
     std::wcout << "FUNC_NAME: " << funcName << '\n';
   } else if (nodename == L"FUNCDEF") {
@@ -208,8 +205,8 @@ void Compile(int position) {
     _asmOutput << L" PUBLIC " << elemname << endl;
     _asmOutput << elemname << ":" << endl;
     _asmOutput << L" PUSH EBP" << endl
-          << L" MOV EBP,ESP" << endl
-          << L" SUB ESP," << elemname << L"_len" << endl;
+         << L" MOV EBP,ESP" << endl
+         << L" SUB ESP," << elemname << L"_len" << endl;
     Compile(ElemPos(position, 2));
     Compile(ElemPos(position, 3));
     _asmOutput << L" MOV ESP,EBP" << endl << L" RET " << endl;
@@ -247,7 +244,7 @@ void Compile(int position) {
     if (GetNodeName(z) == L"VAR") {
       if (GetNodeName(q) == L"INT") {
         _asmOutput << L" MOV DWORD [" << GetElemName(z, 1) << "],"
-              << GetElemName(q, 1) << endl;
+             << GetElemName(q, 1) << endl;
       } else if (GetNodeName(q) == L"VAR") {
         _asmOutput << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
         _asmOutput << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
@@ -302,3 +299,4 @@ void Compile(int position) {
   } else if (nodename == L"XORMOV ") {
   }
 }
+
