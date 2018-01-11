@@ -56,14 +56,21 @@ main:
 
 void funcDef() {
   const std::string &functionDef = R"(
-main() {
-  auto a = 2, b = 3;
-  auto c = a + b;
-  fun3(a, b, c);
-}
 fun3(x, y, z) {
-  auto a = 2, b = 3;
-  auto c = a + b;
+  auto a, b, c;
+  a = 2;
+  b = 3;
+  c = a + b;
+}
+main() {
+  auto a, b, c;
+  a = 1;
+  b = 2;
+  c = 3;
+  fun3(a, b, c);
+  a = 2;
+  b = 1;
+  fun3(1, b, 2);
 }
 )";
   bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(functionDef)));
