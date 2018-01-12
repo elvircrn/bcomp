@@ -5,6 +5,7 @@
 #include <cctype>
 #include <memory>
 #include <tuple>
+#include <queue>
 #include "util.h"
 
 using namespace bompiler;
@@ -14,20 +15,31 @@ using std::make_unique;
 
 PNode::PNode(const wstring &_name) : name(_name), parent(nullptr) {}
 
-bool PNode::isParent() {
+bool PNode::isRoot() {
   return parent == nullptr;
 }
 
 PNode::PNode(PNode *_parent, const wstring &_name) : parent(_parent), name(_name) {
 
 }
+PNode::~PNode() {
+  for (auto &i : children)
+    delete i;
+}
+std::wstring PNode::getName() const {
+  return name;
+}
 
-PNode* ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
+size_t ParseTree::nodeCount() const {
+  return nodes.size();
+}
+
+PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
   if (expr[pos] == '(')
     pos++;
 
   // Ignore whitespace
-  while(expr[pos] == ' ')
+  while (expr[pos] == ' ')
     pos++;
 
   // Reached end of subtree
@@ -77,11 +89,14 @@ PNode* ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
   return node;
 }
 
-void ParseTree::print(PNode* node, int depth) {
+void ParseTree::print(PNode *node, int depth) {
   for (int i = 0; i < depth; i++)
     std::wcout << ' ';
-  std::wcout << node->name << ' ' << node->children.size() << '\n';
-  for (auto next : node->children) {
+  std::wcout << node->name << ' ';
+  for (const auto &attr : node->attrs)
+    std::wcout << attr << ' ';
+  std::wcout << '\n';
+  for (const auto &next : node->children) {
     print(next, depth + 1);
   }
 }
@@ -90,44 +105,34 @@ void ParseTree::print() {
   print(root, 0);
 }
 
+vector<PNode *> ParseTree::generateFlatList() {
+  vector<PNode *> flat;
+  std::queue<PNode *> q;
+  PNode *node = root;
+  q.push(node);
+  while (!q.empty()) {
+    node = q.front();
+    flat.push_back(node);
+    q.pop();
+    for (const auto &next : node->children)
+      q.push(next);
+  }
+  return flat;
+}
+
 ParseTree::ParseTree(const std::wstring &expr, int position) {
   int pos = 1;
   root = dfs(expr, pos, nullptr);
-//  PNode *node = nullptr;
-//
-//  int i = position, depth = 0;
-//  while (i < expr.length()) {
-//
-//    if (expr[i] == '(') {
-//      depth++;
-//      continue;
-//    } else if (expr[i] == ')') {
-//      depth--;
-//      if (depth <= 0)
-//        break;
-//      continue;
-//    }
-//
-//    std::wstring namebuff;
-//    int next;
-//
-//    std::tie(namebuff, next) = takeBuff(expr, position, true);
-//
-//    // Handle node name
-//    if (!namebuff.empty()) {
-//      if (!node) {
-//        root = new PNode(namebuff);
-//        node = root;
-//      }
-//
-//      // Add node attributes if any exist
-//      std::wstring attr;
-//      do {
-//        std::tie(attr, next) = takeBuff(expr, next);
-//        if (!attr.empty())
-//          node->attrs.push_back(attr);
-//      } while(!attr.empty());
-//      i = next;
-//    }
-//  }
+  nodes = generateFlatList();
+}
+
+vector<PNode *> ParseTree::getNodes() {
+  return nodes;
+}
+
+PNode *ParseTree::getNode(int id) {
+  return nodes[id];
+}
+ParseTree::~ParseTree() {
+  delete root;
 }

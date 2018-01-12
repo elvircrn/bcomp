@@ -1,4 +1,4 @@
-// #define ENABLE_TESTS
+//#define ENABLE_TESTS
 
 
 #include <iostream>
@@ -89,7 +89,7 @@ void dfsTest() {
 }
 
 int main() {
-  dfsTest();
+  funcDef();
   return 0;
 }
 #else
@@ -109,7 +109,6 @@ TEST_CASE("function definition") {
   REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::funcDefParams)).getState() == Bompiler::State::SUCCESS);
 }
 
-#include "utiltest.cpp"
 
 #endif
 

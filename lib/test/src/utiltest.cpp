@@ -1,6 +1,7 @@
 #include "util.h"
 
-#include "catch.hpp"
+#ifdef ENABLE_TESTS
+#include <catch.hpp>
 
 #include <string>
 #include <tuple>
@@ -59,3 +60,4 @@ TEST_CASE("takeBuffs AST", "[util]") {
   REQUIRE(buffs[0] == L"A");
   REQUIRE(next == 6);
 }
+#endif

@@ -22,23 +22,33 @@ class PNode {
   PNode *parent;
 
 public:
-  explicit PNode(const wstring &name);
+  explicit PNode(const wstring &_name);
   PNode(PNode *_parent, const wstring &_name);
-  bool isParent();
+  bool isRoot();
+  std::wstring getName() const;
+
+  ~PNode();
 
   friend class ParseTree;
 };
 
 class ParseTree {
   PNode *root;
-public:
+  std::vector<PNode *> nodes;
 
+public:
   ParseTree(const std::wstring &expr, int position);
 
   friend class Node;
-  PNode* dfs(const wstring &expr, int &pos, PNode *node);
+  PNode *dfs(const wstring &expr, int &pos, PNode *node);
   void print();
-  void print(PNode *node, int depth);
+  void print(PNode *node, int depth = 0);
+  vector<PNode *> generateFlatList();
+  vector<PNode *> getNodes();
+  PNode *getNode(int id);
+  size_t nodeCount() const;
+
+  ~ParseTree();
 };
 
 }
