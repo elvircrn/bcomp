@@ -83,8 +83,13 @@ main() {
   }
 }
 
+void dfsTest() {
+  std::wstring expr = L"(B (A (C) (D) (E)))";
+  ParseTree(expr, 1).print();
+}
+
 int main() {
-  funcDef();
+  dfsTest();
   return 0;
 }
 #else
@@ -103,6 +108,8 @@ TEST_CASE("printf test") {
 TEST_CASE("function definition") {
   REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::funcDefParams)).getState() == Bompiler::State::SUCCESS);
 }
+
+#include "utiltest.cpp"
 
 #endif
 

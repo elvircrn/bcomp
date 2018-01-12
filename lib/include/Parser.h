@@ -32,6 +32,8 @@ Coco/R itself) does not fall under the GNU General Public License.
 
 using namespace std;
 #include <sstream>
+#include "ParseTree.h"
+using namespace bompiler;
 #include <wchar.h>
 typedef  wchar_t Name[500];
 #include <string>
@@ -288,8 +290,9 @@ std::wstringstream _ast;
 	  } else if (nodename == L"FHEADER") {
 	  } else if (nodename == L"FPARAM") {
 	  } else if (nodename == L"FUNCCALL") {
-		  std::wstring funcName = GetElemName(ElemPos(position, 1), 1);
+      ParseTree pt(ParseList, position);
 
+		  std::wstring funcName = GetElemName(ElemPos(position, 1), 1);
       std::wcout << L"Args: \n"; 
       for (size_t i = 0; i < 10; i++) {
         std::wcout << L"Node after " << i << L" : " << GetNodeName(ElemPos(position, i)) << '\n';

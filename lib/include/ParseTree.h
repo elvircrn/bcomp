@@ -1,7 +1,3 @@
-//
-// Created by elvircrn on 1/11/2018.
-//
-
 #ifndef BOMPILER_AST_H
 #define BOMPILER_AST_H
 
@@ -12,19 +8,39 @@
 
 using std::vector;
 using std::unique_ptr;
-using std::string;
+using std::wstring;
+using std::weak_ptr;
 
 namespace bompiler {
-class Node {
-  string name;
-  vector<unique_ptr<Node>> children;
+
+class ParseTree;
+
+class PNode {
+  wstring name;
+  vector<wstring> attrs;
+  vector<PNode *> children;
+  PNode *parent;
+
+public:
+  explicit PNode(const wstring &name);
+  PNode(PNode *_parent, const wstring &_name);
+  bool isParent();
+
+  friend class ParseTree;
 };
 
 class ParseTree {
-  explicit ParseTree(const std::string &expr);
+  PNode *root;
+public:
+
+  ParseTree(const std::wstring &expr, int position);
 
   friend class Node;
+  PNode* dfs(const wstring &expr, int &pos, PNode *node);
+  void print();
+  void print(PNode *node, int depth);
 };
+
 }
 
 #endif //BOMPILER_AST_H

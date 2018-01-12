@@ -1039,8 +1039,16 @@ Parser::~Parser() {
 	delete errors;
 	delete dummyToken;
 }
+
 int Parser::childrenCount(int position) {
-  return 0;
+  int bracketLevel = 0;
+  while (position < ParseList.length()) {
+    if (ParseList[position] == '(')
+      bracketLevel++;
+    else if (ParseList[position] == ')')
+      bracketLevel--;
+    position++;
+  }
 }
 
 Errors::Errors() {
