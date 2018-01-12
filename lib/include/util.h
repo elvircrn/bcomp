@@ -6,6 +6,9 @@
 #define BOMPILER_COREUTIL_H
 
 #include <vector>
+#include <cstdlib>
+#include <utility>
+#include <string>
 
 namespace util {
 template<typename Function, typename Tuple, size_t ... I>

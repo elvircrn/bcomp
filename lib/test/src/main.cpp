@@ -84,7 +84,7 @@ main() {
 }
 
 void dfsTest() {
-  std::wstring expr = L"(B (A (C) (D) (E)))";
+  std::wstring expr = L"(B asd as df (A (C  asdf1 12 ) (D 12 ) (E)))";
   ParseTree(expr, 1).print();
 }
 

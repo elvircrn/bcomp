@@ -60,6 +60,10 @@ PNode* ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
   }
 
   for (;;) {
+    while (expr[pos] != '(' && pos != expr.length())
+      pos++;
+    if (pos == expr.length())
+      break;
     auto child = dfs(expr, pos, node);
     if (!child)
       break;

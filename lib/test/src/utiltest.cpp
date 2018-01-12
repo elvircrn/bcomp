@@ -1,6 +1,6 @@
 #include "util.h"
 
-#include "../../../third_party/Catch/include/catch.hpp"
+#include "catch.hpp"
 
 #include <string>
 #include <tuple>
