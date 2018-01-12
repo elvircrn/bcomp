@@ -15,5 +15,6 @@
 * Nice to have 
   * Implement ParseTree as an actual datastructure
   * Make parser stop using standard output 
+  * Get node id from string position
 
 # Known bugs

@@ -29,6 +29,9 @@ PNode::~PNode() {
 std::wstring PNode::getName() const {
   return name;
 }
+std::vector<std::wstring> PNode::getAttrs() const {
+  return attrs;
+}
 
 size_t ParseTree::nodeCount() const {
   return nodes.size();
@@ -121,8 +124,7 @@ vector<PNode *> ParseTree::generateFlatList() {
 }
 
 ParseTree::ParseTree(const std::wstring &expr, int position) {
-  int pos = 1;
-  root = dfs(expr, pos, nullptr);
+  root = dfs(expr, position, nullptr);
   nodes = generateFlatList();
 }
 
@@ -135,4 +137,7 @@ PNode *ParseTree::getNode(int id) {
 }
 ParseTree::~ParseTree() {
   delete root;
+}
+PNode *ParseTree::getRoot() {
+  return root;
 }

@@ -232,7 +232,6 @@ public:
   bool Assignable(int position);
 
   void Compile(int position) {
-    ParseTree pt = ParseTree(ParseList, 1);
     wstring nodename, elemname;
     int par, z, q;
     nodename = GetNodeName(position);
@@ -284,13 +283,13 @@ public:
     } else if (nodename == L"FHEADER") {
     } else if (nodename == L"FPARAM") {
     } else if (nodename == L"FUNCCALL") {
-      int nodeId = ElemPos(position, 1);
-      std::wcout << "NodeId: " << nodeId << '\n';
-      std::wcout << "Node cnt: " << pt.nodeCount() << '\n';
-      auto node = pt.getNode(nodeId);
+      // TODO: Implement get node id method
+      // int nodeId = ElemPos(position, 1);
+      ParseTree pt(ParseList, ElemPos(position, 1));
+      auto node = pt.getRoot();
       std::wcout << L"Args: \n";
       pt.print();
-      std::wcout << L"FUNC_NAME: " << node->getName() << '\n';
+      std::wcout << L"FUNC_NAME: " << node->getAttrs()[0] << '\n';
       std::wcout << L"POS: " << ElemPos(position, 1) << '\n';
 
     } else if (nodename == L"FUNCDEF") {

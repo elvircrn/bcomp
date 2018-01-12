@@ -1,3 +1,4 @@
+
 #ifndef BOMPILER_AST_H
 #define BOMPILER_AST_H
 
@@ -26,6 +27,7 @@ public:
   PNode(PNode *_parent, const wstring &_name);
   bool isRoot();
   std::wstring getName() const;
+  std::vector<std::wstring> getAttrs() const;
 
   ~PNode();
 
@@ -47,6 +49,7 @@ public:
   vector<PNode *> getNodes();
   PNode *getNode(int id);
   size_t nodeCount() const;
+  PNode *getRoot();
 
   ~ParseTree();
 };
