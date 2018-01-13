@@ -1,3 +1,9 @@
+NOTE:
+Local - Declared anywhere
+Global - Declared in main routine 
+Intializator - Check if rval exists
+
+
 Za upoznavanje sa strukturom ulaznog formata, djelomièno æe se razviti kompajler za 
 programski jezik B, prethodnika jezika C. Jezik nema tipove. Unutar funkcije,
 lokalne varijable se deklarišu kljuènom rjeèju auto, a globalne treba navest uz kljuènu rijeè

@@ -109,7 +109,6 @@ void Parser::B() {
   ParseList += L")";
   _ast << ParseList;
   pt = ParseTree(ParseList, 0);
-  pt.print();
   Compile(pt.getRoot());
 }
 

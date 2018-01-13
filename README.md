@@ -15,7 +15,6 @@
 * Po uzoru na ADD, lako realizujte generisanje asemblerskog koda za AND, OR, XOR i MUL. Probajte i SUB (pazite na nekomutativnost).
 
 * Nice to have 
-  * Implement ParseTree as an actual datastructure
   * Make parser stop using standard output 
   * Get node id from string position
 
