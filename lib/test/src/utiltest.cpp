@@ -5,6 +5,7 @@
 #include <string>
 #include <tuple>
 
+
 TEST_CASE("takeBuff", "[util]") {
   std::wstring buff;
   int next;
