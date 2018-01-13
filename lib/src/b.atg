@@ -213,6 +213,17 @@ Ident<name>                      (.  ParseList.append(L"(GOTO ");ParseList.appen
   CompoundStatement              (.  ParseList.insert(position, L"(SWITCH "); ParseList.append(L")"); .)
   .
 
+ForStatement                   (. int position; .)
+  =                            (. position=ParseList.length(); .)
+  "for" '('
+    Statement
+    ';'
+    Expression
+    ';'
+    Statement
+    ')'                        (. ParseList.insert(position, L"(FOR "); ParseList.append(L")"); .)
+  Statement
+  .
 
   WhileStatement                  (. int position; .)
   =                              (. position=ParseList.length(); .)
@@ -528,6 +539,8 @@ UnaryExpr      (. int position; .)
                 (. ParseList.append(L") " );.)
 
   }.
+
+
 
 END B.
 
