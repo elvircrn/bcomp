@@ -29,12 +29,24 @@ bompiler::Bompiler::Bompiler(const std::wstring &filePath) : scanner(filePath.c_
 bompiler::Bompiler::Bompiler(const unsigned char* buf, int len) : scanner(buf, len),
                                                              parser(&scanner) {
   parser.Parse();
-  if (parser.errors->count == 0)
-    state = State::SUCCESS;
-  else
+  if (parser.errors->count) {
     state = State::FAIL;
+    return;
+  }
+
+  pt = ParseTree(parser.ParseList, 0);
+
+  compile(pt.getRoot()); 
+
+  state = State::SUCCESS;
 }
 
 bompiler::Bompiler::State bompiler::Bompiler::getState() {
   return state;
+}
+void Bompiler::compile() {
+
+}
+void Bompiler::compile(PNode *node) {
+
 }

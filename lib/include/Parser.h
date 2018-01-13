@@ -33,6 +33,7 @@ Coco/R itself) does not fall under the GNU General Public License.
 using namespace std;
 #include <sstream>
 #include "ParseTree.h"
+#include "Objects.h"
 using namespace bompiler;
 #include <wchar.h>
 typedef wchar_t Name[500];
@@ -83,6 +84,7 @@ public:
   Errors *errors;
   
   ParseTree pt;
+  Objects objs;
 
   Token *t;            // last recognized token
   Token *la;            // lookahead token

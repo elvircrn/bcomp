@@ -2,6 +2,7 @@
 using namespace std;
 #include <sstream>
 #include "ParseTree.h"
+#include "Objects.h"
 using namespace bompiler;
 #include <wchar.h>
 typedef  wchar_t Name[500];

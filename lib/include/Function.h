@@ -12,7 +12,7 @@ class Function {
   PNode *node;
 public:
   std::wstring name() const;
-  Function(PNode *_declaration);
+  explicit Function(PNode *_declaration);
 };
 }
 

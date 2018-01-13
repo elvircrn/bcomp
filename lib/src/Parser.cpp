@@ -108,8 +108,6 @@ void Parser::B() {
   Expect(_EOF);
   ParseList += L")";
   _ast << ParseList;
-  pt = ParseTree(ParseList, 0);
-  Compile(pt.getRoot());
 }
 
 void Parser::Definition() {
@@ -1446,8 +1444,10 @@ void Parser::Compile(PNode *node) {
   } else if (nodename == L"FPARAM") {
   } else if (nodename == L"FUNCCALL") {
     std::wcout << L"Args: \n";
-    std::wcout << L"FUNC_NAME: " << node->getChild(0)->getAttr(0) << '\n';
-    std::wcout << L"POS: \n";
+    std::wstring funcName = node->getChild(0)->getAttr(0);
+    for (const auto& child : node->getChildren()) {
+      std::wcout << child->getName() << '\n';
+    }
   } else if (nodename == L"FUNCDEF") {
     elemname = node->getAttrs()[0];
     _asmOutput << L" PUBLIC " << elemname << endl;

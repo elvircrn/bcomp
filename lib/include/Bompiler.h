@@ -7,6 +7,8 @@
 #include <string>
 #include "Parser.h"
 #include "Scanner.h"
+#include "ParseTree.h"
+#include "Objects.h"
 
 namespace bompiler {
 class Bompiler {
@@ -21,6 +23,12 @@ private:
 
   State state;
 
+  Objects objs;
+  ParseTree pt;
+
+  void compile();
+  void compile(PNode *node);
+
 public:
   explicit Bompiler(const std::wstring &filePath);
   Bompiler(const unsigned char* buf, int len);
@@ -29,6 +37,7 @@ public:
   std::wstring astStr();
 
   State getState();
+
 };
 }
 
