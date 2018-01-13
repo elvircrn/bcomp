@@ -71,6 +71,7 @@ main() {
   a = 2;
   b = 1;
   fun3(1, b, 2);
+  fun3(1, b, "123123");
 }
 )";
   bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(functionDef)));

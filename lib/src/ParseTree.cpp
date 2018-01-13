@@ -19,18 +19,35 @@ bool PNode::isRoot() {
   return parent == nullptr;
 }
 
-PNode::PNode(PNode *_parent, const wstring &_name) : parent(_parent), name(_name) {
+PNode::PNode(PNode *_parent, const wstring &_name) : parent(_parent), name(_name) {}
 
-}
 PNode::~PNode() {
   for (auto &i : children)
     delete i;
 }
+
 std::wstring PNode::getName() const {
   return name;
 }
 std::vector<std::wstring> PNode::getAttrs() const {
   return attrs;
+}
+
+PNode *PNode::copy(PNode *parent) const {
+  auto cnode = new PNode(parent, name, attrs);
+  std::vector<PNode *> children;
+  for (const auto &child : children)
+    children.push_back(child->copy(cnode));
+  cnode->children = children;
+  return cnode;
+}
+
+PNode::PNode(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &_attrs)
+    : parent(_parent), name(_name), attrs(_attrs) {}
+
+void ParseTree::_delete() {
+  nodes.clear();
+  delete root;
 }
 
 size_t ParseTree::nodeCount() const {
@@ -135,9 +152,38 @@ vector<PNode *> ParseTree::getNodes() {
 PNode *ParseTree::getNode(int id) {
   return nodes[id];
 }
+
 ParseTree::~ParseTree() {
-  delete root;
+  _delete();
 }
+
 PNode *ParseTree::getRoot() {
   return root;
+}
+
+ParseTree::ParseTree(ParseTree &&pt) noexcept {
+  root = pt.root;
+  nodes = pt.nodes;
+}
+
+ParseTree &ParseTree::operator=(const ParseTree &pt) {
+  if (this == &pt)
+    return *this;
+
+  _delete();
+
+  root = pt.root->copy();
+  nodes = generateFlatList();
+  return *this;
+}
+
+ParseTree::ParseTree(const ParseTree &pt) {
+  root = pt.root->copy();
+  nodes = pt.nodes;
+}
+
+ParseTree &ParseTree::operator=(ParseTree &&pt) noexcept {
+  root = pt.root;
+  nodes = pt.nodes;
+  return *this;
 }
