@@ -5,6 +5,7 @@
 #ifndef BOMPILER_BOMPILER_H
 #define BOMPILER_BOMPILER_H
 #include <string>
+#include <sstream>
 #include "Parser.h"
 #include "Scanner.h"
 #include "ParseTree.h"
@@ -25,14 +26,14 @@ private:
 
   Objects objs;
   ParseTree pt;
-
-  void compile();
-  void compile(PNode *node);
+  std::wstringstream _asmOutput;
 
 public:
   explicit Bompiler(const std::wstring &filePath);
   Bompiler(const unsigned char* buf, int len);
   bool compile(const std::wstring &filePath);
+  void compile();
+  void compile(PNode *node);
   std::wstring asmStr();
   std::wstring astStr();
 

@@ -3,6 +3,8 @@
 #include "util.h"
 #include "../../third_party/Catch/include/catch.hpp"
 
+using namespace bompiler;
+
 TEST_CASE("Basic compile tests") {
   REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::test1Params)).getState() == Bompiler::State::SUCCESS);
   REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::test2Params)).getState() == Bompiler::State::SUCCESS);

@@ -32,9 +32,6 @@ Coco/R itself) does not fall under the GNU General Public License.
 
 using namespace std;
 #include <sstream>
-#include "ParseTree.h"
-#include "Objects.h"
-using namespace bompiler;
 #include <wchar.h>
 typedef wchar_t Name[500];
 #include <string>
@@ -83,9 +80,6 @@ public:
   Scanner *scanner;
   Errors *errors;
   
-  ParseTree pt;
-  Objects objs;
-
   Token *t;            // last recognized token
   Token *la;            // lookahead token
 
@@ -98,10 +92,6 @@ public:
 
   std::wstring AST() {
     return _ast.str();
-  }
-
-  std::wstring AsmOutput() {
-    return _asmOutput.str();
   }
 
   bool IsDeclaredLocal(Name name1) {
@@ -234,7 +224,6 @@ public:
 
 // TODO: L"VAR", L"INDEX" ili L"PTR"
   bool Assignable(int position);
-  void Compile(PNode *node);
 
   Parser(Scanner *scanner);
   ~Parser();

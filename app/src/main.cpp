@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Bompiler.h"
+#include "ParseTree.h"
 #include "util.h"
 #include "TestData.h"
 
@@ -8,6 +9,7 @@
 
 using bompiler::Bompiler;
 using namespace util;
+using namespace bompiler;
 
 void printfHeaderTest() {
   bompiler::Bompiler compiler(L"data/test1.b");
@@ -76,6 +78,7 @@ main() {
 void dfsTest() {
   std::wstring expr = L"(B asd as df (A (C  asdf1 12 ) (D 12 ) (E)))";
   ParseTree(expr, 1).print();
+
 }
 
 /*
