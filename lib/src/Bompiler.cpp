@@ -73,6 +73,17 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"ADDMOV") {
   } else if (nodename == L"ADDROF") {
   } else if (nodename == L"AND") {
+    compile(node->getChild(0));
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" AND EAX," << node->getChild(1)->getAttr(0) << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      _asmOutput << L" AND EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+    } else {
+      _asmOutput << L" PUSH EAX";
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX";
+      _asmOutput << L" AND EAX,EBX" << endl;
+    }
   } else if (nodename == L"ANDMOV") {
   } else if (nodename == L"ARG") {
   } else if (nodename == L"ASIZE") {
@@ -203,6 +214,17 @@ void Bompiler::compile(PNode *node) {
       }
     }
   } else if (nodename == L"MUL") {
+    compile(node->getChild(0));
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" MUL EAX," << node->getChild(1)->getAttr(0) << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      _asmOutput << L" MUL EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+    } else {
+      _asmOutput << L" PUSH EAX";
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX";
+      _asmOutput << L" MUL EAX,EBX" << endl;
+    }
   } else if (nodename == L"MULTMOV") {
   } else if (nodename == L"NEQU") {
   } else if (nodename == L"ONUMBER") {
