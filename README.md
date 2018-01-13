@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/elvircrn/bcomp.svg?branch=master)](https://travis-ci.org/elvircrn/bcomp)
 
 # TODO
-* Count parser tree children
+* Implement functions
+  * Implement function calls
 
 * Implement printf
 
