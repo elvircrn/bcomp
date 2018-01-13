@@ -81,7 +81,7 @@ const std::string &functionDef = R"(
 main() {
 }
 fun3(x, y, z) {
-} 
+}
 )";
 
 const std::string &printfTestCode = R"(

@@ -1,4 +1,4 @@
-//#define ENABLE_TESTS
+#define ENABLE_TESTS
 
 
 #include <iostream>
@@ -89,6 +89,84 @@ void dfsTest() {
   ParseTree(expr, 1).print();
 }
 
+/*
+NODENAME: B
+NODENAME: FUNCDEF
+NODENAME: FHEADER
+NODENAME: BLOCK
+NODENAME: DECLSTAT
+NODENAME: LVARDEF
+varName: a
+NODENAME: LVARDEF
+varName: b
+NODENAME: LVARDEF
+varName: c
+NODENAME: MOV
+NODENAME: MOV
+NODENAME: MOV
+NODENAME: ADD
+NODENAME: VAR
+NODENAME: FUNCDEF
+NODENAME: FHEADER
+NODENAME: BLOCK
+NODENAME: DECLSTAT
+NODENAME: LVARDEF
+varName: a
+NODENAME: LVARDEF
+varName: b
+NODENAME: LVARDEF
+varName: c
+NODENAME: MOV
+NODENAME: MOV
+NODENAME: MOV
+NODENAME: FUNCCALL
+Args:
+VAR fun3
+FUNC_NAME: fun3
+POS: 356
+NODENAME: MOV
+NODENAME: MOV
+NODENAME: FUNCCALL
+Args:
+VAR fun3
+FUNC_NAME: fun3
+POS: 462
+NODENAME: FUNCCALL
+Args:
+VAR fun3
+FUNC_NAME: fun3
+POS: 526
+ PUBLIC fun3
+fun3:
+ PUSH EBP
+ MOV EBP,ESP
+ SUB ESP,fun3_len
+ MOV DWORD [a],2
+ MOV DWORD [b],3
+ MOV EAX, [a]
+ ADD EAX,[b]
+ MOV [c],EAX
+ MOV ESP,EBP
+ RET
+ PUBLIC main
+main:
+ PUSH EBP
+ MOV EBP,ESP
+ SUB ESP,main_len
+ MOV DWORD [a],1
+ MOV DWORD [b],2
+ MOV DWORD [c],3
+ MOV DWORD [a],2
+ MOV DWORD [b],1
+ MOV ESP,EBP
+ RET
+
+
+(B (FUNCDEF fun3 (FHEADER (FPARAM x )(FPARAM y )(FPARAM z )) (BLOCK (DECLSTAT (LVARDEF a ) (LVARDEF b ) (LVARDEF c ) (MOV (VAR a)(INT 2)) ) (MOV (VAR b)(INT 3)) (MOV (VAR c)(ADD (VAR a)(VAR b)) ) ) ) (FUNCDEF main (FHEADER ) (BLOCK (DECLSTAT (LVARDEF a ) (LVARDEF b ) (LVARDEF c ) (MOV (VAR a)(INT 1)) ) (MOV (VAR b)(INT 2)) (MOV (VAR c)(INT 3)) (FUNCCALL (VAR fun3)(ARG (VAR a)) (ARG (VAR b)) (ARG (VAR c)) ) (MOV (VAR a)(INT 2)) (MOV (VAR b)(INT 1)) (FUNCCALL (VAR fun3)(ARG (INT 1)) (ARG (VAR b)) (ARG (INT 2)) ) (FUNCCALL (VAR fun3)(ARG (INT 1)) (ARG (VAR b)) (ARG (STRING `"123123"`)) ) ) ) )
+Success
+
+ * 
+*/
 int main() {
   funcDef();
   return 0;
@@ -103,11 +181,15 @@ TEST_CASE("Basic compile tests") {
 
 
 TEST_CASE("printf test") {
-  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::printfTestParams)).getState() == Bompiler::State::SUCCESS);
+  auto compileStatus = Bompiler(UNPACK_CONSTRUCTOR(testdata::printfTestParams)).getState();
+  REQUIRE(compileStatus == Bompiler::State::SUCCESS);
 }
 
+
+
 TEST_CASE("function definition") {
-  REQUIRE(Bompiler(UNPACK_CONSTRUCTOR(testdata::funcDefParams)).getState() == Bompiler::State::SUCCESS);
+  auto compileStatus = Bompiler(UNPACK_CONSTRUCTOR(testdata::funcDefParams)).getState();
+  REQUIRE(compileStatus == Bompiler::State::SUCCESS);
 }
 
 

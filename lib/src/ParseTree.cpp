@@ -26,13 +26,6 @@ PNode::~PNode() {
     delete i;
 }
 
-std::wstring PNode::getName() const {
-  return name;
-}
-std::vector<std::wstring> PNode::getAttrs() const {
-  return attrs;
-}
-
 PNode *PNode::copy(PNode *parent) const {
   auto cnode = new PNode(parent, name, attrs);
   std::vector<PNode *> children;
@@ -54,19 +47,9 @@ size_t ParseTree::nodeCount() const {
   return nodes.size();
 }
 
+// NOTE: Expect '(' as the first character
 PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
-  if (expr[pos] == '(')
-    pos++;
-
-  // Ignore whitespace
-  while (expr[pos] == ' ')
-    pos++;
-
-  // Reached end of subtree
-  if (expr[pos] == ')') {
-    pos++;
-    return nullptr;
-  }
+  pos++;
 
   std::vector<std::wstring> attrs;
   std::wstring nodeName;
@@ -75,36 +58,18 @@ PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
 
   auto *node = new PNode(parent, nodeName);
 
-  if (pos == expr.length())
-    return node;
-
   std::tie(attrs, pos) = takeBuffs(expr, pos);
 
   node->attrs = attrs;
 
-  if (pos == expr.length())
-    return node;
-
-  // Finished parsing subtree
-  if (expr[pos] == ')') {
-    pos++;
-    return node;
-  }
-
-  for (;;) {
-    while (expr[pos] != '(' && pos != expr.length())
-      pos++;
-    if (pos == expr.length())
-      break;
+  while (expr[pos] == '(') {
     auto child = dfs(expr, pos, node);
-    if (!child)
-      break;
-
     node->children.push_back(child);
-
-    if (pos == expr.length())
-      break;
+    while(expr[pos] == ' ')
+      pos++;
   }
+
+  pos++;
 
   return node;
 }
@@ -164,6 +129,7 @@ PNode *ParseTree::getRoot() {
 ParseTree::ParseTree(ParseTree &&pt) noexcept {
   root = pt.root;
   nodes = pt.nodes;
+  pt.root = nullptr;
 }
 
 ParseTree &ParseTree::operator=(const ParseTree &pt) {
@@ -185,5 +151,6 @@ ParseTree::ParseTree(const ParseTree &pt) {
 ParseTree &ParseTree::operator=(ParseTree &&pt) noexcept {
   root = pt.root;
   nodes = pt.nodes;
+  pt.root = nullptr;
   return *this;
 }

@@ -232,7 +232,7 @@ public:
 
 // TODO: L"VAR", L"INDEX" ili L"PTR"
   bool Assignable(int position);
-  void Compile(int position);
+  void Compile(PNode *node);
 
   Parser(Scanner *scanner);
   ~Parser();

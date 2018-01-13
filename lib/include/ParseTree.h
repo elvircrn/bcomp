@@ -19,17 +19,20 @@ class ParseTree;
 class PNode {
   wstring name;
   vector<wstring> attrs;
-  vector<PNode *> children;
-  PNode *parent;
 
 public:
   explicit PNode(const wstring &_name);
   PNode(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &);
   PNode(PNode *_parent, const wstring &_name);
   bool isRoot();
-  std::wstring getName() const;
-  std::vector<std::wstring> getAttrs() const;
+  inline std::vector<PNode*> getChildren() { return children; }
+  inline PNode* getChild(int i) { return children[i]; }
+  inline std::wstring getName() const { return name; }
+  inline std::vector<std::wstring> getAttrs() const { return attrs; }
+  inline std::wstring getAttr(int i) const { return attrs[i]; }
   PNode *copy(PNode *parent = nullptr) const;
+  vector<PNode *> children;
+  PNode *parent;
 
   ~PNode();
 

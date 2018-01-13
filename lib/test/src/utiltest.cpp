@@ -1,6 +1,5 @@
 #include "util.h"
 
-#ifdef ENABLE_TESTS
 #include <catch.hpp>
 
 #include <string>
@@ -60,4 +59,3 @@ TEST_CASE("takeBuffs AST", "[util]") {
   REQUIRE(buffs[0] == L"A");
   REQUIRE(next == 6);
 }
-#endif

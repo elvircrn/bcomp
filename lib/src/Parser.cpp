@@ -109,7 +109,8 @@ void Parser::B() {
   ParseList += L")";
   _ast << ParseList;
   pt = ParseTree(ParseList, 0);
-  Compile(0);
+  pt.print();
+  Compile(pt.getRoot());
 }
 
 void Parser::Definition() {
@@ -1399,23 +1400,24 @@ void Errors::Exception(const wchar_t *s) {
   exit(1);
 }
 
-void Parser::Compile(int position) {
-  wstring nodename, elemname;
+void Parser::Compile(PNode *node) {
+  if (!node) {
+    std::wcout << L"WTF\n";
+    return;
+  }
+  wstring nodename = node->getName(), elemname;
   int par, z, q;
-  nodename = GetNodeName(position);
-  std::wcout << "NODENAME: " << nodename << '\n';
+  std::wcout << L"NODENAME: " << nodename << '\n';
   par = 1;
   if (nodename == L"ADD") {
-    z = ElemPos(position, 1);
-    q = ElemPos(position, 2);
-    Compile(z);
-    if (GetNodeName(q) == L"INT") {
-      _asmOutput << L" ADD EAX," << GetElemName(q, 1) << endl;
-    } else if (GetNodeName(q) == L"VAR") {
-      _asmOutput << L" ADD EAX,[" << GetElemName(q, 1) << "]" << endl;
+    Compile(node->getChild(0));
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" ADD EAX," << node->getChild(1)->getAttr(0) << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      _asmOutput << L" ADD EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
-      Compile(q);
+      Compile(node->getChild(1));
       _asmOutput << L" POP EBX";
       _asmOutput << L" ADD EAX,EBX" << endl;
     }
@@ -1426,50 +1428,38 @@ void Parser::Compile(int position) {
   } else if (nodename == L"ARG") {
   } else if (nodename == L"ASIZE") {
   } else if (nodename == L"BLOCK") {
-    while ((z = ElemPos(position, par)) > 0) {
-      Compile(z);
-      par++;
-    }
+    for (const auto &child : node->getChildren())
+      Compile(child);
   } else if (nodename == L"BREAK") {
   } else if (nodename == L"B") {
-    while ((z = ElemPos(position, par)) > 0) {
-      Compile(z);
-      par++;
-    }
+    for (const auto &child : node->getChildren())
+      Compile(child);
   } else if (nodename == L"CHAR") {
   } else if (nodename == L"CONDEXPR") {
   } else if (nodename == L"CONTINUE") {
   } else if (nodename == L"DECLSTAT") {
-    while ((z = ElemPos(position, par)) > 0) {
-      Compile(z);
-      par++;
-    }
-  } else if (nodename == L"DEFAULT") {
-  } else if (nodename == L"DIV") {
+    for (const auto &child : node->getChildren())
+      Compile(child);
   } else if (nodename == L"DIVMOV") {
   } else if (nodename == L"EQU") {
   } else if (nodename == L"EXTRN") {
   } else if (nodename == L"FHEADER") {
   } else if (nodename == L"FPARAM") {
   } else if (nodename == L"FUNCCALL") {
-    // TODO: Implement get node id method
-    // int nodeId = ElemPos(position, 1);
-    ParseTree pt(ParseList, ElemPos(position, 1));
-    auto node = pt.getRoot();
     std::wcout << L"Args: \n";
-    pt.print();
-    std::wcout << L"FUNC_NAME: " << node->getAttrs()[0] << '\n';
-    std::wcout << L"POS: " << ElemPos(position, 1) << '\n';
-
+    std::wcout << L"FUNC_NAME: " << node->getChild(0)->getAttr(0) << '\n';
+    std::wcout << L"POS: \n";
   } else if (nodename == L"FUNCDEF") {
-    elemname = GetElemName(position, 1);
+    elemname = node->getAttrs()[0];
     _asmOutput << L" PUBLIC " << elemname << endl;
     _asmOutput << elemname << ":" << endl;
     _asmOutput << L" PUSH EBP" << endl
                << L" MOV EBP,ESP" << endl
                << L" SUB ESP," << elemname << L"_len" << endl;
-    Compile(ElemPos(position, 2));
-    Compile(ElemPos(position, 3));
+    for (int i = 0; i < node->getChildren().size(); i++) {
+      std::wcout << L"  FUNCDEF child: " << node->getChildren()[i]->getName() << '\n';
+      Compile(node->getChildren()[i]);
+    }
     _asmOutput << L" MOV ESP,EBP" << endl << L" RET " << endl;
   } else if (nodename == L"GARRDEF") {
   } else if (nodename == L"GOTO") {
@@ -1481,7 +1471,7 @@ void Parser::Compile(int position) {
   } else if (nodename == L"INDEX") {
   } else if (nodename == L"INIT") {
   } else if (nodename == L"INT") {
-    _asmOutput << L" MOV EAX," << GetElemName(position, 1) << endl;
+    _asmOutput << L" MOV EAX," << node->getAttrs()[0] << endl;
   } else if (nodename == L"ISEQUMOV") {
   } else if (nodename == L"ISGREATEREQUMOV") {
   } else if (nodename == L"ISGREATERMOV") {
@@ -1495,36 +1485,36 @@ void Parser::Compile(int position) {
   } else if (nodename == L"LSHIFT") {
   } else if (nodename == L"LSHIFTMOV") {
   } else if (nodename == L"LVARDEF") {
-    std::wstring varName = GetElemName(position, 1);
+    std::wstring varName = node->getAttrs()[0];
     std::wcout << L"varName: " << varName << '\n';
   } else if (nodename == L"MOD") {
   } else if (nodename == L"MODMOV") {
   } else if (nodename == L"MOV") {
-    z = ElemPos(position, 1);
-    q = ElemPos(position, 2);
-    if (GetNodeName(z) == L"VAR") {
-      if (GetNodeName(q) == L"INT") {
-        _asmOutput << L" MOV DWORD [" << GetElemName(z, 1) << "],"
-                   << GetElemName(q, 1) << endl;
-      } else if (GetNodeName(q) == L"VAR") {
-        _asmOutput << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
-        _asmOutput << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
+    auto lhs = node->getChild(0);
+    auto rhs = node->getChild(1);
+    if (lhs->getName() == L"VAR") {
+      if (rhs->getName() == L"INT") {
+        _asmOutput << L" MOV DWORD [" << lhs->getAttr(0) << "],"
+                   << rhs->getAttr(0) << endl;
+      } else if (rhs->getName() == L"VAR") {
+        _asmOutput << L" MOV EAX, [" << lhs->getAttr(0) << "]" << endl;
+        _asmOutput << L" MOV [" << rhs->getAttr(0) << "],EAX" << endl;
       } else {
-        Compile(q);
-        _asmOutput << L" MOV [" << GetElemName(z, 1) << "],EAX" << endl;
+        Compile(rhs);
+        _asmOutput << L" MOV [" << lhs->getAttr(0) << "],EAX" << endl;
       }
     } else {
-      if (GetNodeName(q) == L"INT") {
-        Compile(z);
-        _asmOutput << L" MOV DWORD [EBX]," << GetElemName(q, 1) << endl;
-      } else if (GetNodeName(q) == L"VAR") {
-        Compile(z);
-        _asmOutput << L" MOV EAX, [" << GetElemName(q, 1) << "]" << endl;
+      if (rhs->getName() == L"INT") {
+        Compile(lhs);
+        _asmOutput << L" MOV DWORD [EBX]," << rhs->getAttr(0) << endl;
+      } else if (rhs->getName() == L"VAR") {
+        Compile(lhs);
+        _asmOutput << L" MOV EAX, [" << rhs->getAttr(0) << "]" << endl;
         _asmOutput << L" MOV [EBX],EAX" << endl;
       } else {
-        Compile(q);
+        Compile(rhs);
         _asmOutput << L" PUSH EAX" << endl;
-        Compile(z);
+        Compile(lhs);
         _asmOutput << L" POP EAX" << endl;
         _asmOutput << L" MOV [EBX],EAX" << endl;
       }
@@ -1554,7 +1544,7 @@ void Parser::Compile(int position) {
   } else if (nodename == L"UNOT") {
   } else if (nodename == L"UPLUS") {
   } else if (nodename == L"VAR") {
-    _asmOutput << L" MOV EAX, [" << GetElemName(position, 1) << "]" << endl;
+    _asmOutput << L" MOV EAX, [" << node->getAttrs()[0] << "]" << endl;
   } else if (nodename == L"WHILE") {
   } else if (nodename == L"XOR") {
   } else if (nodename == L"XORMOV ") {

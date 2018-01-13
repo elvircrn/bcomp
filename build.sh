@@ -1,5 +1,13 @@
 #!/bin/bash
 
+read -p "Previous version of Parser and Scanner will be saved. Are you sure? (y/N)" -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+fi
+
+
 echo "Backuping previous parser and scanner versions" 
 cp lib/src/Parser.cpp lib/backup/ParserCopy.cpp
 cp lib/src/Scanner.cpp lib/backup/ScannerCopy.cpp
