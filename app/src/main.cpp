@@ -46,26 +46,44 @@ main:
 }
 
 void funcDef() {
-  const std::string &functionDef = R"(
-fun3(x, y, z) {
-  auto a, b, c;
-  a = 2;
-  b = 3;
-  c = a + b;
-}
+//  const std::string &functionDef = R"(
+//fun3(x, y, z) {
+//  auto a, b, c;
+//  a = 2;
+//  b = 3;
+//  c = a + b;
+//}
+//main() {
+//  auto a, b, c;
+//  a = 1;
+//  b = 2;
+//  c = 3;
+//  fun3(a, b, c);
+//  a = 2;
+//  b = 1;
+//  fun3(1, b, 2);
+//  fun3(1, b, "123123");
+//}
+//)";
+
+  const std::string &exprOrder = R"(
 main() {
-  auto a, b, c;
-  a = 1;
-  b = 2;
-  c = 3;
-  fun3(a, b, c);
-  a = 2;
-  b = 1;
-  fun3(1, b, 2);
-  fun3(1, b, "123123");
+  auto x;
+  auto y;
+  auto z;
+  auto k;
+  k = x / y + z;
 }
 )";
-  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(functionDef)));
+
+  const std::string &helloWorld = R"(
+main() {
+  printf("Hello Wold");
+}
+)";
+
+  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(helloWorld)));
+  ParseTree(program.astStr(), 0).print();
   std::wcout << program.asmStr() << "\n\n"
              << program.astStr() << '\n';
   if (program.getState() == bompiler::Bompiler::State::SUCCESS) {
@@ -115,5 +133,5 @@ Success
 */
 int main() {
   funcDef();
-  return 0;
+    return 0;
 }

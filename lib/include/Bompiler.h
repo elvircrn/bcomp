@@ -1,7 +1,3 @@
-//
-// Created by elvircrn on 12/23/2017.
-//
-
 #ifndef BOMPILER_BOMPILER_H
 #define BOMPILER_BOMPILER_H
 #include <string>
@@ -26,7 +22,7 @@ private:
 
   Objects objs;
   ParseTree pt;
-  std::wstringstream _asmOutput;
+  std::wstringstream _asmOutput, data, header;
 
 public:
   explicit Bompiler(const std::wstring &filePath);
@@ -39,6 +35,8 @@ public:
 
   State getState();
 
+  void generateDataSection();
+  void generateHeader();
 };
 }
 

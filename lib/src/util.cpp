@@ -34,6 +34,14 @@ std::pair<std::wstring, int> util::takeBuff(const std::wstring &buff, int positi
 
   for (; position < buff.length(); position++) {
     auto c = buff[position];
+
+    if (c == '`') {
+      str = L"";
+      while ((position + 1) < buff.length() && buff[++position] != '`')
+        str += buff[position];
+      return {str, position};
+    }
+
     if ((onlyUpper && !(c >= 'A' && c <= 'Z')) || c == ' ' || c == '(' || c == ')')
       break;
     str += buff[position];

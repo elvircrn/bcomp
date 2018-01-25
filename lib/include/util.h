@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <utility>
 #include <string>
+#include <algorithm>
+#include <numeric>
 
 namespace util {
 template<typename Function, typename Tuple, size_t ... I>
@@ -43,6 +45,18 @@ std::pair<std::vector<std::wstring>, int> takeBuffs(const std::wstring &buff,
                                                     bool onlyAlpha = false);
 
 int matchingParen(const std::wstring &expr, int pos);
+
+
+template<class T>
+T sum(const std::vector<T> &v) {
+  return std::accumulate(v.begin(), v.end(), T());
 }
+
+template<class T>
+T min(const std::vector<T> &v) {
+  return *std::min_element(v.begin(), v.end());
+}
+}
+
 
 #endif //BOMPILER_COREUTIL_H

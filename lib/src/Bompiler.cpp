@@ -1,3 +1,4 @@
+#include "util.h"
 #include "Bompiler.h"
 #include "Scanner.h"
 #include "Parser.h"
@@ -37,6 +38,8 @@ bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, l
   pt = ParseTree(parser.ParseList, 0);
 
   compile(pt.getRoot());
+  generateDataSection();
+  generateHeader();
 
   state = State::SUCCESS;
 }
@@ -108,7 +111,11 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"FUNCCALL") {
     std::wstring funcName = node->getChild(0)->getAttr(0);
     FuncCall fcall(node);
-    if (auto f = objs.findFunction(fcall)) {
+    auto f = objs.findFunction(fcall);
+    if (f || objs.isStdLibFunction(funcName)) { 
+      // TODO: Simplify!
+      if (objs.isStdLibFunction(funcName))
+        objs.invokedLibraryFunctions.insert(funcName);
 
       // Push parms onto the stack in reverse order
       for (const auto& arg : fcall.getArgs(true)) {
@@ -119,28 +126,36 @@ void Bompiler::compile(PNode *node) {
           _asmOutput << L" PUSH [" << arg.getVal()->getAttr(0) << L"]\n";
         } else if (arg.argType() == L"STRING") {
           // TODO: Implement string passing
+          compile(arg.getNode()->getChild(0));
         }
       }
       _asmOutput << L" CALL " << funcName << '\n';
 
       // Caller clean-up convention, remove parameters from stack
-      _asmOutput << L" add ESP," << fcall.nargs() * 4;
-
       // Result is in eax
+      _asmOutput << L" ADD ESP," << fcall.nargs() * 4 << endl;
+
     } else {
+    
 //      throw L"Error, functio name " + f->name() + L" not found";
     }
   } else if (nodename == L"FUNCDEF") {
     BFunction f(node);
     objs.addFunction(f);
-    _asmOutput << L" PUBLIC " << f.name() << endl;
+    // TODO: See why public doesn't work
+    _asmOutput << L" global " << f.name() << endl;
     _asmOutput << f.name() << ":" << endl;
     _asmOutput << L" PUSH EBP" << endl
-               << L" MOV EBP,ESP" << endl
-               << L" SUB ESP," << f.name() << L"_len" << endl;
+               << L" MOV EBP,ESP" << endl;
+               // TODO: Verify if this is necessary since we're using cdcel
+               // https://en.wikibooks.org/wiki/X86_Disassembly/Calling_Convention_Examples#CDECL 
+               // << L" SUB ESP," << f.name() << L"_len" << endl;
     for (const auto & child : node->getChildren())
       compile(child);
-    _asmOutput << L" MOV ESP,EBP" << endl << L" RET " << endl;
+    _asmOutput << L" POP EBP" << endl 
+               << L" RET 0" << endl; // RET 0 because the caller cleans up the stack
+    // TODO: cdcel?
+    // _asmOutput << L" MOV ESP,EBP" << endl << L" RET " << endl;
   } else if (nodename == L"GARRDEF") {
   } else if (nodename == L"GOTO") {
     std::wstring labelName = node->getAttr(0);
@@ -229,6 +244,17 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"NEQU") {
   } else if (nodename == L"ONUMBER") {
   } else if (nodename == L"OR") {
+    compile(node->getChild(0));
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" OR EAX," << node->getChild(1)->getAttr(0) << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      _asmOutput << L" OR EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+    } else {
+      _asmOutput << L" PUSH EAX";
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX";
+      _asmOutput << L" OR EAX,EBX" << endl;
+    }
   } else if (nodename == L"ORMOV") {
   } else if (nodename == L"POSTDEC") {
   } else if (nodename == L"POSTINC") {
@@ -241,6 +267,8 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"RSHIFTMOV") {
   } else if (nodename == L"SAMEAS") {
   } else if (nodename == L"STRING") {
+    auto litMacro = objs.getOrCreateLiteral(node->getAttr(0));
+    std::wcout << L"LIT MACRO: " << litMacro << L" " << node->getAttr(0) << L"\n";
   } else if (nodename == L"SUB") {
     // TODO: Check for commutativity
     compile(node->getChild(0));
@@ -278,6 +306,21 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"XORMOV ") {
   }
 }
-std::wstring Bompiler::asmStr() {
-  return _asmOutput.str();
+
+std::wstring Bompiler::asmStr() { 
+  return header.str() + data.str() + _asmOutput.str();
 }
+
+void Bompiler::generateDataSection() {
+  data << L" section .data\n";
+  for (const auto& stringLiteral : objs.getStringLiterals()) {
+    data << stringLiteral.second << L" db " << stringLiteral.first << L", 0\n";
+  }
+}
+
+void Bompiler::generateHeader() {
+  for (const auto& libFun : objs.invokedLibraryFunctions)
+    header << L" extern " << libFun << L"\n";
+  header << L" global main\n";
+}
+
