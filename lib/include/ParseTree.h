@@ -17,6 +17,7 @@ namespace bompiler {
 class ParseTree;
 
 class PNode {
+protected:
   wstring name;
   vector<wstring> attrs;
 
@@ -36,8 +37,11 @@ public:
 
   ~PNode();
 
+  static PNode* makeNode(PNode *parent, const std::wstring& nodeName);
+
   friend class ParseTree;
 };
+
 
 class ParseTree {
   PNode *root{};

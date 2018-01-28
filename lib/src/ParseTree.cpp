@@ -6,7 +6,9 @@
 #include <memory>
 #include <tuple>
 #include <queue>
+
 #include "util.h"
+#include "Block.h"
 
 using namespace bompiler;
 using namespace util;
@@ -47,6 +49,13 @@ size_t ParseTree::nodeCount() const {
   return nodes.size();
 }
 
+PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName) {
+  if (nodeName == L"BLOCK")
+    return new Block(parent, nodeName);
+  else
+    return new PNode(parent, nodeName);
+}
+
 // NOTE: Expect '(' as the first character
 PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
   pos++;
@@ -56,7 +65,7 @@ PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
 
   std::tie(nodeName, pos) = takeBuff(expr, pos, true);
 
-  auto *node = new PNode(parent, nodeName);
+  auto node = PNode::makeNode(parent, nodeName);
 
   std::tie(attrs, pos) = takeBuffs(expr, pos);
 

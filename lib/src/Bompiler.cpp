@@ -111,9 +111,9 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"FUNCCALL") {
     std::wstring funcName = node->getChild(0)->getAttr(0);
     FuncCall fcall(node);
+    // TODO: Simplify!
     auto f = objs.findFunction(fcall);
     if (f || objs.isStdLibFunction(funcName)) { 
-      // TODO: Simplify!
       if (objs.isStdLibFunction(funcName))
         objs.invokedLibraryFunctions.insert(funcName);
 
@@ -126,7 +126,9 @@ void Bompiler::compile(PNode *node) {
           _asmOutput << L" PUSH [" << arg.getVal()->getAttr(0) << L"]\n";
         } else if (arg.argType() == L"STRING") {
           // TODO: Implement string passing
-          compile(arg.getNode()->getChild(0));
+          auto literalNode = arg.getNode()->getChild(0);
+          _asmOutput << L" PUSH DWORD " << objs.getOrCreateLiteral(literalNode->getAttr(0)) << endl;
+          // compile(arg.getNode()->getChild(0));
         }
       }
       _asmOutput << L" CALL " << funcName << '\n';
@@ -308,13 +310,13 @@ void Bompiler::compile(PNode *node) {
 }
 
 std::wstring Bompiler::asmStr() { 
-  return header.str() + data.str() + _asmOutput.str();
+  return header.str() + data.str() + L"\nsection .text\n" + _asmOutput.str();
 }
 
 void Bompiler::generateDataSection() {
   data << L" section .data\n";
   for (const auto& stringLiteral : objs.getStringLiterals()) {
-    data << stringLiteral.second << L" db " << stringLiteral.first << L", 0\n";
+    data << stringLiteral.second << L": db " << stringLiteral.first << L", 0\n";
   }
 }
 

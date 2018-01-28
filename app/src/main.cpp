@@ -78,7 +78,9 @@ main() {
 
   const std::string &helloWorld = R"(
 main() {
-  printf("Hello Wold");
+  auto a;
+  a = 2;
+  printf("%d", a);
 }
 )";
 
@@ -133,5 +135,5 @@ Success
 */
 int main() {
   funcDef();
-    return 0;
+  return 0;
 }
