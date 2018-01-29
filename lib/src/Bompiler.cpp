@@ -35,8 +35,11 @@ bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, l
     return;
   }
 
-  pt = ParseTree(parser.ParseList, 0);
+  std::wcout << L"Expression:\n" << parser.ParseList << endl;
 
+  pt = ParseTree(parser.ParseList, 0);
+  pt.print();
+  std::wcout << endl;
   compile(pt.getRoot());
   generateDataSection();
   generateHeader();
@@ -148,16 +151,15 @@ void Bompiler::compile(PNode *node) {
     _asmOutput << L" global " << f.name() << endl;
     _asmOutput << f.name() << ":" << endl;
     _asmOutput << L" PUSH EBP" << endl
-               << L" MOV EBP,ESP" << endl;
-               // TODO: Verify if this is necessary since we're using cdcel
-               // https://en.wikibooks.org/wiki/X86_Disassembly/Calling_Convention_Examples#CDECL 
-               // << L" SUB ESP," << f.name() << L"_len" << endl;
+               << L" MOV EBP,ESP" << endl
+               << L" SUB ESP," << f.name() << L"_len" << endl;
     for (const auto & child : node->getChildren())
       compile(child);
-    _asmOutput << L" POP EBP" << endl 
-               << L" RET 0" << endl; // RET 0 because the caller cleans up the stack
-    // TODO: cdcel?
-    // _asmOutput << L" MOV ESP,EBP" << endl << L" RET " << endl;
+    header << L"\%define " << f.name() << L"_len " << f.getBlock()->varCnt * 4 << endl;
+    // Standard exit sequence
+    _asmOutput << L" MOV ESP,EBP" << endl
+               << L" POP EBP" << endl
+               << L" RET 0" << endl;  // RET 0 because the caller cleans up the stack
   } else if (nodename == L"GARRDEF") {
   } else if (nodename == L"GOTO") {
     std::wstring labelName = node->getAttr(0);
@@ -197,7 +199,13 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"LSHIFTMOV") {
   } else if (nodename == L"LVARDEF") {
     std::wstring varName = node->getAttrs()[0];
-    std::wcout << L"varName: " << varName << '\n';
+    auto currentNode = node;
+    while (currentNode && currentNode->getName() != L"FUNCDEF")
+      currentNode = currentNode->parent; 
+    BFunction f(currentNode);
+    // TODO: Check for off by ones
+    int varId = ++f.getBlock()->varCnt;
+    header << L"%define " << f.name() + L"_" + varName << L" EBP - " << varId * 4 << endl;
   } else if (nodename == L"MOD") {
   } else if (nodename == L"MODMOV") {
   } else if (nodename == L"MOV") {

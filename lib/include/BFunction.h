@@ -7,6 +7,7 @@
 
 #include "ParseTree.h"
 #include "BArgument.h"
+#include "Block.h"
 
 namespace bompiler {
 class BFunction {
@@ -17,6 +18,8 @@ public:
   explicit BFunction(PNode *_declaration);
   std::vector<bompiler::BArgument> getArgs(bool reverse = false) const;
   inline int nargs() const { return getArgs().size(); }
+  // TODO: Add more safety later
+  inline Block* getBlock() { return reinterpret_cast<Block*>(node->getChild(1)); }
 };
 }
 

@@ -6,7 +6,9 @@
 #include <memory>
 #include <tuple>
 #include <queue>
+#include <VarDef.h>
 
+#include "Var.h"
 #include "util.h"
 #include "Block.h"
 
@@ -49,14 +51,18 @@ size_t ParseTree::nodeCount() const {
   return nodes.size();
 }
 
-PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName) {
+PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, std::vector<std::wstring> attrs) {
   if (nodeName == L"BLOCK")
-    return new Block(parent, nodeName);
+    return reinterpret_cast<PNode *>(new Block(parent, nodeName, attrs));
+  else if (nodeName == L"LVARDEF")
+    return reinterpret_cast<PNode *>(new VarDef(parent, nodeName, attrs, true));
+  else if (nodeName == L"VAR")
+    return reinterpret_cast<PNode *>(new Var(parent, nodeName, attrs));
   else
-    return new PNode(parent, nodeName);
+    return new PNode(parent, nodeName, attrs);
 }
 
-// NOTE: Expect '(' as the first character
+// NOTE: Expects '(' as the first character
 PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
   pos++;
 
@@ -65,16 +71,14 @@ PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
 
   std::tie(nodeName, pos) = takeBuff(expr, pos, true);
 
-  auto node = PNode::makeNode(parent, nodeName);
-
   std::tie(attrs, pos) = takeBuffs(expr, pos);
 
-  node->attrs = attrs;
+  auto node = PNode::makeNode(parent, nodeName, attrs);
 
   while (expr[pos] == '(') {
     auto child = dfs(expr, pos, node);
     node->children.push_back(child);
-    while(expr[pos] == ' ')
+    while (expr[pos] == ' ')
       pos++;
   }
 

@@ -11,7 +11,7 @@ namespace bompiler {
 class Block : public PNode {
 public:
   int varCnt;
-  explicit Block(PNode *parent, const std::wstring &_name);
+  Block(PNode *parent, const std::wstring &_name, const std::vector<std::wstring> &_attrs);
 };
 }
 

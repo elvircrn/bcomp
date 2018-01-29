@@ -60,3 +60,13 @@ TEST_CASE("takeBuffs AST", "[util]") {
   REQUIRE(buffs[0] == L"A");
   REQUIRE(next == 6);
 }
+
+TEST_CASE("takeBuffs literal", "[util]") {
+  std::vector<std::wstring> buffs;
+  int next;
+
+  std::tie(buffs, next) = util::takeBuffs(L"`\"a b c\"`", 0);
+  REQUIRE(buffs.size() == 1);
+  REQUIRE(buffs[0] == L"\"a b c\"");
+  REQUIRE(next == 9);
+}

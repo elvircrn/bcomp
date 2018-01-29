@@ -4,6 +4,9 @@
 
 using namespace bompiler;
 
-bompiler::Block::Block(PNode *_parent, const std::wstring &_name) : PNode(_parent, _name), varCnt(0) {
-  
+bompiler::Block::Block(PNode *_parent, const std::wstring &_name, const std::vector<std::wstring> &_attrs) : PNode(
+    _parent,
+    _name,
+    _attrs), varCnt(0) {
+
 }
