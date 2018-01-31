@@ -1,25 +1,21 @@
-//
-// Created by elvircrn on 1/12/2018.
-//
-
 #ifndef BOMPILER_FUNCTION_H
 #define BOMPILER_FUNCTION_H
 
 #include "ParseTree.h"
 #include "BArgument.h"
 #include "Block.h"
+#include "VarDef.h"
 
 namespace bompiler {
-class BFunction {
-  PNode *node = nullptr;
+class BFunction : public PNode {
 public:
+  BFunction(PNode *_parent, const wstring &_name, const vector<std::wstring> &);
   std::wstring name() const;
-  BFunction() = default;
-  explicit BFunction(PNode *_declaration);
-  std::vector<bompiler::BArgument> getArgs(bool reverse = false) const;
-  inline int nargs() const { return getArgs().size(); }
+  std::vector<bompiler::BArgument*> getArgs(bool reverse = false) const;
+  inline size_t nargs() const { return getArgs().size(); }
   // TODO: Add more safety later
-  inline Block* getBlock() { return reinterpret_cast<Block*>(node->getChild(1)); }
+  inline Block* getBlock() { return reinterpret_cast<Block*>(getChild(1)); }
+  ~BFunction() override;
 };
 }
 

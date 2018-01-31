@@ -4,15 +4,13 @@
 #include "ParseTree.h"
 
 namespace bompiler {
-class BArgument {
-  bompiler::PNode *node;
+class BArgument : public PNode {
 public:
-  BArgument();
-  explicit BArgument(bompiler::PNode *_node);
-  inline bompiler::PNode* getNode() const { return node; }
+
+  BArgument(PNode *_parent, const wstring &_name, const vector<wstring> &_args) : PNode(_parent, _name, _args) {}
   // Arg info is first child of ARG node
-  inline std::wstring argType() const { return node->getChild(0)->getName(); }
-  inline PNode *getVal() const { return node->getChild(0); }
+  inline std::wstring argType() const { return getChild(0)->getName(); }
+  inline PNode *getVal() const { return getChild(0); }
 };
 }
 

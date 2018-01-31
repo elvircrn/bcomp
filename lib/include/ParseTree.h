@@ -22,22 +22,28 @@ protected:
   vector<wstring> attrs;
 
 public:
+  template<class T, typename std::enable_if<std::is_base_of<PNode, T>::value>::type* = nullptr>
+  inline T* as() { return reinterpret_cast<T*>(this); }
+
   explicit PNode(const wstring &_name);
-  PNode(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &);
+  PNode(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &_args);
   PNode(PNode *_parent, const wstring &_name);
   bool isRoot();
-  inline std::vector<PNode*> getChildren() { return children; }
+  inline std::vector<PNode*> getChildren() const { return children; }
   inline PNode* getChild(int i) { return children[i]; }
+  inline PNode* getChild(int i) const { return children[i]; }
   inline std::wstring getName() const { return name; }
   inline std::vector<std::wstring> getAttrs() const { return attrs; }
   inline std::wstring getAttr(int i) const { return attrs[i]; }
   PNode *copy(PNode *parent = nullptr) const;
   vector<PNode *> children;
+  // TODO: Optimize!
+  PNode *getAncestorByName(const std::wstring &name);
   PNode *parent;
 
-  ~PNode();
+  virtual ~PNode();
 
-  static PNode* makeNode(PNode *parent, const std::wstring& nodeName);
+  static PNode* makeNode(PNode *parent, const std::wstring& nodeName, const std::vector<std::wstring> &attrs);
 
   friend class ParseTree;
 };

@@ -9,8 +9,12 @@
 namespace bompiler {
 class Var : public PNode {
   PNode * parentScope;
+  VarDef *_varDef;
 public:
   Var(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &_attrs);
+  inline std::wstring varName() const { return attrs[0]; }
+  ~Var() override;
+  inline VarDef* varDef() const { return _varDef; }
 };
 }
 

@@ -7,6 +7,8 @@
 #include <tuple>
 #include <queue>
 #include <VarDef.h>
+#include <BFunction.h>
+#include <FuncCall.h>
 
 #include "Var.h"
 #include "util.h"
@@ -23,11 +25,14 @@ bool PNode::isRoot() {
   return parent == nullptr;
 }
 
-PNode::PNode(PNode *_parent, const wstring &_name) : parent(_parent), name(_name) {}
+PNode::PNode(PNode *_parent, const wstring &_name) : parent(_parent), name(_name) {
+  if (parent)
+    parent->children.push_back(this);
+}
 
 PNode::~PNode() {
-  for (auto &i : children)
-    delete i;
+  for (int i = 0; i < children.size(); i++)
+    delete children[i];
 }
 
 PNode *PNode::copy(PNode *parent) const {
@@ -40,7 +45,10 @@ PNode *PNode::copy(PNode *parent) const {
 }
 
 PNode::PNode(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &_attrs)
-    : parent(_parent), name(_name), attrs(_attrs) {}
+    : parent(_parent), name(_name), attrs(_attrs) {
+  if (parent)
+    parent->children.push_back(this);
+}
 
 void ParseTree::_delete() {
   nodes.clear();
@@ -51,15 +59,32 @@ size_t ParseTree::nodeCount() const {
   return nodes.size();
 }
 
-PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, std::vector<std::wstring> attrs) {
+PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, const std::vector<std::wstring> &attrs) {
   if (nodeName == L"BLOCK")
     return reinterpret_cast<PNode *>(new Block(parent, nodeName, attrs));
   else if (nodeName == L"LVARDEF")
     return reinterpret_cast<PNode *>(new VarDef(parent, nodeName, attrs, true));
+  else if (nodeName == L"FUNCDEF")
+    return reinterpret_cast<PNode *>(new BFunction(parent, nodeName, attrs));
   else if (nodeName == L"VAR")
     return reinterpret_cast<PNode *>(new Var(parent, nodeName, attrs));
+  else if (nodeName == L"ARG")
+    return reinterpret_cast<PNode *>(new BArgument(parent, nodeName, attrs));
+  else if (nodeName == L"FUNCCALL")
+    return reinterpret_cast<PNode *>(new FuncCall(parent, nodeName, attrs));
   else
     return new PNode(parent, nodeName, attrs);
+}
+
+/**
+ * Returns null if not ancesostor with the
+ * given name is found.
+ */
+PNode *PNode::getAncestorByName(const std::wstring &_name) {
+  PNode* node = this;
+  while(node && node->getName() != _name)
+    node = node->parent;
+  return node;
 }
 
 // NOTE: Expects '(' as the first character
@@ -76,8 +101,7 @@ PNode *ParseTree::dfs(const std::wstring &expr, int &pos, PNode *parent) {
   auto node = PNode::makeNode(parent, nodeName, attrs);
 
   while (expr[pos] == '(') {
-    auto child = dfs(expr, pos, node);
-    node->children.push_back(child);
+    dfs(expr, pos, node);
     while (expr[pos] == ' ')
       pos++;
   }

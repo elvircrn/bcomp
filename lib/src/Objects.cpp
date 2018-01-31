@@ -8,18 +8,19 @@ using std::experimental::optional;
 using std::experimental::make_optional;
 using namespace bompiler;
 
-bompiler::BFunction& bompiler::Objects::addFunction(const bompiler::BFunction &f) {
+bompiler::BFunction* bompiler::Objects::addFunction(bompiler::BFunction *f) {
   functions.emplace_back(f);
+  return f;
 }
 
-optional<bompiler::BFunction &> bompiler::Objects::findFunction(const FuncCall &fcall) {
+bompiler::BFunction* bompiler::Objects::findFunction(FuncCall *fcall) {
   // TODO: Optimise
-  for (auto& f : functions)
-    if (f.name() == fcall.funcName())
-      return make_optional(std::reference_wrapper<bompiler::BFunction>(f));
+  for (auto &f : functions)
+    if (f->name() == fcall->funcName())
+      return f;
 
   // Function not found
-  return optional<bompiler::BFunction &>{};
+  return nullptr;
 }
 
 bool Objects::labelExists(const std::wstring &label) const {

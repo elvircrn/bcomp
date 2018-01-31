@@ -1,7 +1,3 @@
-//
-// Created by elvircrn on 1/29/2018.
-//
-
 #include <ParseTree.h>
 #include <VarDef.h>
 
@@ -11,3 +7,5 @@ VarDef::VarDef(bompiler::PNode *_parent, const wstring &_name, const std::vector
     : PNode(_parent,
             _name,
             _attrs), _isLocal(__isLocal) {}
+
+VarDef::~VarDef() = default;

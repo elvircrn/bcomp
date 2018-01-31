@@ -12,7 +12,7 @@
 
 namespace bompiler {
 class Objects {
-  std::vector<BFunction> functions;
+  std::vector<BFunction*> functions;
   std::map<std::wstring, std::wstring> stringLiterals;
   std::set<std::wstring> libraryFunctions = { L"printf" };
 
@@ -22,9 +22,9 @@ public:
 
   bool labelExists(const std::wstring &label) const;
 
-  bompiler::BFunction& addFunction(const bompiler::BFunction &f);
+  bompiler::BFunction* addFunction(bompiler::BFunction *f);
 
-  std::experimental::optional<BFunction&> findFunction(const bompiler::FuncCall &fcall);
+  bompiler::BFunction* findFunction(bompiler::FuncCall *fcall);
 
   std::wstring getOrCreateLiteral(const std::wstring&);
 

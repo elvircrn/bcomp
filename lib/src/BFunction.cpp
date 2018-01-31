@@ -3,21 +3,24 @@
 
 using namespace bompiler;
 
-BFunction::BFunction(bompiler::PNode *_declaration) : node(_declaration){
-  
-}
-
 std::wstring BFunction::name() const {
-  return node->getAttrs()[0];
+  return getAttrs()[0];
 }
 
-std::vector<bompiler::BArgument> BFunction::getArgs(bool reverse) const {
-  std::vector<BArgument> args;
+std::vector<bompiler::BArgument*> BFunction::getArgs(bool reverse) const {
+  std::vector<BArgument*> args;
   // FPARAMS are children of FHEADER
-  for (auto child : node->getChild(0)->getChildren())
-    args.emplace_back(child);
+  for (auto child : getChild(0)->getChildren())
+    args.emplace_back(child->as<BArgument>());
   if (reverse)
     std::reverse(args.begin(), args.end());
   return args;
 }
+
+BFunction::BFunction(PNode *_parent, const wstring &_name, const vector<wstring> &_attrs) : PNode(_parent, _name,
+_attrs){
+
+}
+
+BFunction::~BFunction() = default;
 
