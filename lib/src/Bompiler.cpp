@@ -70,7 +70,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" ADD EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" ADD EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+      _asmOutput << L" ADD EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -237,7 +237,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" MUL EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" MUL EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+      _asmOutput << L" MUL EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -252,7 +252,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" OR EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" OR EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+      _asmOutput << L" OR EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -279,7 +279,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" SUB EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" SUB EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
+      _asmOutput << L" SUB EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -295,10 +295,7 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"VAR") {
     auto var = reinterpret_cast<Var*>(node);
     // TODO: Handle var not found
-    auto varDef = var->getAncestorByName(L"FUNCDEF")
-                     ->as<BFunction>()
-                     ->getBlock()
-                     ->getVarDef(var->varName());
+    auto varDef = var->varDef();
     _asmOutput << L" MOV EAX, [EBP - " << varDef->stackId() * 4 << "]" << endl;
   } else if (nodename == L"WHILE") {
   } else if (nodename == L"XOR") {

@@ -69,11 +69,14 @@ void funcDef() {
   const std::string &exprOrder = R"(
 main() {
   auto x;
+  x = 2;
   auto y;
+  y = 2;
   auto z;
+  z = 2;
   auto k;
   k = x * y + z;
-  printf("%d", k);
+  printf("%d\n", k);
 }
 )";
 
@@ -81,11 +84,11 @@ main() {
 main() {
   auto a;
   a = 2;
-  printf("%d", a);
+  printf("%d\n", a);
 }
 )";
 
-  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(helloWorld)));
+  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(exprOrder)));
   ParseTree(program.astStr(), 0).print();
   std::wcout << program.asmStr() << "\n\n"
              << program.astStr() << '\n';
