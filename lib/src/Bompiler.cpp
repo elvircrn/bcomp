@@ -114,7 +114,7 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"FPARAM") {
   } else if (nodename == L"FUNCCALL") {
     std::wstring funcName = node->getChild(0)->getAttr(0);
-    FuncCall* fcall = node->as<FuncCall>();
+    auto fcall = node->as<FuncCall>();
     // TODO: Simplify!
     auto f = objs.findFunction(fcall);
     if (f || objs.isStdLibFunction(funcName)) { 
@@ -125,7 +125,7 @@ void Bompiler::compile(PNode *node) {
       for (const auto& arg : fcall->getArgs(true)) {
         std::wcout << L"ARG type: " << arg->getName() << '\n';
         if (arg->argType() == L"VAR") {
-          _asmOutput << L" PUSH [" << arg->getVal()->getAttr(0) << L"]\n";
+          _asmOutput << L" PUSH DWORD [EBP - " << arg->getVal()->as<Var>()->varDef()->stackId() * 4 << L"]\n";
         } else if (arg->argType() == L"INT") {
           _asmOutput << L" PUSH [" << arg->getVal()->getAttr(0) << L"]\n";
         } else if (arg->argType() == L"STRING") {
@@ -199,10 +199,6 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"LSHIFT") {
   } else if (nodename == L"LSHIFTMOV") {
   } else if (nodename == L"LVARDEF") {
-    std::wstring varName = node->getAttrs()[0];
-    PNode* currentNode = node->getAncestorByName(L"FUNCDEF");
-    auto f = currentNode->as<BFunction>();
-    f->getBlock()->addVarDef(reinterpret_cast<VarDef*>(node));
     // header << L"%define " << f.name() + L"_" + varName << L" EBP - " << varId * 4 << endl;
   } else if (nodename == L"MOD") {
   } else if (nodename == L"MODMOV") {
@@ -211,14 +207,14 @@ void Bompiler::compile(PNode *node) {
     auto rhs = node->getChild(1);
     if (lhs->getName() == L"VAR") {
       if (rhs->getName() == L"INT") {
-        _asmOutput << L" MOV DWORD [" << lhs->getAttr(0) << "],"
+        _asmOutput << L" MOV DWORD [EBP - " << lhs->as<Var>()->varDef()->stackId() * 4 << L"],"
                    << rhs->getAttr(0) << endl;
       } else if (rhs->getName() == L"VAR") {
-        _asmOutput << L" MOV EAX, [" << lhs->getAttr(0) << "]" << endl;
-        _asmOutput << L" MOV [" << rhs->getAttr(0) << "],EAX" << endl;
+        _asmOutput << L" MOV EAX, [EBP - " << lhs->as<Var>()->varDef()->stackId() * 4 << L"]" << endl;
+        _asmOutput << L" MOV [EBP - " << rhs->as<Var>()->varDef()->stackId() * 4 << L"],EAX" << endl;
       } else {
         compile(rhs);
-        _asmOutput << L" MOV [" << lhs->getAttr(0) << "],EAX" << endl;
+        _asmOutput << L" MOV [" << lhs->getAttr(0) << L"],EAX" << endl;
       }
     } else {
       if (rhs->getName() == L"INT") {
@@ -226,7 +222,7 @@ void Bompiler::compile(PNode *node) {
         _asmOutput << L" MOV DWORD [EBX]," << rhs->getAttr(0) << endl;
       } else if (rhs->getName() == L"VAR") {
         compile(lhs);
-        _asmOutput << L" MOV EAX, [" << rhs->getAttr(0) << "]" << endl;
+        _asmOutput << L" MOV EAX, [" << rhs->getAttr(0) << L"]" << endl;
         _asmOutput << L" MOV [EBX],EAX" << endl;
       } else {
         compile(rhs);

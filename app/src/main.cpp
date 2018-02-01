@@ -72,7 +72,8 @@ main() {
   auto y;
   auto z;
   auto k;
-  k = x / y + z;
+  k = x * y + z;
+  printf("%d", k);
 }
 )";
 

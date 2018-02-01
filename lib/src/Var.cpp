@@ -27,9 +27,11 @@ Var::Var(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &
 
   // TODO: Do error handling here
   // Asserts that the variable is already declared 
-  if (!varDef) { }
-
-  _varDef = varDef;
+  if (!varDef) {
+    _varDef = nullptr;
+  } else {
+    _varDef = varDef;
+  }
 }
 Var::~Var() = default;
 
