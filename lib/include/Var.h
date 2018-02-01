@@ -2,6 +2,7 @@
 #define BOMPILER_VAR_H
 
 #include "ParseTree.h"
+#include "VarDef.h"
 
 #include <vector>
 #include <string>

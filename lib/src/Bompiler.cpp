@@ -3,8 +3,9 @@
 #include "Scanner.h"
 #include "Parser.h"
 #include "BFunction.h"
+#include "CodeGen.h"
+#include "names.h"
 
-#include <iostream>
 #include <FuncCall.h>
 #include <Var.h>
 
@@ -70,7 +71,8 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" ADD EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" ADD EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
+      auto var = node->getChild(1)->as<Var>();
+      _asmOutput << L" ADD EAX,[" << genStackAddr(var) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -125,9 +127,9 @@ void Bompiler::compile(PNode *node) {
       for (const auto& arg : fcall->getArgs(true)) {
         std::wcout << L"ARG type: " << arg->getName() << '\n';
         if (arg->argType() == L"VAR") {
-          _asmOutput << L" PUSH DWORD [EBP - " << arg->getVal()->as<Var>()->varDef()->stackId() * 4 << L"]\n";
+          _asmOutput << L" PUSH DWORD [" << genStackAddr(arg->getVar()) << L"]\n";
         } else if (arg->argType() == L"INT") {
-          _asmOutput << L" PUSH [" << arg->getVal()->getAttr(0) << L"]\n";
+          _asmOutput << L" PUSH [" << arg->getVar()->getAttr(0) << L"]\n";
         } else if (arg->argType() == L"STRING") {
           // TODO: Implement string passing
           auto literalNode = arg->getChild(0);
@@ -168,7 +170,7 @@ void Bompiler::compile(PNode *node) {
       state = State::FAIL;
       return;
     }
-    _asmOutput << L" jmp GOTO_" + node->getAttr(0) << L":\n";
+    _asmOutput << L" jmp " + GOTO_PREFIX + node->getAttr(0) << L":\n";
   } else if (nodename == L"GREATEREQUTHAN") {
   } else if (nodename == L"GREATERTHAN") {
   } else if (nodename == L"GVARDEF") {
@@ -191,7 +193,7 @@ void Bompiler::compile(PNode *node) {
       state = State::FAIL;
       return;
     }
-    _asmOutput << L" GOTO_" << labelName << L":\n";
+    _asmOutput << L" " << GOTO_PREFIX << labelName << L":\n";
     objs.labels.emplace_back(node);
   } else if (nodename == L"LARRDEF") {
   } else if (nodename == L"LESSEQUTHAN") {
@@ -207,11 +209,11 @@ void Bompiler::compile(PNode *node) {
     auto rhs = node->getChild(1);
     if (lhs->getName() == L"VAR") {
       if (rhs->getName() == L"INT") {
-        _asmOutput << L" MOV DWORD [EBP - " << lhs->as<Var>()->varDef()->stackId() * 4 << L"],"
+        _asmOutput << L" MOV DWORD [" << genStackAddr(lhs->as<Var>()) << L"],"
                    << rhs->getAttr(0) << endl;
       } else if (rhs->getName() == L"VAR") {
-        _asmOutput << L" MOV EAX, [EBP - " << lhs->as<Var>()->varDef()->stackId() * 4 << L"]" << endl;
-        _asmOutput << L" MOV [EBP - " << rhs->as<Var>()->varDef()->stackId() * 4 << L"],EAX" << endl;
+        _asmOutput << L" MOV EAX, [" << genStackAddr(lhs->as<Var>()) << L"]" << endl;
+        _asmOutput << L" MOV [" << genStackAddr(rhs->as<Var>()) << L"],EAX" << endl;
       } else {
         compile(rhs);
         _asmOutput << L" MOV [" << lhs->getAttr(0) << L"],EAX" << endl;
@@ -237,7 +239,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" MUL EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" MUL EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
+      _asmOutput << L" MUL EAX,[" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -252,7 +254,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" OR EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" OR EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
+      _asmOutput << L" OR EAX,[" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -279,7 +281,7 @@ void Bompiler::compile(PNode *node) {
     if (node->getChild(1)->getName() == L"INT") {
       _asmOutput << L" SUB EAX," << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" SUB EAX,[" << node->getChild(1)->as<Var>()->varDef()->stackId() * 4 << "]" << endl;
+      _asmOutput << L" SUB EAX,[" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
@@ -293,10 +295,9 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"UNOT") {
   } else if (nodename == L"UPLUS") {
   } else if (nodename == L"VAR") {
-    auto var = reinterpret_cast<Var*>(node);
     // TODO: Handle var not found
-    auto varDef = var->varDef();
-    _asmOutput << L" MOV EAX, [EBP - " << varDef->stackId() * 4 << "]" << endl;
+    auto var = reinterpret_cast<Var*>(node);
+    _asmOutput << L" MOV EAX, [" << genStackAddr(var) << "]" << endl;
   } else if (nodename == L"WHILE") {
   } else if (nodename == L"XOR") {
     compile(node->getChild(0));
