@@ -11,4 +11,3 @@
 * Po uzoru na ADD, lako realizujte generisanje asemblerskog koda za OR. Probajte i SUB (pazite na nekomutativnost).
 
 # Known bugs
-s
