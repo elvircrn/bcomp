@@ -208,15 +208,16 @@ void Bompiler::compile(PNode *node) {
     auto lhs = node->getChild(0);
     auto rhs = node->getChild(1);
     if (lhs->getName() == L"VAR") {
+      auto lvar = lhs->as<Var>();
       if (rhs->getName() == L"INT") {
-        _asmOutput << L" MOV DWORD [" << genStackAddr(lhs->as<Var>()) << L"],"
+        _asmOutput << L" MOV DWORD [" << genStackAddr(lvar) << L"],"
                    << rhs->getAttr(0) << endl;
       } else if (rhs->getName() == L"VAR") {
-        _asmOutput << L" MOV EAX, [" << genStackAddr(lhs->as<Var>()) << L"]" << endl;
+        _asmOutput << L" MOV EAX, [" << genStackAddr(lvar) << L"]" << endl;
         _asmOutput << L" MOV [" << genStackAddr(rhs->as<Var>()) << L"],EAX" << endl;
       } else {
         compile(rhs);
-        _asmOutput << L" MOV [" << lhs->getAttr(0) << L"],EAX" << endl;
+        _asmOutput << L" MOV [" << genStackAddr(lvar) << L"],EAX" << endl;
       }
     } else {
       if (rhs->getName() == L"INT") {
