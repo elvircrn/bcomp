@@ -238,9 +238,9 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"MUL") {
     compile(node->getChild(0));
     if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" MUL EAX," << node->getChild(1)->getAttr(0) << endl;
+      _asmOutput << L" MUL " << node->getChild(1)->getAttr(0) << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" MUL EAX,[" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
+      _asmOutput << L" MUL DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX";
       compile(node->getChild(1));
