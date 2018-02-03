@@ -26,6 +26,7 @@ private:
 
 public:
   explicit Bompiler(const std::wstring &filePath);
+  void genArithOp(PNode *node, const std::wstring &op);
   Bompiler(const unsigned char* buf, int len);
   bool compile(const std::wstring &filePath);
   void compile();

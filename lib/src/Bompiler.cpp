@@ -58,7 +58,7 @@ void Bompiler::compile() {
 
 }
 
-void Bompiler::genArithOp(const std::wstring &op) {
+void Bompiler::genArithOp(PNode *node, const std::wstring &op) {
   compile(node->getChild(0));
   if (node->getChild(1)->getName() == L"INT") {
     _asmOutput << L" " << op << " EAX," << node->getChild(1)->getAttr(0) << endl;
@@ -83,28 +83,18 @@ void Bompiler::compile(PNode *node) {
   std::wcout << L"NODENAME: " << nodename << '\n';
   par = 1;
   if (nodename == L"ADD") {
-    genArithOp(nodename);
+    genArithOp(node, nodename);
   } else if (nodename == L"ADDMOV") {
   } else if (nodename == L"ADDROF") {
   } else if (nodename == L"AND") {
-    compile(node->getChild(0));
-    if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" AND EAX," << node->getChild(1)->getAttr(0) << endl;
-    } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" AND EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
-    } else {
-      _asmOutput << L" PUSH EAX" << endl;
-      compile(node->getChild(1));
-      _asmOutput << L" POP EBX";
-      _asmOutput << L" AND EAX,EBX" << endl;
-    }
+    genArithOp(node, nodename);
   } else if (nodename == L"ANDMOV") {
   } else if (nodename == L"ARG") {
     auto arg = node->as<BArgument>();
     if (arg->argType() == L"VAR") {
       _asmOutput << L" PUSH DWORD [" << genStackAddr(arg->getVal()->as<Var>()) << L"]\n";
     } else if (arg->argType() == L"INT") {
-      _asmOutput << L" PUSH [" << arg->getVal()->as<Int>()->getVal() << L"]\n";
+      _asmOutput << L" PUSH " << arg->getVal()->as<Int>()->getVal() << L"\n";
     } else if (arg->argType() == L"STRING") {
       // TODO: Test string passing
       auto literalNode = arg->getChild(0);
@@ -260,17 +250,7 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"NEQU") {
   } else if (nodename == L"ONUMBER") {
   } else if (nodename == L"OR") {
-    compile(node->getChild(0));
-    if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" OR EAX," << node->getChild(1)->getAttr(0) << endl;
-    } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" OR EAX,[" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
-    } else {
-      _asmOutput << L" PUSH EAX";
-      compile(node->getChild(1));
-      _asmOutput << L" POP EBX";
-      _asmOutput << L" OR EAX,EBX" << endl;
-    }
+    genArithOp(node, nodename);
   } else if (nodename == L"ORMOV") {
   } else if (nodename == L"POSTDEC") {
   } else if (nodename == L"POSTINC") {
@@ -286,18 +266,7 @@ void Bompiler::compile(PNode *node) {
     auto litMacro = objs.getOrCreateLiteral(node->getAttr(0));
     std::wcout << L"LIT MACRO: " << litMacro << L" " << node->getAttr(0) << L"\n";
   } else if (nodename == L"SUB") {
-    // TODO: Check for commutativity
-    compile(node->getChild(0));
-    if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" SUB EAX," << node->getChild(1)->getAttr(0) << endl;
-    } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" SUB EAX,[" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
-    } else {
-      _asmOutput << L" PUSH EAX" << endl;
-      compile(node->getChild(1));
-      _asmOutput << L" POP EBX" << endl;
-      _asmOutput << L" SUB EAX,EBX" << endl;
-    }
+    genArithOp(node, nodename);
   } else if (nodename == L"SUBMOV") {
   } else if (nodename == L"SWITCH") {
   } else if (nodename == L"UMINUS") {
@@ -310,17 +279,7 @@ void Bompiler::compile(PNode *node) {
     _asmOutput << L" MOV EAX, [" << genStackAddr(var) << "]" << endl;
   } else if (nodename == L"WHILE") {
   } else if (nodename == L"XOR") {
-    compile(node->getChild(0));
-    if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" XOR EAX," << node->getChild(1)->getAttr(0) << endl;
-    } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" XOR EAX,[" << node->getChild(1)->getAttr(0) << "]" << endl;
-    } else {
-      _asmOutput << L" PUSH EAX";
-      compile(node->getChild(1));
-      _asmOutput << L" POP EBX";
-      _asmOutput << L" XOR EAX,EBX" << endl;
-    }
+    genArithOp(node, nodename);
   } else if (nodename == L"XORMOV ") {
   }
 }
