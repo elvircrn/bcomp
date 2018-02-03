@@ -10,6 +10,7 @@
 #include <BFunction.h>
 #include <FuncCall.h>
 
+#include "Int.h"
 #include "Var.h"
 #include "util.h"
 #include "Block.h"
@@ -31,7 +32,7 @@ PNode::PNode(PNode *_parent, const wstring &_name) : parent(_parent), name(_name
 }
 
 PNode::~PNode() {
-  for (int i = 0; i < children.size(); i++)
+  for (int i = (int)children.size() - 1; i > -1; i--)
     delete children[i];
 }
 
@@ -72,6 +73,8 @@ PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, const std::v
     return reinterpret_cast<PNode *>(new BArgument(parent, nodeName, attrs));
   else if (nodeName == L"FUNCCALL")
     return reinterpret_cast<PNode *>(new FuncCall(parent, nodeName, attrs));
+  else if (nodeName == L"INT")
+    return reinterpret_cast<PNode *>(new Int(parent, nodeName, attrs));
   else
     return new PNode(parent, nodeName, attrs);
 }
@@ -81,10 +84,20 @@ PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, const std::v
  * given name is found.
  */
 PNode *PNode::getAncestorByName(const std::wstring &_name) {
-  PNode* node = this;
-  while(node && node->getName() != _name)
+  PNode *node = this;
+  while (node && node->getName() != _name)
     node = node->parent;
   return node;
+}
+
+void PNode::deleteChild(PNode *node) {
+  // Delete node from parent children list
+  parent->children.erase(std::remove_if(
+      parent->children.begin(), parent->children.end(), [node](PNode *_node) -> bool {
+        return _node == node;
+      }
+  ), parent->children.end());
+  delete node;
 }
 
 // NOTE: Expects '(' as the first character

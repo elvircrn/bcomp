@@ -203,6 +203,9 @@
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/FuncCall.h">
 			<Option target="BompilerLib"/>
 		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/Int.h">
+			<Option target="BompilerLib"/>
+		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/Objects.h">
 			<Option target="BompilerLib"/>
 		</Unit>
@@ -216,6 +219,9 @@
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/TestData.h">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/TreeOpt.h">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/include/Var.h">
@@ -257,6 +263,9 @@
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/FuncCall.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Int.cpp">
+			<Option target="BompilerLib"/>
+		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Objects.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
@@ -267,6 +276,9 @@
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Scanner.cpp">
+			<Option target="BompilerLib"/>
+		</Unit>
+		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/TreeOpt.cpp">
 			<Option target="BompilerLib"/>
 		</Unit>
 		<Unit filename="C:/Users/elvircrn/Documents/5. Semestar/PJP/Compiler/lib/src/Var.cpp">

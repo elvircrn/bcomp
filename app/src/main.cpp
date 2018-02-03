@@ -6,6 +6,7 @@
 #include "TestData.h"
 
 #include <string>
+#include <fstream>
 
 using bompiler::Bompiler;
 using namespace util;
@@ -77,6 +78,11 @@ main() {
   auto k;
   k = x * y + z;
   printf("%d\n", k);
+  k = x + y * z;
+  printf("%d\n", k);
+  k = x * (y + z);
+  printf("%d\n", k);
+  printf("%d\n", 2 + 2);
 }
 )";
 
@@ -92,6 +98,10 @@ main() {
   ParseTree(program.astStr(), 0).print();
   std::wcout << program.asmStr() << "\n\n"
              << program.astStr() << '\n';
+
+  std::wfstream fout("asmbuff.asm");
+  fout << program.asmStr() << '\n';
+
   if (program.getState() == bompiler::Bompiler::State::SUCCESS) {
     std::wcout << L"Success\n";
   } else {
