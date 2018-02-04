@@ -11,3 +11,7 @@ std::wstring bompiler::genStackAddr(Var *var, int _size) {
   ss << L"EBP -" << L" " << var->varDef()->stackId() * _size;
   return ss.str();
 }
+
+std::wstring bompiler::deref(const std::wstring& addr) {
+  return L"[" + addr + L"]";
+}

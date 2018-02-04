@@ -552,6 +552,7 @@ void Parser::Expression() {
 
 bool Parser::Assignable(int position) {
   wstring nodename = GetNodeName(position);
+  std:wcout << "NODENAME: " << nodename << '\n';
   return (nodename == L"VAR" || nodename == L"INDEX" || nodename == L"PTR");
 }
 
@@ -951,7 +952,7 @@ void Parser::UnaryExpr() {
     Get();
     ParseList.insert(position, L"(PREINC ");
     UnaryExpr();
-    if (!(Assignable(position))) {
+    if (!(Assignable(ElemPos(position, 1)))) {
       SemErr(L"Not assignable");
     }
     ParseList.append(L")");

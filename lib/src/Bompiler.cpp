@@ -214,7 +214,9 @@ void Bompiler::compile(PNode *node) {
       } else if (rhs->getName() == L"VAR") {
         _asmOutput << L" MOV EAX, [" << genStackAddr(lvar) << L"]" << endl;
         _asmOutput << L" MOV [" << genStackAddr(rhs->as<Var>()) << L"],EAX" << endl;
-      } else {
+      } else if (rhs->getName() == L"ONUMBER") {
+        _asmOutput << L" MOV DWORD [" << genStackAddr(lvar) << L"], 0" << endl;
+      }else {
         compile(rhs);
         _asmOutput << L" MOV [" << genStackAddr(lvar) << L"],EAX" << endl;
       }
@@ -254,8 +256,14 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"ORMOV") {
   } else if (nodename == L"POSTDEC") {
   } else if (nodename == L"POSTINC") {
+    auto var = node->getChild(0)->as<Var>();
+    _asmOutput << " MOV EAX, DWORD " << deref(genStackAddr(var)) << endl
+               << " INC DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"PREDEC") {
   } else if (nodename == L"PREINC") {
+    auto var = node->getChild(0)->as<Var>();
+    _asmOutput << " INC DWORD " << deref(genStackAddr(var)) << endl
+               << " MOV EAX, DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"PTR") {
   } else if (nodename == L"RETURN") {
   } else if (nodename == L"RETURNPARAM") {

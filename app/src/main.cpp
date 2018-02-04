@@ -28,6 +28,7 @@ void compileTest(const std::string &code) {
   } 
 } 
 
+/** Hello World */
 std::string helloWorld = R"(
 main() {
   printf("Hello World\n");
@@ -50,10 +51,12 @@ main() {
   k = x * (y + z);
   printf("%d\n", k);
   printf("%d\n", 2 + 2);
+  printf("%d\n", x * 2 + z);
 }
 )";
 
 
+/** 1 */
 std::string charTest = R"(
 main() { 
   printf("%c\n", '1');
@@ -61,7 +64,23 @@ main() {
 )";
 
 
+/**
+ * 1
+ * 1
+ * 3*/
+std::string unaryIncr = R"(
+main() { 
+  auto i;
+  i = 0;
+  i++;
+  printf("%d\n", i);
+  printf("%d\n", i++);
+  printf("%d\n", ++i);
+}
+)";
+
 int main() {
-  compileTest(charTest);
+  compileTest(unaryIncr);
   return 0;
 }
+
