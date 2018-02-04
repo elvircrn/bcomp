@@ -57,7 +57,7 @@ main() {
 
 
 /** 1 */
-std::string charTest = R"(
+const std::string charTest = R"(
 main() { 
   printf("%c\n", '1');
 }
@@ -68,7 +68,7 @@ main() {
  * 1
  * 1
  * 3*/
-std::string unaryIncr = R"(
+const std::string unaryIncr = R"(
 main() { 
   auto i;
   i = 0;
@@ -79,8 +79,26 @@ main() {
 }
 )";
 
+/**
+ * 1
+ * 1
+ * 3*/
+const std::string compTest = R"(
+main() { 
+  auto x;
+  auto y;
+  x = 1;
+  y = 2;
+  printf("%d\n", x < y);
+  printf("%d\n", y < x);
+  printf("%d\n", x < y);
+  printf("%d\n", y < x);
+}
+)";
+
+
 int main() {
-  compileTest(unaryIncr);
+  compileTest(compTest);
   return 0;
 }
 

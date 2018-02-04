@@ -196,7 +196,28 @@ void Bompiler::compile(PNode *node) {
     objs.labels.emplace_back(node);
   } else if (nodename == L"LARRDEF") {
   } else if (nodename == L"LESSEQUTHAN") {
-  } else if (nodename == L"LESSTHAN") {
+  } else if (nodename == L"LESSTHAN") { 
+    compile(node->getChild(0));
+    objs.createAndGetLabel();
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" CMP EAX," << node->getChild(1)->getAttr(0) << endl
+                 << L" JGE " << objs.createAndGetLabel() << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << objs.getLabel() << ':' << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      auto var = node->getChild(1)->as<Var>();
+      _asmOutput << L" CMP EAX," << deref(genStackAddr(var)) << endl
+                 << L" JGE " << objs.getLabel() << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << objs.getLabel() << ':' << endl;
+    } else {
+      _asmOutput << L" PUSH EAX" << endl;
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX" << endl
+                 << L" ADD EAX,EBX" << endl;
+    }
   } else if (nodename == L"LSHIFT") {
   } else if (nodename == L"LSHIFTMOV") {
   } else if (nodename == L"LVARDEF") {
@@ -264,7 +285,7 @@ void Bompiler::compile(PNode *node) {
                << " INC DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"PREDEC") {
     auto var = node->getChild(0)->as<Var>();
-    _asmOutput << " DEC DWORD " << deref(genStackAddr(var)) << endl
+    _asmOutput << " DEC DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"PREINC") {
     auto var = node->getChild(0)->as<Var>();
     _asmOutput << " INC DWORD " << deref(genStackAddr(var)) << endl

@@ -5,8 +5,14 @@
 #include <algorithm>
 
 using std::experimental::optional;
-using std::experimental::make_optional;
+using std::experimental::make_optional; 
 using namespace bompiler;
+
+bompiler::Objects::Objects() : genLabelCnt(0) { }
+
+std::wstring bompiler::Objects::createAndGetLabel() {
+  return LABEL_PREFIX + std::to_wstring(genLabelCnt++);
+}
 
 bompiler::BFunction *bompiler::Objects::addFunction(bompiler::BFunction *f) {
   functions.emplace_back(f);

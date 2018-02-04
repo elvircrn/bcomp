@@ -5,6 +5,7 @@
 #include "BFunction.h"
 #include "optional.hpp"
 #include "FuncCall.h"
+#include "names.h"
 
 #include <vector>
 #include <map>
@@ -15,22 +16,23 @@ class Objects {
   std::vector<BFunction*> functions;
   std::map<std::wstring, std::wstring> stringLiterals;
   std::set<std::wstring> libraryFunctions = { L"printf" };
+  int genLabelCnt;
 
 public:
   std::set<std::wstring> invokedLibraryFunctions;
-  std::vector<PNode*> labels;
+  std::vector<PNode*> labels; 
 
-  bool labelExists(const std::wstring &label) const;
+  Objects();
 
-  bompiler::BFunction* addFunction(bompiler::BFunction *f);
+  bool labelExists(const std::wstring &label) const; 
+  bompiler::BFunction* addFunction(bompiler::BFunction *f); 
+  bompiler::BFunction* findFunction(bompiler::FuncCall *fcall); 
+  std::wstring getOrCreateLiteral(const std::wstring&); 
+  std::wstring createAndGetLabel(); 
+  inline std::wstring getLabel() const { return bompiler::LABEL_PREFIX + std::to_wstring(genLabelCnt - 1); }
+  inline std::map<std::wstring, std::wstring> getStringLiterals() const { return stringLiterals; }; 
 
-  bompiler::BFunction* findFunction(bompiler::FuncCall *fcall);
-
-  std::wstring getOrCreateLiteral(const std::wstring&);
-
-  inline std::map<std::wstring, std::wstring> getStringLiterals() const { return stringLiterals; };
-
-  // TODO: No idea how to handle this properly, but hey, at least it works
+  // TODO: No idea how to handle this properly, but it works
   inline bool isStdLibFunction(const std::wstring &funcName) const {
     return libraryFunctions.find(funcName) != libraryFunctions.end();
   }

@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.org/elvircrn/bcomp.svg?branch=master)](https://travis-ci.org/elvircrn/bcomp)
 
 # TODO
+* Implement ifs
+  * Implement less than operator
+
 * Datu liniju za provjeru dodajte iza svih UnaryExpr i PostfixExpr za operatore inkrementiranja i dekrementiranja.
 
 * Implement IsAssignable
