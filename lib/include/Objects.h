@@ -29,7 +29,9 @@ public:
   bompiler::BFunction* findFunction(bompiler::FuncCall *fcall); 
   std::wstring getOrCreateLiteral(const std::wstring&); 
   std::wstring createAndGetLabel(); 
-  inline std::wstring getLabel() const { return bompiler::LABEL_PREFIX + std::to_wstring(genLabelCnt - 1); }
+  inline std::wstring getLastLabel() const {
+    return bompiler::LABEL_PREFIX + std::to_wstring(genLabelCnt - 1);
+  }
   inline std::map<std::wstring, std::wstring> getStringLiterals() const { return stringLiterals; }; 
 
   // TODO: No idea how to handle this properly, but it works

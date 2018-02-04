@@ -96,6 +96,29 @@ main() {
 }
 )";
 
+/**
+ * 1
+ * 2
+ * 1024
+ */
+const std::string fastPowTest = R"(
+fastPow(base, exp) {
+  if (exp == 0) {
+    return 1;
+  } else if (exp == 1) {
+    return base;
+  } else if (exp % 2 == 0) {
+    auto t = fastPow(base, exp / 2);
+    return t * t;
+  } else if (exp % 2 == 1) {
+    return fastPow(base, exp - 1);
+  }
+}
+main() {
+  printf("%d\n", fastPow(2, 0));
+  printf("%d\n", fastPow(2, 1));
+  printf("%d\n", fastPow(2, 10));
+)"; 
 
 int main() {
   compileTest(compTest);

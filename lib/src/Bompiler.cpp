@@ -119,6 +119,7 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"DECLSTAT") {
     for (const auto &child : node->getChildren())
       compile(child);
+  } else if (nodename == L"DIV") {
   } else if (nodename == L"DIVMOV") {
   } else if (nodename == L"EQU") {
   } else if (nodename == L"EXTRN") {
@@ -200,18 +201,28 @@ void Bompiler::compile(PNode *node) {
     compile(node->getChild(0));
     objs.createAndGetLabel();
     if (node->getChild(1)->getName() == L"INT") {
+      auto condFalse = objs.createAndGetLabel();
+      auto condTrue = objs.createAndGetLabel();
       _asmOutput << L" CMP EAX," << node->getChild(1)->getAttr(0) << endl
-                 << L" JGE " << objs.createAndGetLabel() << endl
+                 << L" JGE " << condFalse << endl
                  << L" XOR EAX, EAX" << endl
                  << L" INC EAX" << endl
-                 << objs.getLabel() << ':' << endl;
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
       auto var = node->getChild(1)->as<Var>();
+      auto condTrue = objs.createAndGetLabel();
+      auto condFalse = objs.createAndGetLabel();
       _asmOutput << L" CMP EAX," << deref(genStackAddr(var)) << endl
-                 << L" JGE " << objs.getLabel() << endl
+                 << L" JGE " << condFalse << endl
                  << L" XOR EAX, EAX" << endl
                  << L" INC EAX" << endl
-                 << objs.getLabel() << ':' << endl;
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
     } else {
       _asmOutput << L" PUSH EAX" << endl;
       compile(node->getChild(1));
@@ -223,6 +234,7 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"LVARDEF") {
     // header << L"%define " << f.name() + L"_" + varName << L" EBP - " << varId * 4 << endl;
   } else if (nodename == L"MOD") {
+    
   } else if (nodename == L"MODMOV") {
   } else if (nodename == L"MOV") {
     auto lhs = node->getChild(0);
