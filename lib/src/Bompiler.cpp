@@ -255,11 +255,16 @@ void Bompiler::compile(PNode *node) {
     genArithOp(node, nodename);
   } else if (nodename == L"ORMOV") {
   } else if (nodename == L"POSTDEC") {
+    auto var = node->getChild(0)->as<Var>();
+    _asmOutput << " MOV EAX, DWORD " << deref(genStackAddr(var)) << endl
+               << " DEC DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"POSTINC") {
     auto var = node->getChild(0)->as<Var>();
     _asmOutput << " MOV EAX, DWORD " << deref(genStackAddr(var)) << endl
                << " INC DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"PREDEC") {
+    auto var = node->getChild(0)->as<Var>();
+    _asmOutput << " DEC DWORD " << deref(genStackAddr(var)) << endl
   } else if (nodename == L"PREINC") {
     auto var = node->getChild(0)->as<Var>();
     _asmOutput << " INC DWORD " << deref(genStackAddr(var)) << endl

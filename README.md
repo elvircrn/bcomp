@@ -8,6 +8,6 @@
 
 * Napisite funkciju koja provjerava da li je goto labela vec definisana i promijenite pravilo Label da to testira.
 
-* Po uzoru na ADD, lako realizujte generisanje asemblerskog koda za OR. Probajte i SUB (pazite na nekomutativnost).
+* SUB (pazite na nekomutativnost).
 
 # Known bugs
