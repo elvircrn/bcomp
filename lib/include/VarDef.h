@@ -11,6 +11,7 @@ class VarDef : public PNode {
   size_t _stackId;
 public:
   VarDef(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &attrs, bool __isLocal);
+  VarDef(PNode *_parent, const wstring &_varName, bool __isLocal);
   inline std::wstring varName() const { return attrs[0]; }
   inline bool isLocal() const { return _isLocal; }
   inline size_t stackId() const { return _stackId; }

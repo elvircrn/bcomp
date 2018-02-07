@@ -4,3 +4,17 @@
 
 # Post increment
 (B (FUNCDEF main (FHEADER ) (BLOCK (DECLSTAT (LVARDEF i ) (MOV (VAR i)(ONUMBER 0)) ) (POSTINC (VAR i)) (FUNCCALL (VAR printf)(ARG (STRING `"%d\n"`)) (ARG (VAR i)) ) ) ) )
+
+# Functiona call
+B
+ FUNCDEF f
+  FHEADER
+   FPARAM a
+   FPARAM b
+   FPARAM c
+  BLOCK
+ FUNCDEF main
+  FHEADER
+  BLOCK
+
+# Fast Pow

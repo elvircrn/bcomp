@@ -9,7 +9,7 @@ class BArgument : public PNode {
 public:
 
   BArgument(PNode *_parent, const wstring &_name, const vector<wstring> &_args) : PNode(_parent, _name, _args) {}
-  // Arg info is first child of ARG node
+  // Arg info is the first child of ARG node
   inline std::wstring argType() const { return getChild(0)->getName(); }
   inline PNode *getVal() const { return getChild(0); }
 };

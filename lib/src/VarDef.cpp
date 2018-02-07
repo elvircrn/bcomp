@@ -13,4 +13,9 @@ VarDef::VarDef(bompiler::PNode *_parent, const wstring &_name, const std::vector
   f->getBlock()->addVarDef(this);
 }
 
+VarDef::VarDef(PNode *_parent, const wstring &_varName, bool __isLocal) : PNode(_parent, L"VARDEF") {
+  attrs.push_back(_varName);
+  _isLocal = __isLocal;
+}
+
 VarDef::~VarDef() = default;

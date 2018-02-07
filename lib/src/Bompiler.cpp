@@ -120,6 +120,17 @@ void Bompiler::compile(PNode *node) {
     for (const auto &child : node->getChildren())
       compile(child);
   } else if (nodename == L"DIV") {
+    compile(node->getChild(0));
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" DIV " << node->getChild(1)->getAttr(0) << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      _asmOutput << L" DIV DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
+    } else {
+      _asmOutput << L" PUSH EAX" << endl;
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX" << endl;
+      _asmOutput << L" DIV EBX" << endl;
+    }
   } else if (nodename == L"DIVMOV") {
   } else if (nodename == L"EQU") {
   } else if (nodename == L"EXTRN") {
@@ -156,8 +167,16 @@ void Bompiler::compile(PNode *node) {
     _asmOutput << L" PUSH EBP" << endl
                << L" MOV EBP,ESP" << endl
                << L" SUB ESP," << f->name() << L"_len" << endl;
+
+    // TODO: Consider moving this into the constructor
+    for (FParam *fparam : f->getArgs()) {
+      std::wcout << fparam->paramName() << '\n';
+      f->getBlock()->addVarDef(new VarDef(f->getBlock(), fparam->paramName(), true));
+    }
+
     for (const auto &child : node->getChildren())
       compile(child);
+
     header << L"%define " << f->name() << L"_len " << f->getBlock()->varCnt() * 4 << endl;
     // Standard exit sequence
     _asmOutput << L" MOV ESP,EBP" << endl
@@ -174,8 +193,9 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"GREATEREQUTHAN") {
   } else if (nodename == L"GREATERTHAN") {
   } else if (nodename == L"GVARDEF") {
+  } else if (nodename == L"IF") { 
+    
   } else if (nodename == L"IFELSE") {
-  } else if (nodename == L"IF") {
   } else if (nodename == L"INDEX") {
   } else if (nodename == L"INIT") {
   } else if (nodename == L"INT") {
@@ -234,7 +254,19 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"LVARDEF") {
     // header << L"%define " << f.name() + L"_" + varName << L" EBP - " << varId * 4 << endl;
   } else if (nodename == L"MOD") {
-    
+    compile(node->getChild(0));
+    if (node->getChild(1)->getName() == L"INT") {
+      _asmOutput << L" DIV " << node->getChild(1)->getAttr(0) << endl
+                 << L" MOV EAX, EDX" << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      _asmOutput << L" DIV DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl
+                 << L" MOV EAX, EDX" << endl;
+    } else {
+      _asmOutput << L" PUSH EAX" << endl;
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX" << endl;
+      _asmOutput << L" DIV EBX" << endl;
+    }
   } else if (nodename == L"MODMOV") {
   } else if (nodename == L"MOV") {
     auto lhs = node->getChild(0);

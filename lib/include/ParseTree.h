@@ -35,6 +35,7 @@ public:
   inline std::wstring getName() const { return name; }
   inline std::vector<std::wstring> getAttrs() const { return attrs; }
   inline std::wstring getAttr(int i) const { return attrs[i]; }
+  inline void addChild(PNode *node) { children.push_back(node); }
   PNode *copy(PNode *parent = nullptr) const;
   vector<PNode *> children;
   // TODO: Optimize!

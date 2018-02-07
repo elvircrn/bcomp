@@ -9,6 +9,7 @@
 #include <VarDef.h>
 #include <BFunction.h>
 #include <FuncCall.h>
+#include "FParam.h"
 
 #include "Int.h"
 #include "Var.h"
@@ -75,9 +76,13 @@ PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, const std::v
     return reinterpret_cast<PNode *>(new FuncCall(parent, nodeName, attrs));
   else if (nodeName == L"INT")
     return reinterpret_cast<PNode *>(new Int(parent, nodeName, attrs));
+  else if (nodeName == L"ONUMBER")
+    return reinterpret_cast<PNode *>(new Int(parent, 0));
   // TODO: This is extremely hacky and lazy
   else if (nodeName == L"CHAR")
     return reinterpret_cast<PNode *>(new Int(parent, (int)attrs[0][1]));
+  else if (nodeName == L"FPARAM")
+    return reinterpret_cast<PNode *>(new FParam(parent, attrs[0]));
   else
     return new PNode(parent, nodeName, attrs);
 }

@@ -83,7 +83,7 @@ main() {
  * 1
  * 1
  * 3*/
-const std::string compTest = R"(
+std::string compTest = R"(
 main() { 
   auto x;
   auto y;
@@ -101,27 +101,41 @@ main() {
  * 2
  * 1024
  */
-const std::string fastPowTest = R"(
+std::string fastPowTest = R"(
+
 fastPow(base, exp) {
   if (exp == 0) {
     return 1;
-  } else if (exp == 1) {
-    return base;
-  } else if (exp % 2 == 0) {
-    auto t = fastPow(base, exp / 2);
-    return t * t;
-  } else if (exp % 2 == 1) {
-    return fastPow(base, exp - 1);
+  }
+
+  if (exp == 1) {
+    return(base);
+  }
+
+  if (exp % 2 == 0) {
+    auto t;
+    t  = fastPow(base, exp / 2);
+    return(t * t);
+  } else {
+    return(fastPow(base, exp - 1));
   }
 }
+
 main() {
-  printf("%d\n", fastPow(2, 0));
-  printf("%d\n", fastPow(2, 1));
-  printf("%d\n", fastPow(2, 10));
+  printf("%d\n", fastPow(2, 10)); 
+}
+)"; 
+
+std::string funcDefTest = R"(
+f(a, b, c) {
+}
+
+main() {
+}
 )"; 
 
 int main() {
-  compileTest(compTest);
+  compileTest(funcDefTest);
   return 0;
 }
 
