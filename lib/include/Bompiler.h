@@ -13,7 +13,6 @@ public:
   enum class State { SUCCESS, FAIL };
 
 private:
-  enum State;
 
   Scanner scanner;
   Parser parser;
