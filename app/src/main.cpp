@@ -102,10 +102,9 @@ main() {
  * 1024
  */
 std::string fastPowTest = R"(
-
-fastPow(base, exp) {
+f(base, exp) {
   if (exp == 0) {
-    return 1;
+    return(1);
   }
 
   if (exp == 1) {
@@ -114,15 +113,15 @@ fastPow(base, exp) {
 
   if (exp % 2 == 0) {
     auto t;
-    t  = fastPow(base, exp / 2);
+    t  = f(base, exp / 2);
     return(t * t);
   } else {
-    return(fastPow(base, exp - 1));
+    return(f(base, exp - 1));
   }
 }
 
 main() {
-  printf("%d\n", fastPow(2, 10)); 
+  printf("%d\n", f(2, 10));
 }
 )"; 
 
@@ -135,7 +134,7 @@ main() {
 )"; 
 
 int main() {
-  compileTest(funcDefTest);
+  compileTest(fastPowTest);
   return 0;
 }
 

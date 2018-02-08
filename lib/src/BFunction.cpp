@@ -23,3 +23,4 @@ _attrs) { }
 
 BFunction::~BFunction() = default;
 
+// std::wstring BFunction::functionName() const { return 

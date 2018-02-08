@@ -18,6 +18,8 @@ Var::Var(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &
 
   auto f = node->as<BFunction>();
 
+  std::wcout << L"FUNCTION NAME: " << f->getAttrs()[0] << L"\n\n\n\n\n";
+
   // TODO: Handle function not found
   if (!f) {
     throw "Assert";

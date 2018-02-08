@@ -9,6 +9,7 @@
 
 #include <FuncCall.h>
 #include <Var.h>
+#include <fstream>
 
 using namespace bompiler;
 
@@ -38,12 +39,14 @@ bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, l
     return;
   }
 
+  std::wofstream fout("asmbuff.asm", ios_base::out);
+  fout << parser.ParseList << '\n';
   std::wcout << L"Expression:\n" << parser.ParseList << endl;
 
   pt = ParseTree(parser.ParseList, 0);
-  pt.print();
   std::wcout << endl;
   compile(pt.getRoot());
+  pt.print();
   generateDataSection();
   generateHeader();
 
@@ -161,6 +164,7 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"FUNCDEF") {
     auto f = node->as<BFunction>();
     objs.addFunction(f);
+
     // TODO: Check why public doesn't work
     _asmOutput << L" global " << f->name() << endl;
     _asmOutput << f->name() << ":" << endl;
