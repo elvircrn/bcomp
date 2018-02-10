@@ -507,7 +507,7 @@ void Parser::NullStatement() {
 }
 
 void Parser::ReturnStatement() {
-  int position;
+  int position = ParseList.length();
   bool paramExists;
   paramExists = false;
   Expect(23 /* "return" */);

@@ -196,7 +196,7 @@ Ident<name>                      (.  ParseList.append(L"(GOTO ");ParseList.appen
   NullStatement    = ';'
   .
 
-  ReturnStatement                (. int position; bool paramExists; .)
+  ReturnStatement                (. int position = ParseList.length(); bool paramExists; .)
     =                            (. paramExists = false; .)
 "return"                
   [ WEAK  '('      

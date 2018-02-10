@@ -34,10 +34,13 @@ bompiler::Bompiler::Bompiler(const std::wstring &filePath) : scanner(filePath.c_
 bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, len),
                                                                   parser(&scanner) {
   parser.Parse();
+  std::wcout << L"Parser error cnt: " << parser.errors->count << '\n';
   if (parser.errors->count) {
     state = State::FAIL;
     return;
   }
+
+  std::wcout << parser.ParseList << '\n';
 
   std::wofstream fout("asmbuff.asm", ios_base::out);
   fout << parser.ParseList << '\n';

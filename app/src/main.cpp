@@ -127,6 +127,7 @@ main() {
 
 std::string funcDefTest = R"(
 f(a, b, c) {
+  return;
 }
 
 main() {
