@@ -128,9 +128,12 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"DIV") {
     compile(node->getChild(0));
     if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" DIV " << node->getChild(1)->getAttr(0) << endl;
+      _asmOutput << L" MOV EDX, 0" << endl
+                 << L" MOV ECX, " << node->getChild(1)->getAttr(0) << endl
+                 << L" DIV ECX" << endl; 
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" DIV DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
+      _asmOutput << L" MOV EDX, 0" << endl
+                 << L" DIV DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl;
     } else {
       _asmOutput << L" PUSH EAX" << endl;
       compile(node->getChild(1));
@@ -139,6 +142,37 @@ void Bompiler::compile(PNode *node) {
     }
   } else if (nodename == L"DIVMOV") {
   } else if (nodename == L"EQU") {
+    compile(node->getChild(0));
+    objs.createAndGetLabel();
+    if (node->getChild(1)->getName() == L"INT") {
+      auto condFalse = objs.createAndGetLabel();
+      auto condTrue = objs.createAndGetLabel();
+      _asmOutput << L" CMP EAX," << node->getChild(1)->getAttr(0) << endl
+                 << L" JNE " << condFalse << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      auto var = node->getChild(1)->as<Var>();
+      auto condTrue = objs.createAndGetLabel();
+      auto condFalse = objs.createAndGetLabel();
+      _asmOutput << L" CMP EAX," << deref(genStackAddr(var)) << endl
+                 << L" JNE " << condFalse << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
+    } else {
+      _asmOutput << L" PUSH EAX" << endl;
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX" << endl
+                 << L" ADD EAX,EBX" << endl;
+    } 
   } else if (nodename == L"EXTRN") {
   } else if (nodename == L"FHEADER") {
   } else if (nodename == L"FPARAM") {
@@ -196,8 +230,25 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"GREATERTHAN") {
   } else if (nodename == L"GVARDEF") {
   } else if (nodename == L"IF") { 
-    
+    // The condition
+    compile(node->getChild(0)); 
+    auto label = objs.createAndGetLabel(); 
+    _asmOutput << " CMP EAX, 0\n"
+               << " JZ " << label << '\n';
+    // Code block to be executed if the condition is true
+    compile(node->getChild(1));
+    _asmOutput << label << ":\n";
   } else if (nodename == L"IFELSE") {
+    // The condition
+    compile(node->getChild(0)); 
+    auto label = objs.createAndGetLabel(); 
+    _asmOutput << " CMP EAX, 0\n"
+               << " JZ " << label << '\n';
+    // Code block to be executed if the condition is true
+    compile(node->getChild(1));
+    _asmOutput << label << ":\n";
+    // Code block to be executed if the condition is false
+    compile(node->getChild(2));
   } else if (nodename == L"INDEX") {
   } else if (nodename == L"INIT") {
   } else if (nodename == L"INT") {
@@ -258,10 +309,13 @@ void Bompiler::compile(PNode *node) {
   } else if (nodename == L"MOD") {
     compile(node->getChild(0));
     if (node->getChild(1)->getName() == L"INT") {
-      _asmOutput << L" DIV " << node->getChild(1)->getAttr(0) << endl
+      _asmOutput << L" MOV EDX, 0" << endl
+                 << L" MOV ECX, " << node->getChild(1)->getAttr(0) << endl
+                 << L" DIV ECX" << endl
                  << L" MOV EAX, EDX" << endl;
     } else if (node->getChild(1)->getName() == L"VAR") {
-      _asmOutput << L" DIV DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl
+      _asmOutput << L" MOV EDX, 0" << endl
+                 << L" DIV DWORD [" << genStackAddr(node->getChild(1)->as<Var>()) << "]" << endl
                  << L" MOV EAX, EDX" << endl;
     } else {
       _asmOutput << L" PUSH EAX" << endl;

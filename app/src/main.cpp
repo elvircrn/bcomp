@@ -103,6 +103,7 @@ main() {
  */
 std::string fastPowTest = R"(
 f(base, exp) {
+  printf("base: %d exp: %d\n", base, exp);
   if (exp == 0) {
     return(1);
   }
@@ -113,10 +114,10 @@ f(base, exp) {
 
   if (exp % 2 == 0) {
     auto t;
-    t  = f(base, exp / 2);
+    t = f(base, exp / 2);
     return(t * t);
   } else {
-    return(f(base, exp - 1));
+    return(base * f(base, exp - 1));
   }
 }
 
@@ -144,8 +145,33 @@ main() {
 }
 )";
 
+/**
+ * 1
+ * 0
+ * 2
+ * 3
+ */
+const std::string divTest = R"(
+main() {
+  printf("%d\n", 5 % 2);
+  printf("%d\n", 6 % 2);
+  printf("%d\n", 5 / 2);
+  printf("%d\n", 6 / 2);
+}
+)";
+
+const std::string ifTest = R"(
+main() {
+  auto x;
+  x = 2;
+  if (x == 2) {
+    printf("It works!\n");
+  }
+}
+)";
+
 int main() {
-  compileTest(idTest);
+  compileTest(fastPowTest);
   return 0;
 }
 

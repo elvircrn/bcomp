@@ -1,17 +1,94 @@
-%define id_len 4
+%define f_len 12
 %define main_len 0
  extern printf
  global main
  section .data
-LIT_0: db "%d", 10, "", 0
+LIT_1: db "%d", 10, "", 0
+LIT_0: db "base: %d exp: %d", 10, "", 0
 
 section .text
- global id
-id:
+ global f
+f:
  PUSH EBP
  MOV EBP,ESP
- SUB ESP,id_len
+ SUB ESP,f_len
+ PUSH DWORD [EBP + 12]
+ PUSH DWORD [EBP + 8]
+ PUSH DWORD LIT_0
+ CALL printf
+ ADD ESP,12
+ MOV EAX, [EBP + 12]
+ CMP EAX,0
+ JNE LABEL_1
+ XOR EAX, EAX
+ INC EAX
+ JMP LABEL_2
+LABEL_1:
+ XOR EAX, EAX
+LABEL_2:
+ CMP EAX, 0
+ JZ LABEL_3
+ MOV EAX,1
+ MOV ESP,EBP
+ POP EBP
+ RET 0
+LABEL_3:
+ MOV EAX, [EBP + 12]
+ CMP EAX,1
+ JNE LABEL_5
+ XOR EAX, EAX
+ INC EAX
+ JMP LABEL_6
+LABEL_5:
+ XOR EAX, EAX
+LABEL_6:
+ CMP EAX, 0
+ JZ LABEL_7
  MOV EAX, [EBP + 8]
+ MOV ESP,EBP
+ POP EBP
+ RET 0
+LABEL_7:
+ MOV EAX, [EBP + 12]
+ MOV EDX, 0
+ MOV ECX, 2
+ DIV ECX
+ MOV EAX, EDX
+ CMP EAX,0
+ JNE LABEL_9
+ XOR EAX, EAX
+ INC EAX
+ JMP LABEL_10
+LABEL_9:
+ XOR EAX, EAX
+LABEL_10:
+ CMP EAX, 0
+ JZ LABEL_11
+ MOV EAX, [EBP + 12]
+ MOV EDX, 0
+ MOV ECX, 2
+ DIV ECX
+ PUSH EAX
+ PUSH DWORD [EBP + 8]
+ CALL f
+ ADD ESP,8
+ MOV [EBP - 12],EAX
+ MOV EAX, [EBP - 12]
+ MUL DWORD [EBP - 12]
+ MOV ESP,EBP
+ POP EBP
+ RET 0
+LABEL_11:
+ MOV EAX, [EBP + 8]
+ PUSH EAX
+ MOV EAX, [EBP + 12]
+ SUB EAX,1
+ PUSH EAX
+ PUSH DWORD [EBP + 8]
+ CALL f
+ ADD ESP,8
+ POP EBX
+ MUL EBX
  MOV ESP,EBP
  POP EBP
  RET 0
@@ -23,11 +100,12 @@ main:
  PUSH EBP
  MOV EBP,ESP
  SUB ESP,main_len
+ PUSH 10
  PUSH 2
- CALL id
- ADD ESP,4
+ CALL f
+ ADD ESP,8
  PUSH EAX
- PUSH DWORD LIT_0
+ PUSH DWORD LIT_1
  CALL printf
  ADD ESP,8
  MOV ESP,EBP
