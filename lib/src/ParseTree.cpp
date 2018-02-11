@@ -65,7 +65,7 @@ PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, const std::v
   if (nodeName == L"BLOCK")
     return reinterpret_cast<PNode *>(new Block(parent, nodeName, attrs));
   else if (nodeName == L"LVARDEF")
-    return reinterpret_cast<PNode *>(new VarDef(parent, nodeName, attrs, true));
+    return reinterpret_cast<PNode *>(new VarDef(parent, nodeName, attrs, true, false));
   else if (nodeName == L"FUNCDEF")
     return reinterpret_cast<PNode *>(new BFunction(parent, nodeName, attrs));
   else if (nodeName == L"VAR")

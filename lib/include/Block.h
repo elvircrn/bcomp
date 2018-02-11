@@ -14,6 +14,7 @@ public:
   inline size_t varCnt() const { return varMap.size(); }
   Block(PNode *parent, const std::wstring &_name, const std::vector<std::wstring> &_attrs);
   void addVarDef(VarDef* );
+  void addVarDef(VarDef *var, size_t _stackId);
   VarDef* getVarDef(const std::wstring &varName);
   ~Block() override;
 };

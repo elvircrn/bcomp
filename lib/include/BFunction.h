@@ -8,7 +8,7 @@
 #include "FParam.h"
 
 namespace bompiler {
-class BFunction : public PNode {
+class BFunction : public PNode { 
 public:
   BFunction(PNode *_parent, const wstring &_name, const vector<std::wstring> &);
   std::wstring name() const;

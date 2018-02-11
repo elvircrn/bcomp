@@ -175,11 +175,6 @@ void Bompiler::compile(PNode *node) {
                << L" MOV EBP,ESP" << endl
                << L" SUB ESP," << f->name() << L"_len" << endl;
 
-    // TODO: Consider moving this into the constructor
-    for (FParam *fparam : f->getArgs()) {
-      std::wcout << fparam->paramName() << '\n';
-      f->getBlock()->addVarDef(new VarDef(f->getBlock(), fparam->paramName(), true));
-    }
 
     for (const auto &child : node->getChildren())
       compile(child);
@@ -343,7 +338,16 @@ void Bompiler::compile(PNode *node) {
                << " MOV EAX, DWORD " << deref(genStackAddr(var)) << endl;
   } else if (nodename == L"PTR") {
   } else if (nodename == L"RETURN") {
+    _asmOutput << L" MOV ESP,EBP" << endl
+               << L" POP EBP" << endl
+               << L" RET 0" << endl;  // RET 0 because the caller cleans up the stack
   } else if (nodename == L"RETURNPARAM") {
+    // TODO: Figure out a more generic way to do this
+    auto param = node->getChild(0);
+    compile(param);
+    _asmOutput << L" MOV ESP,EBP" << endl
+               << L" POP EBP" << endl
+               << L" RET 0" << endl;  // RET 0 because the caller cleans up the stack
   } else if (nodename == L"RSHIFT") {
   } else if (nodename == L"RSHIFTMOV") {
   } else if (nodename == L"SAMEAS") {

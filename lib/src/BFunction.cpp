@@ -15,11 +15,14 @@ std::vector<bompiler::FParam*> BFunction::getArgs(bool reverse) const {
     args.emplace_back(child->as<FParam>());
   if (reverse)
     std::reverse(args.begin(), args.end());
+
   return args;
 }
 
 BFunction::BFunction(PNode *_parent, const wstring &_name, const vector<wstring> &_attrs) : PNode(_parent, _name,
-_attrs) { }
+_attrs) {
+
+}
 
 BFunction::~BFunction() = default;
 

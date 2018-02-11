@@ -8,7 +8,11 @@ using namespace bompiler;
 
 std::wstring bompiler::genStackAddr(Var *var, int _size) {
   std::wstringstream ss;
-  ss << L"EBP -" << L" " << var->varDef()->stackId() * _size;
+  if (var->varDef()->isFparam()) {
+    ss << L"EBP +" << L" " << (var->varDef()->stackId() + 2) * _size;
+  } else {
+    ss << L"EBP -" << L" " << var->varDef()->stackId() * _size;
+  }
   return ss.str();
 }
 

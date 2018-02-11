@@ -134,8 +134,18 @@ main() {
 }
 )"; 
 
+const std::string idTest = R"(
+id(x) {
+  return(x);
+}
+
+main() {
+  printf("%d\n", id(2));
+}
+)";
+
 int main() {
-  compileTest(fastPowTest);
+  compileTest(idTest);
   return 0;
 }
 

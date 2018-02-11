@@ -18,3 +18,70 @@ B
   BLOCK
 
 # Fast Pow
+B
+ FUNCDEF f
+  FHEADER
+   FUNCDEF base
+   FUNCDEF exp
+  BLOCK
+   IF
+    EQU
+     VAR exp
+     INT 0
+    BLOCK
+     RETURNPARAM
+      INT 1
+   IF
+    EQU
+     VAR exp
+     INT 1
+    BLOCK
+     RETURNPARAM
+      VAR base
+   IFELSE
+    EQU
+     MOD
+      VAR exp
+      INT 2
+     INT 0
+    BLOCK
+     DECLSTAT
+      LVARDEF t
+      MOV
+       VAR t
+       FUNCCALL
+        VAR f
+        ARG
+         VAR base
+        ARG
+         DIV
+          VAR exp
+          INT 2
+     RETURNPARAM
+      MUL
+       VAR t
+       VAR t
+    BLOCK
+     RETURNPARAM
+      FUNCCALL
+       VAR f
+       ARG
+        VAR base
+       ARG
+        SUB
+         VAR exp
+         INT 1
+ FUNCDEF main
+  FHEADER
+  BLOCK
+   FUNCCALL
+    VAR printf
+    ARG
+     STRING "%d\n"
+    ARG
+     FUNCCALL
+      VAR f
+      ARG
+       INT 2
+      ARG
+       INT 10
