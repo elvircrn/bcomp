@@ -13,6 +13,3 @@
 
 * SUB (pazite na nekomutativnost).
 
-# Known bugs
-
-* Main has to be the first function defined
