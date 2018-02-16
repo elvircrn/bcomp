@@ -420,7 +420,28 @@ void Bompiler::compile(PNode *node) {
     // TODO: Handle var not found
     auto var = reinterpret_cast<Var *>(node);
     _asmOutput << L" MOV EAX, [" << genStackAddr(var) << "]" << endl;
-  } else if (nodename == L"WHILE") {
+  } else if (nodename == L"WHILE") { 
+    auto condition = node->getChild(0),
+         block     = node->getChild(1);
+
+    auto loopLabel  = objs.createAndGetLabel(),
+         breakLabel = objs.createAndGetLabel();
+
+    _asmOutput << loopLabel << L":\n";
+
+    // After compiling the condition, the condition result is now in EAX
+    compile(condition); 
+
+    _asmOutput << " CMP EAX, 0\n"
+               << " JZ " << breakLabel << '\n';
+
+    compile(block);
+
+    compile(condition);
+    _asmOutput << " CMP EAX, 0\n"
+               << " JZ " << loopLabel << '\n';
+
+    _asmOutput << breakLabel << L":\n";
   } else if (nodename == L"XOR") {
     genArithOp(node, nodename);
   } else if (nodename == L"XORMOV ") {

@@ -1,5 +1,7 @@
-%define f_len 12
-%define main_len 0
+
+section .text
+
+define main_len 0
  extern printf
  global main
  section .data

@@ -15,7 +15,7 @@ namespace bompiler {
 class Objects {
   std::vector<BFunction*> functions;
   std::map<std::wstring, std::wstring> stringLiterals;
-  std::set<std::wstring> libraryFunctions = { L"printf" };
+  std::set<std::wstring> libraryFunctions = { L"printf", L"scanf" };
   int genLabelCnt;
 
 public:

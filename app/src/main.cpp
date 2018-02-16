@@ -170,8 +170,31 @@ main() {
 }
 )";
 
+const std::string guessingGame = R"(
+main() {
+  auto left, right, guessCmp, cnt;
+  cnt = 1;
+  left = 1;
+  right = 100; 
+  printf("Da li je tvoj broj %d?\n", (left + right) / 2);
+  scanf("%d", &guessCmp);
+  while (guessCmp != 0) {
+    printf("Da li je tvoj broj %d?\n", (left + right) / 2);
+    if (guessCmp < 0) {
+      right = (left + right) / 2;
+    } else {
+      left = (left + right) / 2;
+    }
+    cnt++;
+  }
+  printf("Trebalo mi je %d pokusaja da pogodim broj", cnt);
+  return 0;
+}
+)";
+
+
 int main() {
-  compileTest(fastPowTest);
+  compileTest(guessingGame);
   return 0;
 }
 

@@ -85,3 +85,85 @@ B
        INT 2
       ARG
        INT 10
+
+# Guessing game
+B
+ FUNCDEF main
+  FHEADER
+  BLOCK
+   DECLSTAT
+    LVARDEF left
+    LVARDEF right
+    LVARDEF guessCmp
+    LVARDEF cnt
+    MOV
+     VAR cnt
+     INT 1
+   MOV
+    VAR left
+    INT 1
+   MOV
+    VAR right
+    INT 100
+   FUNCCALL
+    VAR printf
+    ARG
+     STRING "Da li je tvoj broj %d?\n"
+    ARG
+     DIV
+      ADD
+       VAR left
+       VAR right
+      INT 2
+   FUNCCALL
+    VAR scanf
+    ARG
+     STRING "%d"
+    ARG
+     ADDROF
+      VAR guessCmp
+   WHILE
+    NEQU
+     VAR guessCmp
+     INT 0
+    BLOCK
+     FUNCCALL
+      VAR printf
+      ARG
+       STRING "Da li je tvoj broj %d?\n"
+      ARG
+       DIV
+        ADD
+         VAR left
+         VAR right
+        INT 2
+     IFELSE
+      LESSTHAN
+       VAR guessCmp
+       INT 0
+      BLOCK
+       MOV
+        VAR right
+        DIV
+         ADD
+          VAR left
+          VAR right
+         INT 2
+      BLOCK
+       MOV
+        VAR left
+        DIV
+         ADD
+          VAR left
+          VAR right
+         INT 2
+     POSTINC
+      VAR cnt
+   FUNCCALL
+    VAR printf
+    ARG
+     STRING "Trebalo mi je %d pokusaja da pogodim broj"
+    ARG
+     VAR cnt
+   RETURN
+   INT 0
