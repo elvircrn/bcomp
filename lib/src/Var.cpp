@@ -23,8 +23,6 @@ Var::Var(PNode *_parent, const wstring &_name, const std::vector<std::wstring> &
     throw "Assert";
   }
 
-  std::wcout << f->name() << '\n';
-
   auto varDef = f->getBlock()->getVarDef(varName()); 
 
   // TODO: Do error handling here

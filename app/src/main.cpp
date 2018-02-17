@@ -179,16 +179,31 @@ main() {
   printf("Da li je tvoj broj %d?\n", (left + right) / 2);
   scanf("%d", &guessCmp);
   while (guessCmp != 0) {
-    printf("Da li je tvoj broj %d?\n", (left + right) / 2);
     if (guessCmp < 0) {
       right = (left + right) / 2;
-    } else {
-      left = (left + right) / 2;
+    } 
+    if (guessCmp > 0) {
+      left = (left + right) / 2 + 1;
     }
+    printf("Da li je tvoj broj %d?\n", (left + right) / 2);
+    scanf("%d", &guessCmp);
     cnt++;
   }
-  printf("Trebalo mi je %d pokusaja da pogodim broj", cnt);
-  return 0;
+  printf("Trebalo mi je %d pokusaja da pogodim broj\n", cnt);
+  return(0);
+}
+)";
+
+/**
+ * 50
+ */
+const std::string varDivTest = R"(
+main() {
+  auto left, right, pivot;
+  left = 1;
+  right = 100;
+  pivot = (left + right) / 2;
+  printf("%d\n", pivot);
 }
 )";
 

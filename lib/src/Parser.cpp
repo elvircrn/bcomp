@@ -552,7 +552,6 @@ void Parser::Expression() {
 
 bool Parser::Assignable(int position) {
   wstring nodename = GetNodeName(position);
-  std:wcout << "NODENAME: " << nodename << '\n';
   return (nodename == L"VAR" || nodename == L"INDEX" || nodename == L"PTR");
 }
 

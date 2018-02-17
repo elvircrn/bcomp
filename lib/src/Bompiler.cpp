@@ -86,12 +86,14 @@ void Bompiler::compile(PNode *node) {
   }
   wstring nodename = node->getName(), elemname;
   int par, z, q;
-  std::wcout << L"NODENAME: " << nodename << '\n';
   par = 1;
   if (nodename == L"ADD") {
     genArithOp(node, nodename);
   } else if (nodename == L"ADDMOV") {
   } else if (nodename == L"ADDROF") {
+    auto var = node->getChild(0);
+    _asmOutput << L" LEA EAX, " << deref(genStackAddr(var->as<Var>())) << endl;
+    // _asmOutput << L" MOV EAX, " << genStackAddr(var->as<Var>()) << endl;
   } else if (nodename == L"AND") {
     genArithOp(node, nodename);
   } else if (nodename == L"ANDMOV") {
@@ -228,6 +230,37 @@ void Bompiler::compile(PNode *node) {
     _asmOutput << L" jmp " + GOTO_PREFIX + node->getAttr(0) << L":\n";
   } else if (nodename == L"GREATEREQUTHAN") {
   } else if (nodename == L"GREATERTHAN") {
+    compile(node->getChild(0));
+    objs.createAndGetLabel();
+    if (node->getChild(1)->getName() == L"INT") {
+      auto condFalse = objs.createAndGetLabel();
+      auto condTrue = objs.createAndGetLabel();
+      _asmOutput << L" CMP EAX," << node->getChild(1)->getAttr(0) << endl
+                 << L" JLE " << condFalse << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      auto var = node->getChild(1)->as<Var>();
+      auto condTrue = objs.createAndGetLabel();
+      auto condFalse = objs.createAndGetLabel();
+      _asmOutput << L" CMP EAX," << deref(genStackAddr(var)) << endl
+                 << L" JLE " << condFalse << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
+    } else {
+      _asmOutput << L" PUSH EAX" << endl;
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX" << endl
+                 << L" ADD EAX,EBX" << endl;
+    }
   } else if (nodename == L"GVARDEF") {
   } else if (nodename == L"IF") { 
     // The condition
@@ -371,6 +404,37 @@ void Bompiler::compile(PNode *node) {
     }
   } else if (nodename == L"MULTMOV") {
   } else if (nodename == L"NEQU") {
+    compile(node->getChild(0));
+    objs.createAndGetLabel();
+    if (node->getChild(1)->getName() == L"INT") {
+      auto condFalse = objs.createAndGetLabel();
+      auto condTrue = objs.createAndGetLabel();
+      _asmOutput << L" CMP EAX," << node->getChild(1)->getAttr(0) << endl
+                 << L" JE " << condFalse << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
+    } else if (node->getChild(1)->getName() == L"VAR") {
+      auto var = node->getChild(1)->as<Var>();
+      auto condTrue = objs.createAndGetLabel();
+      auto condFalse = objs.createAndGetLabel();
+      _asmOutput << L" CMP EAX," << deref(genStackAddr(var)) << endl
+                 << L" JE " << condFalse << endl
+                 << L" XOR EAX, EAX" << endl
+                 << L" INC EAX" << endl
+                 << L" JMP " << condTrue << endl
+                 << condFalse << ':' << endl
+                 << L" XOR EAX, EAX" << endl
+                 << condTrue << ':' << endl;
+    } else {
+      _asmOutput << L" PUSH EAX" << endl;
+      compile(node->getChild(1));
+      _asmOutput << L" POP EBX" << endl
+                 << L" ADD EAX,EBX" << endl;
+    } 
   } else if (nodename == L"ONUMBER") {
   } else if (nodename == L"OR") {
     genArithOp(node, nodename);
@@ -421,25 +485,22 @@ void Bompiler::compile(PNode *node) {
     auto var = reinterpret_cast<Var *>(node);
     _asmOutput << L" MOV EAX, [" << genStackAddr(var) << "]" << endl;
   } else if (nodename == L"WHILE") { 
-    auto condition = node->getChild(0),
-         block     = node->getChild(1);
+    auto condition = node->getChild(0);
+    auto block     = node->getChild(1);
 
-    auto loopLabel  = objs.createAndGetLabel(),
-         breakLabel = objs.createAndGetLabel();
+    auto loopLabel  = objs.createAndGetLabel();
+    auto breakLabel = objs.createAndGetLabel();
 
     _asmOutput << loopLabel << L":\n";
 
-    // After compiling the condition, the condition result is now in EAX
-    compile(condition); 
-
+    // After compiling the condition node, the condition result is now in EAX
+    compile(condition);
     _asmOutput << " CMP EAX, 0\n"
                << " JZ " << breakLabel << '\n';
 
     compile(block);
 
-    compile(condition);
-    _asmOutput << " CMP EAX, 0\n"
-               << " JZ " << loopLabel << '\n';
+    _asmOutput << " JMP " << loopLabel << '\n';
 
     _asmOutput << breakLabel << L":\n";
   } else if (nodename == L"XOR") {
