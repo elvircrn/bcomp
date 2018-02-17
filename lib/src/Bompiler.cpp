@@ -10,6 +10,7 @@
 #include <FuncCall.h>
 #include <Var.h>
 #include <fstream>
+#include <While.h>
 
 using namespace bompiler;
 
@@ -118,12 +119,28 @@ void Bompiler::compile(PNode *node) {
     for (const auto &child : node->getChildren())
       compile(child);
   } else if (nodename == L"BREAK") {
+    auto whileNode = node->getAncestorByName(L"WHILE");
+
+    // Error: If node is null, then continue is not valid
+    if (!whileNode) {
+      // TODO: Do error handling here
+    }
+
+    _asmOutput << L" GOTO " << whileNode->as<While>()->getBreakLabel() << '\n';
   } else if (nodename == L"B") {
     for (const auto &child : node->getChildren())
       compile(child);
   } else if (nodename == L"CHAR") {
   } else if (nodename == L"CONDEXPR") {
   } else if (nodename == L"CONTINUE") {
+    auto whileNode = node->getAncestorByName(L"WHILE");
+
+    // Error: If node is null, then continue is not valid
+    if (!whileNode) {
+      // TODO: Do error handling here
+    }
+
+    _asmOutput << L" GOTO " << whileNode->as<While>()->getLoopLabel() << '\n';
   } else if (nodename == L"DECLSTAT") {
     for (const auto &child : node->getChildren())
       compile(child);
@@ -209,8 +226,7 @@ void Bompiler::compile(PNode *node) {
     _asmOutput << f->name() << ":" << endl;
     _asmOutput << L" PUSH EBP" << endl
                << L" MOV EBP,ESP" << endl
-               << L" SUB ESP," << f->name() << L"_len" << endl;
-
+               << L" SUB ESP," << f->name() << L"_len" << endl; 
 
     for (const auto &child : node->getChildren())
       compile(child);
@@ -490,6 +506,8 @@ void Bompiler::compile(PNode *node) {
 
     auto loopLabel  = objs.createAndGetLabel();
     auto breakLabel = objs.createAndGetLabel();
+
+    node->as<While>()->setLabels(loopLabel, breakLabel);
 
     _asmOutput << loopLabel << L":\n";
 

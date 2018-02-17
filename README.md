@@ -11,6 +11,4 @@
 
 * Napisite funkciju koja provjerava da li je goto labela vec definisana i promijenite pravilo Label da to testira.
 
-* Implement while loops
-
 * Implement pointers
