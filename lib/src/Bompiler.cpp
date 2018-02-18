@@ -507,8 +507,8 @@ void Bompiler::compile(PNode *node) {
     auto condition = node->getChild(0);
     auto block     = node->getChild(1);
 
-    auto loopLabel  = objs.createAndGetLabel();
-    auto breakLabel = objs.createAndGetLabel();
+    std::wstring loopLabel  = objs.createAndGetLabel();
+    std::wstring breakLabel = objs.createAndGetLabel();
 
     node->as<While>()->setLabels(loopLabel, breakLabel);
 
