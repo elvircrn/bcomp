@@ -53,7 +53,7 @@ bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, l
   generateHeader();
 
   state = State::SUCCESS;
-  std::wofstream fout("asmbuff.asm", ios_base::out);
+  std::wofstream fout("../asmbuff.asm", ios_base::out);
   fout << asmStr() << '\n';
 }
 
