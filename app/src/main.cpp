@@ -216,7 +216,7 @@ main() {
 
 
 int main() {
-  compileTest(varDivTest);
+  compileTest(guessingGame);
   return 0;
 }
 
