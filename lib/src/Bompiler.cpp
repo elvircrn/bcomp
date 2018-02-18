@@ -43,8 +43,6 @@ bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, l
 
   std::wcout << parser.ParseList << '\n';
 
-  std::wofstream fout("asmbuff.asm", ios_base::out);
-  fout << parser.ParseList << '\n';
   std::wcout << L"Expression:\n" << parser.ParseList << endl;
 
   pt = ParseTree(parser.ParseList, 0);
@@ -55,6 +53,8 @@ bompiler::Bompiler::Bompiler(const unsigned char *buf, int len) : scanner(buf, l
   generateHeader();
 
   state = State::SUCCESS;
+  std::wofstream fout("asmbuff.asm", ios_base::out);
+  fout << asmStr() << '\n';
 }
 
 bompiler::Bompiler::State bompiler::Bompiler::getState() {
