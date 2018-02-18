@@ -86,6 +86,7 @@ void Bompiler::compile(PNode *node) {
     return;
   }
   wstring nodename = node->getName(), elemname;
+  std::wcout << L"Compiling: " << node->getName() << '\n';
   int par, z, q;
   par = 1;
   if (nodename == L"ADD") {
