@@ -131,6 +131,8 @@ void Bompiler::compile(PNode *node) {
     for (const auto &child : node->getChildren())
       compile(child);
   } else if (nodename == L"CHAR") {
+    // TODO: Chars are converted to int during construction of ParseTree, so this branch
+    // never gets executed.
   } else if (nodename == L"CONDEXPR") {
   } else if (nodename == L"CONTINUE") {
     auto whileNode = node->getAncestorByName(L"WHILE");

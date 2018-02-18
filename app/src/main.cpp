@@ -207,9 +207,16 @@ main() {
 }
 )";
 
+const std::string globalTest = R"(
+x;
+main() {
+  return(0);
+}
+)";
+
 
 int main() {
-  compileTest(guessingGame);
+  compileTest(globalTest);
   return 0;
 }
 
