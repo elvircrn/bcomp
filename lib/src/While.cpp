@@ -10,6 +10,7 @@ While::While(bompiler::PNode *_parent,
 }
 #include <iostream>
 void While::setLabels(const std::wstring &_loopLabel, const std::wstring &_breakLabel) {
+  std::wcout << L"WOT\n";
   loopLabel = _loopLabel;
   breakLabel = _breakLabel;
   std::wcout << L"WOT\n";
