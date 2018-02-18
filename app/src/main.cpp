@@ -216,7 +216,7 @@ main() {
 
 
 int main() {
-  compileTest(globalTest);
+  compileTest(varDivTest);
   return 0;
 }
 
