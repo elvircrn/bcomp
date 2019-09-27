@@ -1,0 +1,110 @@
+%define main_len 16
+ extern printf
+ extern scanf
+ global main
+ section .data
+LIT_1: db "%d", 0
+LIT_0: db "Da li je tvoj broj %d?", 10, "", 0
+LIT_2: db "Trebalo mi je %d pokusaja da pogodim broj", 10, "", 0
+
+section .text
+ global main
+main:
+ PUSH EBP
+ MOV EBP,ESP
+ SUB ESP,main_len
+ MOV DWORD [EBP - 16],1
+ MOV DWORD [EBP - 4],1
+ MOV DWORD [EBP - 8],100
+ MOV EAX, [EBP - 4]
+ ADD EAX,[EBP - 8]
+ MOV EDX, 0
+ MOV ECX, 2
+ DIV ECX
+ PUSH EAX
+ PUSH DWORD LIT_0
+ CALL printf
+ ADD ESP,8
+ LEA EAX, [EBP - 12]
+ PUSH EAX
+ PUSH DWORD LIT_1
+ CALL scanf
+ ADD ESP,8
+LABEL_0:
+ MOV EAX, [EBP - 12]
+ CMP EAX,0
+ JE LABEL_3
+ XOR EAX, EAX
+ INC EAX
+ JMP LABEL_4
+LABEL_3:
+ XOR EAX, EAX
+LABEL_4:
+ CMP EAX, 0
+ JZ LABEL_1
+ MOV EAX, [EBP - 12]
+ CMP EAX,0
+ JGE LABEL_6
+ XOR EAX, EAX
+ INC EAX
+ JMP LABEL_7
+LABEL_6:
+ XOR EAX, EAX
+LABEL_7:
+ CMP EAX, 0
+ JZ LABEL_8
+ MOV EAX, [EBP - 4]
+ ADD EAX,[EBP - 8]
+ MOV EDX, 0
+ MOV ECX, 2
+ DIV ECX
+ MOV [EBP - 8],EAX
+LABEL_8:
+ MOV EAX, [EBP - 12]
+ CMP EAX,0
+ JLE LABEL_10
+ XOR EAX, EAX
+ INC EAX
+ JMP LABEL_11
+LABEL_10:
+ XOR EAX, EAX
+LABEL_11:
+ CMP EAX, 0
+ JZ LABEL_12
+ MOV EAX, [EBP - 4]
+ ADD EAX,[EBP - 8]
+ MOV EDX, 0
+ MOV ECX, 2
+ DIV ECX
+ ADD EAX,1
+ MOV [EBP - 4],EAX
+LABEL_12:
+ MOV EAX, [EBP - 4]
+ ADD EAX,[EBP - 8]
+ MOV EDX, 0
+ MOV ECX, 2
+ DIV ECX
+ PUSH EAX
+ PUSH DWORD LIT_0
+ CALL printf
+ ADD ESP,8
+ LEA EAX, [EBP - 12]
+ PUSH EAX
+ PUSH DWORD LIT_1
+ CALL scanf
+ ADD ESP,8
+ MOV EAX, DWORD [EBP - 16]
+ INC DWORD [EBP - 16]
+ JMP LABEL_0
+LABEL_1:
+ PUSH DWORD [EBP - 16]
+ PUSH DWORD LIT_2
+ CALL printf
+ ADD ESP,8
+ MOV EAX,0
+ MOV ESP,EBP
+ POP EBP
+ RET 0
+ MOV ESP,EBP
+ POP EBP
+ RET 0

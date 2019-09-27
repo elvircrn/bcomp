@@ -9,6 +9,7 @@
 #include <VarDef.h>
 #include <BFunction.h>
 #include <FuncCall.h>
+#include <While.h>
 #include "FParam.h"
 
 #include "Int.h"
@@ -68,6 +69,8 @@ PNode *PNode::makeNode(PNode *parent, const std::wstring &nodeName, const std::v
     return reinterpret_cast<PNode *>(new VarDef(parent, nodeName, attrs, true, false));
   else if (nodeName == L"FUNCDEF")
     return reinterpret_cast<PNode *>(new BFunction(parent, nodeName, attrs));
+  else if (nodeName == L"WHILE")
+      return reinterpret_cast<PNode *>(new While(parent, nodeName, attrs));
   else if (nodeName == L"VAR")
     return reinterpret_cast<PNode *>(new Var(parent, nodeName, attrs));
   else if (nodeName == L"ARG")

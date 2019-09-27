@@ -13,20 +13,20 @@ using namespace util;
 using namespace bompiler;
 
 void compileTest(const std::string &code) {
-  bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(code)));
-  ParseTree(program.astStr(), 0).print();
-  std::wcout << program.asmStr() << "\n\n"
-             << program.astStr() << '\n';
+    bompiler::Bompiler program(UNPACK_CONSTRUCTOR(PACK_PARAM(code)));
+    ParseTree(program.astStr(), 0).print();
+    std::wcout << program.asmStr() << "\n\n"
+               << program.astStr() << '\n';
 
-  std::wfstream fout("asmbuff.asm");
-  fout << program.asmStr() << '\n';
+    std::wfstream fout("asmbuff.asm");
+    fout << program.asmStr() << '\n';
 
-  if (program.getState() == bompiler::Bompiler::State::SUCCESS) {
-    std::wcout << L"Success\n";
-  } else {
-    std::wcout << L"Fail\n";
-  } 
-} 
+    if (program.getState() == bompiler::Bompiler::State::SUCCESS) {
+        std::wcout << L"Success\n";
+    } else {
+        std::wcout << L"Fail\n";
+    }
+}
 
 /** Hello World */
 std::string helloWorld = R"(
@@ -124,7 +124,7 @@ f(base, exp) {
 main() {
   printf("%d\n", f(2, 10));
 }
-)"; 
+)";
 
 std::string funcDefTest = R"(
 f(a, b, c) {
@@ -133,7 +133,7 @@ f(a, b, c) {
 
 main() {
 }
-)"; 
+)";
 
 const std::string idTest = R"(
 id(x) {
@@ -177,7 +177,7 @@ main() {
   left = 1;
   right = 100; 
   printf("Da li je tvoj broj %d?\n", (left + right) / 2);
-  scanf("%d", &guessCmp);
+  scguyygyanf("%d", &guessCmp);
   while (guessCmp != 0) {
     if (guessCmp < 0) {
       right = (left + right) / 2;
@@ -216,7 +216,7 @@ main() {
 
 
 int main() {
-  compileTest(guessingGame);
-  return 0;
+    compileTest(guessingGame);
+    return 0;
 }
 
